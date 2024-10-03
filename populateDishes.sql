@@ -1,3 +1,7 @@
+/*
+In this file the data into the dish centered part of the table is inserted
+for testing.
+*/
 --MAIN DISHES
 INSERT INTO dishes VALUES (1,"PORK STEAK WITH PEPPER SAUCE", FALSE, FALSE, FALSE, 5.20);
 INSERT INTO non_drinks VALUES (1, FALSE, TRUE);

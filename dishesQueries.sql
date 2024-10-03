@@ -35,16 +35,30 @@ FROM dishes D, rated R
 WHERE D.did=R.did
 GROUP BY (R.did);
 /*
-Get the dishes whose rating is above average
+GET dishes whose rating is above average
 */
-SELECT S.did, S.name, S.rating
-FROM 
-(
-    SELECT *, AVG(rating) OVER() AS avg_rating--im not sure how this works but it does
+SELECT R.did, R.name, R.rating
+FROM(
+    (
+    SELECT D.did, D.name, AVG( R.rating ) AS rating
+    FROM dishes D, rated R
+    WHERE D.did=R.did
+    GROUP BY (R.did)
+    ) R,
+    (SELECT AVG(S.rating) AS avg_rating
     FROM ( SELECT D.did, D.name, AVG( R.rating ) AS rating
-        FROM dishes D, rated R
-        WHERE D.did=R.did
-        GROUP BY ( R.did ) 
-    ) AR
-) AS S
-WHERE rating > avg_rating;
+            FROM dishes D, rated R
+            WHERE D.did=R.did
+            GROUP BY ( R.did )
+    ) AS S
+    ) T
+)
+WHERE R.rating > T.avg_rating;
+
+/*
+GET CRITICS
+we want to find all the users who are critics
+*/
+SELECT U.uid, U.login
+FROM users U
+WHERE U.isCritic = TRUE;

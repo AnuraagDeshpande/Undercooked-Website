@@ -1,3 +1,7 @@
+/*
+In this file we populate the user centered part of the database.
+This includes the users and their reviews and ratings.
+*/
 --USERS
 INSERT INTO users VALUES (1, FALSE, "user1");
 INSERT INTO users VALUES (2, FALSE, "user2");
