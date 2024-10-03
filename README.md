@@ -8,7 +8,7 @@
 ## Files:
 ### SQL
 - createTables.sql
-- dishesQueries.sql
+- Queries.sql
 - populateUsers.sql
 - populateDishes.sql
 
