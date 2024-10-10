@@ -27,3 +27,6 @@ The schema is in the pdf file as well as the description
 The commands to create tables are in ```createTables.sql``` file. The descriptions are there as well.
 ### Assignment 3:
 The Query file is ```dishesQueries.sql```. In order to see that they work there are 2 files that populate the database: ```populateUsers.sql```, ```populateDishes.sql```.
+
+### Assignment 4:
+public_html folder contains all the code files like CSS and HTML. The corporate design is contained in CD.pdf file in that folder as well.

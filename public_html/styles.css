@@ -1,0 +1,387 @@
+* {
+    box-sizing: border-box; /* Changes from content-box to border-box for more consistent sizing */
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+
+html, body {
+    height: 100%; /* Ensures the body and HTML take full height */
+    margin: 0; /* Removes default margin */
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: #3A277C; /*subject to change*/
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    position: sticky; /*the navbar fixes in place after a certain offset, after scrolling down*/
+    top: 0; /*sets the position of the navbar at 0, i.e. at the very top*/
+    z-index: 999; /*ensures that it stays vertically 'on top' of other elements*/
+}
+
+.navbar_container {
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto; /*essentially puts 0 margin for top and bottom, auto for left and right, which centers the container*/
+    padding: 0 50px; /*we want less padding (space between container and container) for top and bottom, a bit more on the sides*/
+}
+
+#navbar_logo {
+    display: flex; /* Ensures proper rendering of background-clip */
+    background-color: #ffb23b; /* Fallback color */
+    background-image: linear-gradient(to top, #ffeb99 0%, #f09e1a 50%, #ffb23b 100%);
+    background-size: 100%;
+    -webkit-background-clip: text; /* For WebKit-based browsers */
+    background-clip: text;          /* Standard version for modern browsers */
+    color: transparent;             /* Set the color to transparent */
+    -webkit-text-fill-color: transparent; /* For WebKit-based browsers */
+    text-fill-color: transparent;     /* Standard version for modern browsers */
+    text-decoration: none; /* Get rid of the underline */
+    font-size: 32px;
+    align-items: center;
+    cursor: pointer;
+    padding-left: 25px;
+}
+
+.navbar_item {
+    height: 80px;
+    position: relative; /* Add this to control the position of the ::before */
+    max-width: 150px;
+}
+
+.navbar_item::before {
+    content: '';
+    display: block;
+    height: 10%;
+    width: 0%; /* Initially 0% */
+    background-color: #eee;
+    position: absolute;
+    bottom: 0; /* Position it at the bottom of the navbar item */
+    left: 0; /* Make sure it starts from the left */
+    transition: width ease-in-out 250ms;
+}
+
+.navbar_item:hover::before {
+    width: 100%; /* Expand only to the width of the hovered item */
+}
+
+.navbar_menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+}
+
+.navbar_item {
+    height: 80px;
+}
+
+.navbar_links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0 16px; /*16px padding on the top and bottom*/
+    height: 100%;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.navbar_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+    width: 40%;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    background: #FFB23B;
+    color: #3A277C;
+}
+
+.button:hover {
+    background: #ffeb99;
+    transition: all 0.5s ease;
+}
+
+.navbar_links:hover {
+    color: #FFB23B;
+    transition: all 0.5s ease;
+}
+
+footer {
+    position: 0;
+}
+
+@media screen and (max-width: 960px) {
+    .navbar_container {
+        display: flex;
+        justify-content: space-between;
+        z-index: 1;
+        width: 100%;
+        max-width: 50%;
+        padding: 0;
+    }
+
+    .navbar_menu {
+        display: grid;
+        grid-template-columns: auto;
+        margin: 0;
+        width: 100%;
+        position: absolute;
+        /*top: -1000; /*so that we don't see the small menu at the top normally*/
+        /*opacity: 0; /*it shouldn't be seen*/
+        transition: all 0.5s ease;
+        height: 50vh; /*viewport height*/
+        z-index: -1; /*should be able to click on the icon to trigger this menu*/
+        background: #6664CA;
+    }
+
+    .navbar_menu.active {
+        background: #6664CA;
+        top: 100%;
+        opacity: 1; /*so that we can actually see it*/
+        transition: all 0.5s ease;
+        z-index: 100; /*could be 99*/
+        height: 50vh;
+        font-size: 25px;
+    }
+
+    #navbar_logo {
+        padding-left: 25px;
+    }
+
+    .navbar_toggle .bar {
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        background: #FFFFFF;
+    }
+
+    .navbar_item {
+        width: 100%;
+    }
+
+    .navbar_links {
+        text-align: center;
+        padding: 32px;
+        width: 100%;
+        display: table;
+    }
+
+    #mobile_menu {
+        position: absolute;
+        top: 20%;
+        right: 5%;
+        transform: translate(5%, 20%);
+    }
+
+    .navbar_btn {
+        padding-bottom: 32px;
+    }
+
+    .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 80px;
+        margin: 0;
+    }
+
+    .navbar_toggle .bar {
+        display: block;
+        cursor: pointer;
+    }
+
+    #mobile_menu.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    #mobile_menu.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg)
+    }
+
+    #mobile_menu.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg)
+    }
+}
+
+/* Main content area (even if empty, this flexes) */
+main {
+    flex: 1;
+}
+
+/* Footer Styling */
+.footer {
+    position: fixed;        /* Fixes the footer to a specific position */
+    bottom: 0;              /* Sticks the footer to the bottom of the viewport */
+    left: 0;
+    width: 100%;            /* Ensures the footer spans the full width of the page */
+    background-color: #36365C;
+    padding: 5px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;          /* Ensures the footer stays above other content */
+}
+
+.footer a {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    color: #F2F2FF;
+}
+
+.footer a:hover {
+    color: #FFB23B;
+    transition: all 0.5s ease;
+}
+
+#footer_elem_1 {
+    text-align: left; /* Aligns text to the left for the first link */
+}
+
+#footer_elem_3 {
+    text-align: right; /* Aligns text to the right for the last link */
+}
+
+
+form {
+    display: flex;
+    justify-content: center; /* Centers the form horizontally */
+    align-items: center;     /* Centers vertically, though not as relevant here */
+    width: 100%;             /* Full-width for better responsiveness */
+    padding-top: 10px;
+    margin: 0 auto;          /* Ensures the form stays centered horizontally */
+  }
+  
+  input, button {
+    font-size: 30px;
+  }
+  
+  input[type="search"] {
+    width: 50%;              /* Controls the width of the search input */
+    padding: 0 20px;
+  }
+  
+  button {
+    display: none;
+    position: flex;
+    top: 0;
+    right: 0;
+    font-weight: bold;
+  }
+  
+  input:not(:placeholder-shown) + button {
+    display: block;
+  }
+  
+
+  .primary{
+    background-color:#3A277C;
+    color: #FFB23B;
+}
+
+.secondary{
+    background-color: #F2F2FF;
+    color: #36365C;
+}
+
+.background{
+    background-color: #C2C1EF;
+    color: #36365C;
+}
+
+.accent{
+    background-color: #FFB23B;
+    color:#3A277C;
+}
+
+.text{
+    padding: 0 auto;
+    background-color: #ffeb99;
+    color:#3A277C;
+    margin: 10px 100px;
+    padding: 20px;
+    -align: justify;
+    margin: 20px 20px;
+
+
+}
+
+.text p{
+    text-align: justify;
+    margin: 20px 20px;
+}
+
+.text h2{
+    font-size: 30px;
+    font-variant-caps: all-small-caps;
+    text-align: center;
+    padding: 5px;
+}
+.item-list{
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.item {
+    background-color: #ffb23b;
+    padding: 5px;
+    display: inline-block;
+    margin: 10px 10px;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.item h3{
+    font-variant-caps: all-small-caps;
+    font-weight: bold;
+}
+
+.primary{
+    background-color:#3A277C;
+    color: #FFB23B;
+}
+
+.secondary{
+    background-color: #F2F2FF;
+    color: #36365C;
+}
+
+.background{
+    background-color: #C2C1EF;
+    color: #36365C;
+}
+
+.accent{
+    background-color: #FFB23B;
+    color:#3A277C;
+}
+
+
+
+  
+
