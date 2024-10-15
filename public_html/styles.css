@@ -275,7 +275,7 @@ form {
     padding-top: 10px;
     margin: 0 auto;          /* Ensures the form stays centered horizontally */
   }
-  
+
   input, button {
     font-size: 30px;
   }
@@ -379,6 +379,51 @@ form {
 .accent{
     background-color: #FFB23B;
     color:#3A277C;
+}
+
+/*
+ADD FORM
+here is the formatting for input form for the dattabase
+*/
+form.db_query{
+    width: 600px;
+    display: block;
+    padding: 50px;
+    margin: 50px;
+    justify-content: center;
+}
+
+form.db_query input{
+    font-size: 20px;
+}
+
+form.db_query h2 {
+    margin: 10px
+}
+
+form.db_query input[type="submit"]{
+    padding: 5px;
+    border-width: 0px;
+}
+
+/* Hide all sections by default */
+.section {
+    display: none;
+}
+.section {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Show section when the corresponding radio button is checked */
+input[type="radio"]#main:checked ~ .main,
+input[type="radio"]#side:checked ~ .side,
+input[type="radio"]#drink:checked ~ .drink,
+input[type="radio"]#desert:checked ~ .desert,
+input[type="radio"]#main:checked ~ .nond,
+input[type="radio"]#side:checked ~ .nond,                       
+input[type="radio"]#desert:checked ~ .nond {
+    display: block;
 }
 
 
