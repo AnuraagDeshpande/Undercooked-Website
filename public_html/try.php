@@ -37,6 +37,7 @@
         have a certain amount of branching present
         */
         try{
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "INSERT INTO dishes (name, isHalal, isVegan, isVegetarian, price) 
             VALUES (:name, :halal, :vegan, :vegetarian, :price)";
 
@@ -115,6 +116,8 @@
                     
                     $stmt->execute();
                 }
+            }
+            header("Location: addedDish.html");
             }
         } catch(PDOException $e){
             echo "Insertion failed: " . $e->getMessage();

@@ -296,27 +296,6 @@ form {
   input:not(:placeholder-shown) + button {
     display: block;
   }
-  
-
-  .primary{
-    background-color:#3A277C;
-    color: #FFB23B;
-}
-
-.secondary{
-    background-color: #F2F2FF;
-    color: #36365C;
-}
-
-.background{
-    background-color: #C2C1EF;
-    color: #36365C;
-}
-
-.accent{
-    background-color: #FFB23B;
-    color:#3A277C;
-}
 
 .text{
     padding: 0 auto;
@@ -426,6 +405,25 @@ input[type="radio"]#desert:checked ~ .nond {
     display: block;
 }
 
+table {
+    padding: 20px;
+    margin: 10px;
+}
+tr {
+    padding: 10px;
+    margin: 10px;
+}
+
+td {
+    padding: 10px;
+    margin: 10px;
+}
+
+th {
+    padding: 10px;
+    margin: 10px;
+}
+    
 
 
   
