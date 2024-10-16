@@ -64,9 +64,10 @@ users an option to only rate items. The entity sets and relationships are descri
 
 --entity sets not part of ISA hierarchy------------------------------------------------------------------
 CREATE TABLE users(
-uid INT PRIMARY KEY,
+uid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 isCritic BOOL,
-login CHAR(20)
+login CHAR(20),
+password CHAR(20)
 );
 
 -- Table for reviews
