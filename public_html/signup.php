@@ -36,10 +36,10 @@
             try{
                 //we get data an analyze it
                 $login = $_POST['login'];
-                $pass1 = isset($_POST['pass1']) ? $_POST['pass1'] : "no";
-                $pass2 = isset($_POST['pass2']) ? $_POST['pass2'] : "na";
+                $pass1 = $_POST['pass1'] ?? "no";
+                $pass2 = $_POST['pass2'] ?? "no";;
                 $critic = isset($_POST['critic']) ? 1 : 0;
-                
+
                 if($pass1 == $pass2){
                     $sql = "INSERT INTO users (isCritic, login, password) VALUES (:isCritic, :login, :password)";
 
@@ -47,7 +47,7 @@
                     //We bind the parameters to the SQL query
                     $stmt->bindParam(':login', $login);
                     $stmt->bindParam(':isCritic', $critic, PDO::PARAM_BOOL);
-                    $stmt->bindParam(':password', $pass1, PDO::PARAM_BOOL);
+                    $stmt->bindParam(':password', $pass1);
                     //execute
                     $stmt->execute();
 
