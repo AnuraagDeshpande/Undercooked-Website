@@ -52,6 +52,12 @@
             $desertQ->execute();
             $desert = $desertQ->fetchAll(PDO::FETCH_ASSOC);
             //DRINKS
+            $drinksQ = $conn->prepare("SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian, DR.isCold, DR.isHot
+            FROM dishes D, drinks DR
+            WHERE D.did = DR.did
+            ");
+            $drinksQ->execute();
+            $drinks = $drinksQ->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }        
@@ -63,14 +69,14 @@
             <tr class="secondary">
                 <th>name</th>
                 <th>price</th>
-                <th>halal</th>
                 <th>vegan</th>
                 <th>vegetarian</th>
+                <th>halal</th>
                 <th>bowl</th>
                 <th>plate</th>
-                <th>meat</th>
-                <th>fish</th>
-                <th>chicken</th>
+                <th>Meat</th>
+                <th>Fish</th>
+                <th>Chicken</th>
             </tr>
             <!--We take data in a loop-->
             <?php if (is_array($main)>0  && count($main) > 0):?>
@@ -101,9 +107,9 @@
             <tr class="secondary">
                 <th>name</th>
                 <th>price</th>
-                <th>halal</th>
                 <th>vegan</th>
                 <th>vegetarian</th>
+                <th>halal</th>
                 <th>bowl</th>
                 <th>plate</th>
                 <th>cold</th>
@@ -126,7 +132,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="9">No dishes found.</td>
+                    <td colspan="9">No deserts found.</td>
                 </tr>
             <?php endif; ?>
         </table>
@@ -137,9 +143,9 @@
             <tr class="secondary">
                 <th>name</th>
                 <th>price</th>
-                <th>halal</th>
                 <th>vegan</th>
                 <th>vegetarian</th>
+                <th>halal</th>
                 <th>bowl</th>
                 <th>plate</th>
                 <th>vegetables</th>
@@ -160,7 +166,38 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="5">No dishes found.</td>
+                    <td colspan="8">No sides found.</td>
+                </tr>
+            <?php endif; ?>
+        </table>
+        <!--We fetch all the side dishes-->
+        <h1>Drinks:</h1>
+        <table class="background">
+            <tr class="secondary">
+                <th>name</th>
+                <th>price</th>
+                <th>vegan</th>
+                <th>vegetarian</th>
+                <th>halal</th>
+                <th>cold</th>
+                <th>hot</th>
+            </tr>
+            <!--We take data in a loop-->
+            <?php if (is_array($drinks)>0  && count($drinks) > 0):?>
+                <?php foreach ($drinks as $row): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['price']); ?></td>
+                        <td><?php echo $row['isVegan'] ? 'Yes' : 'No'; ?></td>
+                        <td><?php echo $row['isVegetarian'] ? 'Yes' : 'No'; ?></td>
+                        <td><?php echo $row['isHalal'] ? 'Yes' : 'No'; ?></td>
+                        <td><?php echo $row['isCold'] ? 'Yes' : 'No'; ?></td>
+                        <td><?php echo $row['isHot'] ? 'Yes' : 'No'; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="7">No drinks found.</td>
                 </tr>
             <?php endif; ?>
         </table>

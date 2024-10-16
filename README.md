@@ -30,3 +30,6 @@ The Query file is ```dishesQueries.sql```. In order to see that they work there 
 
 ### Assignment 4:
 public_html folder contains all the code files like CSS and HTML. The corporate design is contained in CD.pdf file in that folder as well.
+
+### Assignment 5:
+This assignment has a lof of files in it.

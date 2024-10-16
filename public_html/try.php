@@ -129,7 +129,7 @@
             <!--The user has to input the name-->
             <h2>Input the name of the new dish</h2>
             <label for="name">Name:</label>
-            <input type="text" name="name" id="name" required minlength="5" maxlength="100">
+            <input type="text" name="name" id="name" required minlength="4" maxlength="100">
             <h2></h2>
             <label for="number">Price:</label>
             <input type="number" name="price"  id="price" step="0.1" min="0" max="10" required>
@@ -191,6 +191,7 @@
             <h2></h2>
             <input type="submit" value="add" class="accent">
         </form>
+        <a href="./maintenance.html">back to maintenance</a>
     </body>
     
 </html>
