@@ -129,19 +129,19 @@
             <!--The user has to input the name-->
             <h2>Input the name of the new dish</h2>
             <label for="name">Name:</label>
-            <input type="text" name="name" id="name" required minlength="4" maxlength="100">
+            <input type="text" name="name" id="name" required minlength="5" maxlength="100">
             <h2></h2>
             <label for="number">Price:</label>
             <input type="number" name="price"  id="price" step="0.1" min="0" max="10" required>
             <!--Here the user can select the dish type-->
             <h2>Type of dish:</h2>
-            <input type="radio" name="dish_type" id="main" value="main" required>
+            <input type="radio" onclick="([].slice.call(document.getElementsByTagName('input'))).filter(x => x.type == 'checkbox' && x.parentElement.className != 'db_query secondary').forEach(x => x.checked = 0)" name="dish_type" id="main" value="main" required>
             <label for="main">Main</label>
-            <input type="radio" name="dish_type"  id="side" value="side" required>
+            <input type="radio" onclick="([].slice.call(document.getElementsByTagName('input'))).filter(x => x.type == 'checkbox' && x.parentElement.className != 'db_query secondary').forEach(x => x.checked = 0)" name="dish_type" id="side" value="side" required>
             <label for="side">Side</label>
-            <input type="radio" name="dish_type"  id="drink" value="drink" required>
+            <input type="radio" onclick="([].slice.call(document.getElementsByTagName('input'))).filter(x => x.type == 'checkbox' && x.parentElement.className != 'db_query secondary').forEach(x => x.checked = 0)" name="dish_type" id="drink" value="drink" required>
             <label for="drink">Drink</label>
-            <input type="radio" name="dish_type"  id="desert" value="desert" required>
+            <input type="radio" onclick="([].slice.call(document.getElementsByTagName('input'))).filter(x => x.type == 'checkbox' && x.parentElement.className != 'db_query secondary').forEach(x => x.checked = 0)" name="dish_type" id="desert" value="desert" required>
             <label for="desert">Desert</label>
             <!--The user can set the basic dish charasteristics-->
             <h2>Dish propperties:</h2>
@@ -191,7 +191,6 @@
             <h2></h2>
             <input type="submit" value="add" class="accent">
         </form>
-        <a href="./maintenance.html">back to maintenance</a>
     </body>
     
 </html>
