@@ -9,7 +9,7 @@ Here our is a hierarchy is described. We listed parent first children second.
 
 --parent class of all dishes
 CREATE TABLE dishes (
-did INT PRIMARY KEY, 
+did INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
 name VARCHAR (100), 
 isHalal BOOL, 
 isVegan BOOL, 

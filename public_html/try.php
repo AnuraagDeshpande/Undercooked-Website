@@ -7,12 +7,120 @@
         <link href="styles.css" rel="stylesheet"/>
     </head>
     <?php
-        print_r($_POST);
-        $name = $_POST['name'];
-        echo "\n";
-        echo $name;
-        echo "\n";
-        echo $vegan;
+
+        //ini_set('display_errors', 1);
+        //ini_set('display_startup_errors', 1);
+        //error_reporting(E_ALL);
+        /*
+        First we need to connect to our server, which as we 
+        know is hosted locally
+        */
+        try {        
+            // Database connection settings
+            $host = 'localhost';
+            $dbname = 'test';
+            $username = 'root';        
+            $password = ''; 
+            $socket = '/opt/lampp/var/mysql/mysql.sock'; 
+
+            //We create a pdo instance to connect to the database
+            //$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+            $conn = new PDO("mysql:unix_socket=$socket;dbname=$dbname", $username, $password);
+        
+            //set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+            echo "Connected successfully<br>";
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+        /*
+        Now we insert the data based on type, because of our schema we 
+        have a certain amount of branching present
+        */
+        try{
+            $sql = "INSERT INTO dishes (name, isHalal, isVegan, isVegetarian, price) 
+            VALUES (:name, :halal, :vegan, :vegetarian, :price)";
+
+            $stmt = $conn->prepare($sql);
+            //we get values
+            $name = $_POST['name'];
+            $type = $_POST['dish_type'];
+            $vegan = isset($_POST['vegan']) ? 1 : 0;
+            $vegetarian = isset($_POST['vegetarian']) ? 1 : 0;
+            $halal = isset($_POST['halal']) ? 1 : 0;
+            $price = $_POST['price'];
+            //We bind the parameters to the SQL query
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':halal', $halal, PDO::PARAM_BOOL);
+            $stmt->bindParam(':vegan', $vegan, PDO::PARAM_BOOL);
+            $stmt->bindParam(':vegetarian', $vegetarian, PDO::PARAM_BOOL);
+            $stmt->bindParam(':price', $price);;
+            //execute
+            $stmt->execute();
+
+            $id = $conn->lastInsertId();
+            //DRINKS
+            if ($type == "drink"){
+                $cold = isset($_POST['cold']) ? 1 : 0;
+                $hot = isset($_POST['hot']) ? 1 : 0;
+                //we insert a drink following a similar logic
+                $sql = "INSERT INTO drinks (did, isCold, isHot) VALUES (:did, :isCold, :isHot)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':did', $id);
+                $stmt->bindParam(':isCold', $cold, PDO::PARAM_BOOL);
+                $stmt->bindParam(':isHot', $hot, PDO::PARAM_BOOL);
+                $stmt->execute();
+            //NON DRINKS
+            } else {
+                $bowl = isset($_POST['bowl']) ? 1 : 0;
+                $plate = isset($_POST['plate']) ? 1 : 0;
+                //we insert a non drink following a similar  as before
+                $sql = "INSERT INTO non_drinks (did, inBowl, onPlate) VALUES (:did, :inBowl, :onPlate)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':did', $id);
+                $stmt->bindParam(':inBowl', $bowl, PDO::PARAM_BOOL);
+                $stmt->bindParam(':onPlate', $plate, PDO::PARAM_BOOL);
+                $stmt->execute();
+                //MAIN
+                if ($type == "main"){
+                    $meat = isset($_POST['meat']) ? 1 : 0;
+                    $fish = isset($_POST['fish']) ? 1 : 0;
+                    $chicken = isset($_POST['chicken']) ? 1 : 0;
+                    //we insert a drink following a similar logic
+                    $sql = "INSERT INTO main_dishes (did, hasMeat, hasFish, hasChicken) VALUES (:did, :hasMeat, :hasFish, :hasChicken)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bindParam(':did', $id);
+                    $stmt->bindParam(':hasMeat', $meat, PDO::PARAM_BOOL);
+                    $stmt->bindParam(':hasFish', $fish, PDO::PARAM_BOOL);
+                    $stmt->bindParam(':hasChicken', $chicken, PDO::PARAM_BOOL);
+                    $stmt->execute();
+                //SIDE
+                } else if ($type == "side"){
+                    $vegetables = isset($_POST['vegetables']) ? 1 : 0;
+                    //we insert a drink following a similar logic
+                    $sql = "INSERT INTO side_dishes (did, hasVegetables) VALUES (:did, :hasVegetables)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bindParam(':did', $id);
+                    $stmt->bindParam(':hasVegetables', $vegetables, PDO::PARAM_BOOL);
+                    $stmt->execute();
+                //DESERT
+                } else {
+                    $coldD = isset($_POST['coldD']) ? 1 : 0;
+                    $fruit = isset($_POST['fruit']) ? 1 : 0;
+                    //we insert a drink following a similar logic
+                    $sql = "INSERT INTO desert_dishes (did, isCold, hasFruit) VALUES (:did, :isCold, :hasFruit)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bindParam(':did', $id);
+                    $stmt->bindParam(':isCold', $coldD, PDO::PARAM_BOOL);
+                    $stmt->bindParam(':hasFruit', $fruit, PDO::PARAM_BOOL);
+                    
+                    $stmt->execute();
+                }
+            }
+        } catch(PDOException $e){
+            echo "Insertion failed: " . $e->getMessage();
+        }
     ?>
     <body>
         <form  method="POST" class="db_query secondary">
@@ -21,6 +129,9 @@
             <h2>Input the name of the new dish</h2>
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" required minlength="5" maxlength="100">
+            <h2></h2>
+            <label for="number">Price:</label>
+            <input type="number" name="price"  id="price" step="0.1" min="0" max="10" required>
             <!--Here the user can select the dish type-->
             <h2>Type of dish:</h2>
             <input type="radio" name="dish_type" id="main" value="main" required>
@@ -70,7 +181,7 @@
             </div>
             <!--DESERT-->
             <div class="desert section background">
-                <input type="checkbox" name="cold" id="coldD">
+                <input type="checkbox" name="coldD" id="coldD">
                 <label for="coldDs">Cold</label>
                 <input type="checkbox" name="fruit" id="fruit">
                 <label for="fruit">Fruit</label>
