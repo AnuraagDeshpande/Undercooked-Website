@@ -32,4 +32,23 @@ The Query file is ```dishesQueries.sql```. In order to see that they work there 
 public_html folder contains all the code files like CSS and HTML. The corporate design is contained in CD.pdf file in that folder as well.
 
 ### Assignment 5:
-This assignment has a lof of files in it.
+This assignment has a lof of files in it. This is due to the fact that there are many tables and relationships
+ into which we need to input data
+#### Input files for entering database data
+1. try.php
+2. addedDish.html
+3. rate.php
+4. rated.html
+5. signup.pho
+6. signupSuc.html
+
+#### View pages
+They show tables, often in joined form in order to make it easier to check for maintenance.
+1. users.php
+2. dishes.php
+3. ratingsData.php
+
+#### Maintenance
+This page has links to all the pages listed above and is linked back by them.
+1. maintenance.html
+

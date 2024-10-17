@@ -88,5 +88,6 @@
                 <p style="color: red;"><?php echo $error_message; ?></p>
             <?php endif; ?>
         </form>
+        <a href="./maintenance.html">back to maintenance</a>
     </body>
 </html>
