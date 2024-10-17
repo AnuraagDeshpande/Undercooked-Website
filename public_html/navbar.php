@@ -20,7 +20,7 @@
                     <a href="/" class="navbar_links">This week</a>
                 </li>
                 <li class="navbar_item">
-                    <a href="maintenance.html" class="navbar_links">Maintenance</a>
+                    <a href="./maintenance/maintenance.html" class="navbar_links">Maintenance</a>
                   </li>
                 <li class="navbar_btn">
                     <a href="/" class="button">Login/Sign up</a>
