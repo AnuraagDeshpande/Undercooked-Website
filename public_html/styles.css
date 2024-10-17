@@ -1,11 +1,11 @@
 @font-face {
    font-family: futura-cond;
-   src: url("./fonts/futura-condensed.ttf") format("truetype");
+   src: url("fonts/futura-condensed.ttf") format("truetype");
 }
 
 @font-face {
    font-family: futura-bold;
-   src: url("./fonts/futura-bold.ttf") format("truetype");
+   src: url("fonts/futura-bold.ttf") format("truetype");
 }
 
 *{
