@@ -6,21 +6,7 @@
     <title>Undercooked Website</title>
     <link href="styles.css" rel="stylesheet"/>
 </head>
-<body>
-
-    <h1>Link Dishes Together</h1>
-
-    <form method="POST" action="" class="goes_well_with">
-        <label for="name1">Enter First Dish Name:</label>
-        <input type="text" id="name1" name="name1" required><br><br>
-
-        <label for="name2">Enter Second Dish Name:</label>
-        <input type="text" id="name2" name="name2" required><br><br>
-
-        <input type="submit" value="Submit">
-    </form>
-
-    <?php
+<?php
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL); //Useful for reporting errors during development
@@ -36,53 +22,73 @@
         // Establish connection
         $conn = new PDO("mysql:unix_socket=$socket;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+    try{
+        //we get the names of dishes
+        $dishesQ = $conn->prepare("SELECT D.did, D.name
+        FROM dishes D
+        ");
+        $dishesQ->execute();
+        $dishes = $dishesQ->fetchAll(PDO::FETCH_ASSOC); 
+    } catch(PDOException $e){
+        echo "Fetching data failed" . $e->getMessage();
+    }
+?>
+<body>
+    <form method="POST" action="" class="db_query secondary goes_well_with">
+    <h1>Link Dishes Together</h1>
+        <h2>Dsih 1:</h2>
+        <select name="name1" required>
+            <?php if (is_array($dishes)>0  && count($dishes) > 0):?>
+                <?php foreach ($dishes as $row): ?>
+                    <option value="<?php echo $row['did']; ?>" ><?php echo htmlspecialchars($row['name']); ?></option>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </select>
+        <h2>Dish 2:</h2>
+        <select name="name2" required>
+            <?php if (is_array($dishes)>0  && count($dishes) > 0):?>
+                <?php foreach ($dishes as $row): ?>
+                    <option value="<?php echo $row['did']; ?>" ><?php echo htmlspecialchars($row['name']); ?></option>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </select>
+        <h2></h2>
+        <input type="submit" value="add" class="accent">
+        <a href="./maintenance.html">back to maintenance</a>
+    </form>
+    <?php
+    /*
+    <label for="name1">Enter First Dish Name:</label>
+        <input type="text" id="name1" name="name1" required><br><br>
 
+        <label for="name2">Enter Second Dish Name:</label>
+        <input type="text" id="name2" name="name2" required><br><br>
+
+        <input type="submit" value="Submit">*/ 
+    try {
         // Check if form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Get dish names from POST request
-            $name1 = $_POST['name1'];
-            $name2 = $_POST['name2'];
+            $dish1_id = $_POST['name1'];
+            $dish2_id = $_POST['name2'];            
+            
 
-            // Fetch the details of the first dish
-            $stmt1 = $conn->prepare("SELECT did FROM dishes WHERE name = :name1");
-            $stmt1->bindParam(':name1', $name1);
-            $stmt1->execute();
-            $dish1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-
-            // Fetch the details of the second dish
-            $stmt2 = $conn->prepare("SELECT did FROM dishes WHERE name = :name2");
-            $stmt2->bindParam(':name2', $name2);
-            $stmt2->execute();
-            $dish2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-
-            // Check if both dishes are found
-            if ($dish1 && $dish2) {
-                $dish1_id = $dish1['did'];
-                $dish2_id = $dish2['did'];
-
-                // Ensure dishes are not the same
-                if ($dish1_id != $dish2_id) {
-                    // Insert the pair into the goes_with table
-                    $stmt_insert = $conn->prepare("INSERT INTO goes_with (did1, did2) VALUES (:dish1_id, :dish2_id)");
-                    $stmt_insert->bindParam(':dish1_id', $dish1_id);
-                    $stmt_insert->bindParam(':dish2_id', $dish2_id);
-                    $stmt_insert->execute();
-
-                    echo "<p>Dishes <strong>$name1</strong> and <strong>$name2</strong> have been successfully linked!</p>";
-                } else {
-                    echo "<p>You cannot link a dish to itself. Please choose two different dishes.</p>";
-                }
-
-                // Query to get dish statistics (times paired, average rating)
-                $query = "
-                    SELECT d.did, d.name, COUNT(gw.did1) AS times_paired,
-                      (SELECT AVG(r.rating) FROM rated r WHERE r.did = d.did) AS avg_rating
-                    FROM dishes d
-                    LEFT JOIN goes_with gw ON d.did = gw.did1 OR d.did = gw.did2
-                    GROUP BY d.did;
-                ";
-
-                $stmt_stats = $conn->prepare($query);
+            // Ensure dishes are not the same
+            if ($dish1_id != $dish2_id) {
+                // Insert the pair into the goes_with table
+                $stmt_insert = $conn->prepare("INSERT INTO goes_with (did1, did2) VALUES (:dish1_id, :dish2_id)");
+                $stmt_insert->bindParam(':dish1_id', $dish1_id);
+                $stmt_insert->bindParam(':dish2_id', $dish2_id);
+                $stmt_insert->execute();
+                header("Location: goesWith.html");
+                exit(); 
+            } else {
+                echo "<p>You cannot link a dish to itself. Please choose two different dishes.</p>";
+            }
+                /*$stmt_stats = $conn->prepare($query);
                 $stmt_stats->execute();
                 $dish_stats = $stmt_stats->fetchAll(PDO::FETCH_ASSOC);
 
@@ -101,15 +107,13 @@
                             <td>" . (isset($row['avg_rating']) ? round($row['avg_rating'], 2) : 'No Rating') . "</td>
                           </tr>";
                 }
-                echo "</table>";
-
-            } else {
-                echo "<p>One or both dishes were not found in the database. Please check the names and try again.</p>";
-            }
+                echo "</table>";*/
         }
-    } catch (PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
+    } 
+    catch (PDOException $e){
+        echo "Inserting data failed" . $e->getMessage();
     }
+    
     ?>
 
 </body>
