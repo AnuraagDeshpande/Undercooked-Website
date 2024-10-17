@@ -7,16 +7,12 @@
     <link href="styles.css" rel="stylesheet"/>
 </head>
 <?php
+    include 'variables.php';
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL); //Useful for reporting errors during development
 
     // Database connection settings
-    $host = 'localhost';
-    $dbname = 'test';
-    $username = 'root';        
-    $password = ''; 
-    $socket = '/opt/lampp/var/mysql/mysql.sock'; 
 
     try {        
         // Establish connection

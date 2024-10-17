@@ -7,6 +7,7 @@
         <link href="styles.css" rel="stylesheet"/>
     </head>
     <?php
+        include 'variables.php';
 
         //ini_set('display_errors', 1);
         //ini_set('display_startup_errors', 1);
@@ -17,11 +18,6 @@
         */
         try {        
             // Database connection settings
-            $host = 'localhost';
-            $dbname = 'test';
-            $username = 'root';        
-            $password = ''; 
-            $socket = '/opt/lampp/var/mysql/mysql.sock'; 
 
             //We create a pdo instance to connect to the database
             //$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
