@@ -71,8 +71,8 @@ password CHAR(20)
 );
 
 -- Table for reviews
-CREATE TABLE reviews (
-rid INT PRIMARY KEY,
+CREATE TABLE reviews(
+rid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 content VARCHAR(500),
 CHECK (LENGTH(content) >= 1 AND LENGTH(content) <= 500)
 );
