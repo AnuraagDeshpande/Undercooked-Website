@@ -107,7 +107,7 @@
             <!--The user has review the dish-->
             <h2>Add your review:</h2>
             <p>Maximum 500 characters:</p>
-            <textarea rows="5" columns="40" name="reviewText" placeholder="write your review" class="textField">Place your review text</textarea>           
+            <textarea rows="5" columns="40" name="reviewText" placeholder="write your review" class="textField" required>Place your review text</textarea>           
             <!--The user can submit the form contents by pressing a button-->
             <h2></h2>
             <input type="submit" value="add" class="accent">
