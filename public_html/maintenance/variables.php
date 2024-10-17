@@ -12,5 +12,5 @@ $host = 'localhost';
 $dbname = 'pyuri_db';
 $username = 'pyuri';        
 $password = 'bVjRRC'; 
-$socket = '/opt/lampp/var/mysql/mysql.sock';
+$socket = '/run/mysqld/mysqld.sock';
 ?>
