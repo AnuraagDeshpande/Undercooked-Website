@@ -32,9 +32,11 @@ The Query file is ```dishesQueries.sql```. In order to see that they work there 
 public_html folder contains all the code files like CSS and HTML. The corporate design is contained in CD.pdf file in that folder as well.
 
 ### Assignment 5:
+All the relevant code can be found in the maintenance directory.
+
 This assignment has a lof of files in it. This is due to the fact that there are many tables and relationships
- into which we need to input data. Usually we have a input page, a success page and am error code that appears in case an 
- action was not successful.
+into which we need to input data. Usually we have a input page, a success page and am error code that appears in case an 
+action was not successful.
 #### Input files for entering database data
 1. try.php
 2. addedDish.html
