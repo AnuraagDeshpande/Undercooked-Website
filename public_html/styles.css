@@ -1,9 +1,19 @@
-* {
+@font-face {
+   font-family: futura-cond;
+   src: url("./fonts/futura-condensed.ttf") format("truetype");
+}
+
+@font-face {
+   font-family: futura-bold;
+   src: url("./fonts/futura-bold.ttf") format("truetype");
+}
+
+*{
     box-sizing: border-box; /* Changes from content-box to border-box for more consistent sizing */
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
     overflow-x: hidden;
+    font-family: futura-cond;
 }
 
 
@@ -37,7 +47,7 @@ html, body {
 #navbar_logo {
     display: flex; /* Ensures proper rendering of background-clip */
     background-color: #ffb23b; /* Fallback color */
-    background-image: linear-gradient(to top, #ffeb99 0%, #f09e1a 50%, #ffb23b 100%);
+    /* background-image: linear-gradient(to top, #ffeb99 0%, #f09e1a 50%, #ffb23b 100%); No gradient for now*/
     background-size: 100%;
     -webkit-background-clip: text; /* For WebKit-based browsers */
     background-clip: text;          /* Standard version for modern browsers */
@@ -45,7 +55,8 @@ html, body {
     -webkit-text-fill-color: transparent; /* For WebKit-based browsers */
     text-fill-color: transparent;     /* Standard version for modern browsers */
     text-decoration: none; /* Get rid of the underline */
-    font-size: 32px;
+    font-size: 40px;
+    font-family: futura-bold;
     align-items: center;
     cursor: pointer;
     padding-left: 25px;
@@ -310,15 +321,22 @@ form {
 }
 
 .text p{
+	font-size: 22px;
     text-align: justify;
     margin: 20px 20px;
 }
 
 .text h2{
-    font-size: 30px;
+	font-family: futura-bold;
+    font-size: 40px;
     font-variant-caps: all-small-caps;
     text-align: center;
     padding: 5px;
+}
+
+.text h1{
+	font-size:46px;
+	font-family: futura-bold;
 }
 .item-list{
     width: 100%;
