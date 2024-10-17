@@ -191,6 +191,6 @@
             <h2></h2>
             <input type="submit" value="add" class="accent">
         </form>
+        <a href="./maintenance.html">back to maintenance</a>
     </body>
-    
 </html>
