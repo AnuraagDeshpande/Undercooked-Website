@@ -58,7 +58,7 @@
                         <td><?php echo htmlspecialchars($row['name']); ?></td>
                         <td><?php echo htmlspecialchars($row['uid']); ?></td>
                         <td><?php echo htmlspecialchars($row['login']); ?></td>  
-                        <td><?php echo htmlspecialchars($row['review']); ?></td> 
+                        <td><?php echo htmlspecialchars($row['content']); ?></td> 
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>

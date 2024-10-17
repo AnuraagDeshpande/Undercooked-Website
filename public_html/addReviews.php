@@ -7,6 +7,7 @@
         <link href="styles.css" rel="stylesheet"/>
     </head>
     <?php
+        include 'variables.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
@@ -14,14 +15,7 @@
         First we need to connect to our server, which as we 
         know is hosted locally
         */
-        try {        
-            // Database connection settings
-            $host = 'localhost';
-            $dbname = 'test';
-            $username = 'root';        
-            $password = ''; 
-            $socket = '/opt/lampp/var/mysql/mysql.sock'; 
-
+        try {
             //We create a pdo instance to connect to the database
             //$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
             $conn = new PDO("mysql:unix_socket=$socket;dbname=$dbname", $username, $password);
@@ -52,36 +46,31 @@
             try{
                 $uid = $_POST['user'];
                 $did = $_POST['dish'];
-                $content = $_POST['review'];
+                $content = $_POST['reviewText'];
 
+                //REVIEW we insert the review
                 $sql = "INSERT INTO reviews (content) VALUES (:content)";
-
                 $stmt = $conn->prepare($sql);
-                
                 $stmt->bindParam(':content', $content);
-                //execute
                 $stmt->execute();
                 //it was given an id by SQL (auto-incremented)
 
                 $rid = $conn->lastInsertId();
-              
-                $sql = "INSERT INTO reviewed (uid, content) VALUES (:uid, :content)";
 
+                //REVIEWED we add to relationship table
+                $sql = "INSERT INTO reviewed (uid, rid) VALUES (:uid, :rid)";
                 $stmt = $conn->prepare($sql);     
-                
-                $uid = $_POST['uid'];
                 //We bind the parameters to the SQL query
-                $stmt->bindParam(':content', $content);
-                //execute
+                $stmt->bindParam(':uid', $uid);
+                $stmt->bindParam(':rid', $rid);
                 $stmt->execute();
 
-                $sql = "INSERT INTO has_review (content) VALUES (:content)";
-
-                $stmt = $conn->prepare($sql);
-                $uid = $_POST['uid'];            
+                //HAS REVIEW we insert into the other relation
+                $sql = "INSERT INTO has_review (did, rid) VALUES (:did, :rid)";
+                $stmt = $conn->prepare($sql);         
                 //We bind the parameters to the SQL query
-                $stmt->bindParam(':content', $content);
-                //execute
+                $stmt->bindParam(':did', $did);
+                $stmt->bindParam(':rid', $rid);
                 $stmt->execute();
 
                 header("Location: addReviews.html");
@@ -118,7 +107,7 @@
             <!--The user has review the dish-->
             <h2>Add your review:</h2>
             <p>Maximum 500 characters:</p>
-            <textarea rows="10" columns="30" name="reviewText" placeholder="write your review" class="textField">            
+            <textarea rows="5" columns="40" name="reviewText" placeholder="write your review" class="textField">Place your review text</textarea>           
             <!--The user can submit the form contents by pressing a button-->
             <h2></h2>
             <input type="submit" value="add" class="accent">
