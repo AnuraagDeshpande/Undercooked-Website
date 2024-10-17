@@ -41,6 +41,9 @@ This assignment has a lof of files in it. This is due to the fact that there are
 4. rated.html
 5. signup.pho
 6. signupSuc.html
+7. goesWith.html
+8. goesWith.php
+9. app.js
 
 #### View pages
 They show tables, often in joined form in order to make it easier to check for maintenance.
@@ -48,7 +51,11 @@ They show tables, often in joined form in order to make it easier to check for m
 2. dishes.php
 3. ratingsData.php
 
-#### Maintenance
-This page has links to all the pages listed above and is linked back by them.
+#### Maintenance and variables
+This page has links to all the pages listed above and is linked back by them. Global vriables such as the address of the host are in a separate file
 1. maintenance.html
+2. variables.php
+
+#### OTHER:
+There were some other changes made in different files but the files listed above hold the most relevance to the assignment
 

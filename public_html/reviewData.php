@@ -25,42 +25,45 @@
             //set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            //RATINGS
-            $ratingsQ = $conn->prepare("SELECT U.uid, U.login, R.rating, D.did, D.name
-            FROM users U, rated R, dishes D
-            WHERE U.uid=R.uid and R.did=D.did
+            //USERS
+            $reviewQ = $conn->prepare("SELECT u.login, u.uid, r.content, d.name, d.did
+            FROM users u, reviews r, reviewed rv, has_review hr, dishes d
+            WHERE u.uid = rv.uid 
+            AND rv.rid = r.rid 
+            AND r.rid = hr.rid 
+            AND hr.did = d.did;
             ");
-            $ratingsQ->execute();
-            $ratings = $ratingsQ->fetchAll(PDO::FETCH_ASSOC);
+            $reviewQ->execute();
+            $review = $reviewQ->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Connection failed or query: " . $e->getMessage();
         }        
     ?>
     <body class="secondary text">
-        <!--We fetch all the ratings data-->
-        <h1>Ratings:</h1>
+        <!--We fetch all the users-->
+        <h1>Review data:</h1>
         <table class="background">
             <tr class="secondary">
+                <th>did</th>
+                <th>name</th>
                 <th>uid</th>
                 <th>login</th>
-                <th>rating</th>
-                <th>did</th>
-                <th>dish</th>
+                <th>review</th>
             </tr>
             <!--We take data in a loop-->
-            <?php if (is_array($ratings)>0  && count($ratings) > 0):?>
-                <?php foreach ($ratings as $row): ?>
+            <?php if (is_array($review)>0  && count($review) > 0):?>
+                <?php foreach ($review as $row): ?>
                     <tr>
+                        <td><?php echo htmlspecialchars($row['did']); ?></td>
+                        <td><?php echo htmlspecialchars($row['name']); ?></td>
                         <td><?php echo htmlspecialchars($row['uid']); ?></td>
-                        <td><?php echo htmlspecialchars($row['login']); ?></td>
-                        <td><?php echo htmlspecialchars($row['rating']); ?></td>     
-                        <td><?php echo htmlspecialchars($row['did']); ?></td>  
-                        <td><?php echo htmlspecialchars($row['name']); ?></td>  
+                        <td><?php echo htmlspecialchars($row['login']); ?></td>  
+                        <td><?php echo htmlspecialchars($row['review']); ?></td> 
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="5">No ratings found</td>
+                    <td colspan="5">No reviews left by users yet</td>
                 </tr>
             <?php endif; ?>
         </table>        
