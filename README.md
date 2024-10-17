@@ -41,6 +41,9 @@ This assignment has a lof of files in it. This is due to the fact that there are
 4. rated.html
 5. signup.pho
 6. signupSuc.html
+7. goesWith.html
+8. goesWith.php
+9. app.js
 
 #### View pages
 They show tables, often in joined form in order to make it easier to check for maintenance.
