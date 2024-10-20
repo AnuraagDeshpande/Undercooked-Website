@@ -32,6 +32,7 @@ html, body {
     position: sticky; /*the navbar fixes in place after a certain offset, after scrolling down*/
     top: 0; /*sets the position of the navbar at 0, i.e. at the very top*/
     z-index: 999; /*ensures that it stays vertically 'on top' of other elements*/
+    overflow: hidden;
 }
 
 .navbar_container {
@@ -41,7 +42,7 @@ html, body {
     width: 100%;
     max-width: 1300px;
     margin: 0 auto; /*essentially puts 0 margin for top and bottom, auto for left and right, which centers the container*/
-    padding: 0 50px; /*we want less padding (space between container and container) for top and bottom, a bit more on the sides*/
+    padding: 0 0 40px 20px; /*we want less padding (space between container and container) for top and bottom, a bit more on the sides*/
 }
 
 #navbar_logo {
@@ -440,4 +441,37 @@ td {
 th {
     padding: 10px;
     margin: 10px;
+}
+
+.box{ /*search bar*/
+    height: 30px;
+    margin: 25px 0px;
+    display: flex;
+    cursor: pointer;
+    padding: 5px 20px;
+    background: #FFFFFF;
+    border-radius: 30px;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* Prevents scrolling arrows */
+}
+
+.box:hover input{
+    width: 300px;
+}
+
+.box input{
+    width: 100px;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+
+.box a .fas{
+    margin-right: 5px;
+    margin-top: 5px;
+    color:#3A277C;
+    font-size: 15px;
 }
