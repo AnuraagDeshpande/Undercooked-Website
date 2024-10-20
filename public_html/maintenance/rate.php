@@ -4,9 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Undercooked Website</title>
-        <link href="styles.css" rel="stylesheet"/>
+        <link href="../styles.css" rel="stylesheet"/>
     </head>
     <?php
+        include 'variables.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
@@ -16,11 +17,6 @@
         */
         try {        
             // Database connection settings
-            $host = 'localhost';
-            $dbname = 'test';
-            $username = 'root';        
-            $password = ''; 
-            $socket = '/opt/lampp/var/mysql/mysql.sock'; 
 
             //We create a pdo instance to connect to the database
             //$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
@@ -50,41 +46,21 @@
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             try{
-                $uid = $_POST['user'];
                 $did = $_POST['dish'];
-                $content = $_POST['review'];
-
-                $sql = "INSERT INTO reviews (content) VALUES (:content)";
-
-                $stmt = $conn->prepare($sql);
-                
-                $stmt->bindParam(':content', $content);
-                //execute
-                $stmt->execute();
-                //it was given an id by SQL (auto-incremented)
-
-                $rid = $conn->lastInsertId();
+                $uid = $_POST['user'];
+                $rating = $_POST['rating'];
               
-                $sql = "INSERT INTO reviewed (uid, content) VALUES (:uid, :content)";
+                $sql = "INSERT INTO rated (uid, did,rating) VALUES (:uid, :did, :rating)";
 
-                $stmt = $conn->prepare($sql);     
-                
-                $uid = $_POST['uid'];
+                $stmt = $conn->prepare($sql);            
                 //We bind the parameters to the SQL query
-                $stmt->bindParam(':content', $content);
+                $stmt->bindParam(':uid', $uid);
+                $stmt->bindParam(':did', $did);
+                $stmt->bindParam(':rating', $rating);
                 //execute
                 $stmt->execute();
 
-                $sql = "INSERT INTO has_review (content) VALUES (:content)";
-
-                $stmt = $conn->prepare($sql);
-                $uid = $_POST['uid'];            
-                //We bind the parameters to the SQL query
-                $stmt->bindParam(':content', $content);
-                //execute
-                $stmt->execute();
-
-                header("Location: addReviews.html");
+                header("Location: rated.html");
                 exit();
                        
             } catch(PDOException $e){
@@ -95,7 +71,7 @@
     ?>
     <body>
         <form  method="POST" class="db_query secondary">
-            <h1>Review a dish:</h1>
+            <h1>Rate a dish:</h1>
             <!--The user has to choose the login-->
             <!--This is ok for now since its for maintenance page-->
             <h2>Choose user:</h2>
@@ -107,7 +83,7 @@
                 <?php endif; ?>
             </select>
             <!--The user has to choose a dish-->
-            <h2>Choose a dish to review:</h2>
+            <h2>Choose a dish to rate:</h2>
             <select name="dish" required>
             <?php if (is_array($dishes)>0  && count($dishes) > 0):?>
                     <?php foreach ($dishes as $row): ?>
@@ -115,13 +91,14 @@
                     <?php endforeach; ?>
                 <?php endif; ?>
             </select>
-            <!--The user has review the dish-->
-            <h2>Add your review:</h2>
-            <p>Maximum 500 characters:</p>
-            <textarea rows="10" columns="30" name="reviewText" placeholder="write your review" class="textField">            
+            <!--The user has rate the dish-->
+            <h2>Give your rating:</h2>
+            <p>the scale goes 1 to 5:</p>
+            <input type="range" name="rating" class="accent" min=1 max=5 step="1" id="rating" required>            
             <!--The user can submit the form contents by pressing a button-->
             <h2></h2>
             <input type="submit" value="add" class="accent">
+
             <?php if (isset($error_message)): ?>
                 <p style="color: red;"><?php echo $error_message; ?></p>
             <?php endif; ?>

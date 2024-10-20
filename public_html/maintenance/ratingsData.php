@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Undercooked Website</title>
-        <link href="styles.css" rel="stylesheet"/>
+        <link href="../styles.css" rel="stylesheet"/>
     </head>
     <?php
         include 'variables.php';
@@ -25,45 +25,42 @@
             //set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            //USERS
-            $reviewQ = $conn->prepare("SELECT u.login, u.uid, r.content, d.name, d.did
-            FROM users u, reviews r, reviewed rv, has_review hr, dishes d
-            WHERE u.uid = rv.uid 
-            AND rv.rid = r.rid 
-            AND r.rid = hr.rid 
-            AND hr.did = d.did;
+            //RATINGS
+            $ratingsQ = $conn->prepare("SELECT U.uid, U.login, R.rating, D.did, D.name
+            FROM users U, rated R, dishes D
+            WHERE U.uid=R.uid and R.did=D.did
             ");
-            $reviewQ->execute();
-            $review = $reviewQ->fetchAll(PDO::FETCH_ASSOC);
+            $ratingsQ->execute();
+            $ratings = $ratingsQ->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Connection failed or query: " . $e->getMessage();
         }        
     ?>
     <body class="secondary text">
-        <!--We fetch all the users-->
-        <h1>Review data:</h1>
+        <!--We fetch all the ratings data-->
+        <h1>Ratings:</h1>
         <table class="background">
             <tr class="secondary">
-                <th>did</th>
-                <th>name</th>
                 <th>uid</th>
                 <th>login</th>
-                <th>review</th>
+                <th>rating</th>
+                <th>did</th>
+                <th>dish</th>
             </tr>
             <!--We take data in a loop-->
-            <?php if (is_array($review)>0  && count($review) > 0):?>
-                <?php foreach ($review as $row): ?>
+            <?php if (is_array($ratings)>0  && count($ratings) > 0):?>
+                <?php foreach ($ratings as $row): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($row['did']); ?></td>
-                        <td><?php echo htmlspecialchars($row['name']); ?></td>
                         <td><?php echo htmlspecialchars($row['uid']); ?></td>
-                        <td><?php echo htmlspecialchars($row['login']); ?></td>  
-                        <td><?php echo htmlspecialchars($row['review']); ?></td> 
+                        <td><?php echo htmlspecialchars($row['login']); ?></td>
+                        <td><?php echo htmlspecialchars($row['rating']); ?></td>     
+                        <td><?php echo htmlspecialchars($row['did']); ?></td>  
+                        <td><?php echo htmlspecialchars($row['name']); ?></td>  
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="5">No reviews left by users yet</td>
+                    <td colspan="5">No ratings found</td>
                 </tr>
             <?php endif; ?>
         </table>        

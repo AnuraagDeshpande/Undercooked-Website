@@ -1,0 +1,14 @@
+.food_item{
+    border-width: 4px;
+    border-color: black;
+
+}
+.text h2 {
+    align-items: left;
+    text-align: left;
+}
+
+.text div.review{
+    border-color:  #36365C;
+    border-width: 10px;
+}

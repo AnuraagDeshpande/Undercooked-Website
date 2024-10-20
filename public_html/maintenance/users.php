@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Undercooked Website</title>
-        <link href="styles.css" rel="stylesheet"/>
+        <link href="../styles.css" rel="stylesheet"/>
     </head>
     <?php
         include 'variables.php';
@@ -26,39 +26,38 @@
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             //USERS
-            $relQ = $conn->prepare("SELECT G.did1, D1.name AS name1, G.did2, D2.name AS name2
-            FROM goes_with G, dishes D1, dishes D2
-            WHERE G.did1 = D1.did AND G.did2 = D2.did
+            $usersQ = $conn->prepare("SELECT U.uid, U.isCritic, U.login, U.password
+            FROM users U
             ");
-            $relQ->execute();
-            $rel = $relQ->fetchAll(PDO::FETCH_ASSOC);
+            $usersQ->execute();
+            $users = $usersQ->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Connection failed or query: " . $e->getMessage();
         }        
     ?>
     <body class="secondary text">
         <!--We fetch all the users-->
-        <h1>Pairs of dishes that go well with one another:</h1>
+        <h1>Registered users:</h1>
         <table class="background">
             <tr class="secondary">
-                <th>did1</th>
-                <th>name</th>
-                <th>did2</th>
-                <th>name</th>
+                <th>uid</th>
+                <th>isCritic</th>
+                <th>login</th>
+                <th>password</th>
             </tr>
             <!--We take data in a loop-->
-            <?php if (is_array($rel)>0  && count($rel) > 0):?>
-                <?php foreach ($rel as $row): ?>
+            <?php if (is_array($users)>0  && count($users) > 0):?>
+                <?php foreach ($users as $row): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($row['did1']); ?></td>
-                        <td><?php echo htmlspecialchars($row['name1']); ?></td>
-                        <td><?php echo htmlspecialchars($row['did2']); ?></td>
-                        <td><?php echo htmlspecialchars($row['name2']); ?></td>   
+                        <td><?php echo htmlspecialchars($row['uid']); ?></td>
+                        <td><?php echo $row['isCritic'] ? 'Yes' : 'No'; ?></td>
+                        <td><?php echo htmlspecialchars($row['login']); ?></td>
+                        <td><?php echo htmlspecialchars($row['password']); ?></td>     
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="4">No pairs found</td>
+                    <td colspan="4">No users found</td>
                 </tr>
             <?php endif; ?>
         </table>        
