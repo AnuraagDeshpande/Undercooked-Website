@@ -14,6 +14,9 @@
     padding: 20px;
     border: 5px solid #36365C;
 }
+.text h1.dish_info{
+    font-variant-caps: all-small-caps;
+}
 
 .review p{
     margin: 0;

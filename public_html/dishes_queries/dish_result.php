@@ -108,7 +108,7 @@
     ?>
     <body class="secondary text">
         <!--We print the most omportant information as headers-->
-        <h1><?php echo htmlspecialchars($dish['name']); ?></h1>
+        <h1 class="dish_info"><?php echo htmlspecialchars($dish['name']); ?></h1>
         <div class="dish_info">
             <h2>
                 Rating:
@@ -118,7 +118,7 @@
                     -
                 <?php endif; ?>
             </h2>
-            <h2>Price: <?php echo htmlspecialchars($dish['price']); ?>€</h2>
+            <h2>Price: <?php echo htmlspecialchars(number_format($dish['price'], 2)); ?>€</h2>
         </div>
 
         <!--Here we print all common properties-->
