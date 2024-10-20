@@ -12,3 +12,24 @@
     border-color:  #36365C;
     border-width: 10px;
 }
+
+.review{
+    text-align: left;
+    margin: 20px;
+    padding: 20px;
+}
+
+.review p{
+    margin: 0;
+    padding: 0;
+}
+
+.text div.dish_info{
+    margin: 20px;
+    padding: 20px;
+}
+
+.text h3.review_username{
+    font-size: medium;
+    font-family: futura-bold;
+}
