@@ -26,7 +26,7 @@ WHERE D.did = ND.did AND ND.did = DS.did
 /*
 Get the data of all drinks in one table
 */
-CREATE VIEW sides_combined AS
+CREATE VIEW drinks_combined AS
 SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian, DR.isCold, DR.isHot
 FROM dishes D, drinks DR
 WHERE D.did = DR.did
@@ -46,7 +46,7 @@ GROUP BY (R.did);
 
 --Gives back users, their reviews and the dishes they were made on 
 CREATE VIEW user_reviews AS
-SELECT u.login, r.content, d.name
+SELECT u.login, r.content, d.name, u.uid, d.did
   FROM users u, reviews r, reviewed rv, has_review hr, dishes d
 WHERE u.uid = rv.uid 
   AND rv.rid = r.rid 
@@ -55,6 +55,6 @@ WHERE u.uid = rv.uid
 
 --Gives back ratings of a user
 CREATE VIEW user_ratings AS
-SELECT u.login, r.rating, d.name
+SELECT u.login, r.rating, d.name, u.uid, d.did
 FROM users u, rated r, dishes d
 WHERE u.uid=r.uid AND r.did=d.did;
