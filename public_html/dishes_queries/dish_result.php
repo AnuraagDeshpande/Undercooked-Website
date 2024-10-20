@@ -108,8 +108,8 @@
     ?>
     <body class="secondary text">
         <!--We print the most omportant information as headers-->
-        <h1 class="dish_info"><?php echo htmlspecialchars($dish['name']); ?></h1>
-        <div class="dish_info">
+        <h1 class="item_main_info"><?php echo htmlspecialchars($dish['name']); ?></h1>
+        <div class="item_main_info">
             <h2>
                 Rating:
                 <?php if($rating==TRUE): ?>
@@ -167,18 +167,18 @@
         <h2>Reviews:</h2>
         <!--Reviews have a section below-->
         <?php if (is_array($reviews)>0  && count($reviews) > 0):?>
-                <?php foreach ($reviews as $row): ?>
-                    <div class="review">
-                        <h3 class="review_username">
-                            <?php echo htmlspecialchars($row['login']); ?>:
-                        </h3>
-                        <p><?php echo htmlspecialchars($row['content']); ?></p>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <p> No reviews left for the dish yet</p>
-                </tr>
-            <?php endif; ?>
+            <?php foreach ($reviews as $row): ?>
+                <div class="review">
+                    <h3 class="review_header">
+                        <?php echo htmlspecialchars($row['login']); ?>:
+                    </h3>
+                    <p><?php echo htmlspecialchars($row['content']); ?></p>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div  class="review">
+                <p> No reviews left for the dish yet</p>
+            </div>
+        <?php endif; ?>
     </body>
 </html>

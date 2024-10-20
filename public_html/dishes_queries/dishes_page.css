@@ -14,7 +14,7 @@
     padding: 20px;
     border: 5px solid #36365C;
 }
-.text h1.dish_info{
+.text h1.item_main_info{
     font-variant-caps: all-small-caps;
 }
 
@@ -23,13 +23,13 @@
     padding: 0;
 }
 
-.text div.dish_info{
+.text div.item_main_info{
     margin: 20px;
     padding: 20px;
     border: 5px solid #36365C;
 }
 
-.text h3.review_username{
+.text h3.review_header{
     font-size: 20px;
     font-family: futura-bold;
 }

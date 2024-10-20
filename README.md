@@ -66,3 +66,6 @@ This page has links to all the pages listed above and is linked back by them. Gl
 #### OTHER:
 There were some other changes made in different files but the files listed above hold the most relevance to the assignment
 
+### Assignment 6:
+There are several new folders that contain forms, queries and result pages.
+
