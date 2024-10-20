@@ -109,7 +109,7 @@
     <body class="secondary text">
         <!--We print the most omportant information as headers-->
         <h1><?php echo htmlspecialchars($dish['name']); ?></h1>
-        <div class="background dish_info">
+        <div class="dish_info">
             <h2>
                 Rating:
                 <?php if($rating==TRUE): ?>
@@ -120,6 +120,7 @@
             </h2>
             <h2>Price: <?php echo htmlspecialchars($dish['price']); ?>€</h2>
         </div>
+
         <!--Here we print all common properties-->
         <h2>Description:</h2>
         <p>
@@ -162,11 +163,12 @@
                 This is a cold desert.
             </p>
         <?php endif; ?>
+
         <h2>Reviews:</h2>
         <!--Reviews have a section below-->
         <?php if (is_array($reviews)>0  && count($reviews) > 0):?>
                 <?php foreach ($reviews as $row): ?>
-                    <div class="review background">
+                    <div class="review">
                         <h3 class="review_username">
                             <?php echo htmlspecialchars($row['login']); ?>:
                         </h3>
