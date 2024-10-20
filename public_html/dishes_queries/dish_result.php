@@ -160,6 +160,7 @@
                 This is a cold desert.
             </p>
         <?php endif; ?>
+        <h2>Reviews:</h2>
         <!--Reviews have a section below-->
         <?php if (is_array($reviews)>0  && count($reviews) > 0):?>
                 <?php foreach ($reviews as $row): ?>
