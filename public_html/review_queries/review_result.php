@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Undercooked Website</title>
+        <link href="../styles.css" rel="stylesheet"/>
+        <link href="../dishes_queries/dishes_page.css" rel="stylesheet"/>
+    </head>
+    <?php
+        include '../maintenance/variables.php';
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+
+        $rid=7;
+        /*
+        First we need to connect to our server, which as we 
+        know is hosted locally
+        */
+        try {        
+            // Database connection settings
+
+            //We create a pdo instance to connect to the database
+            //$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+            $conn = new PDO("mysql:unix_socket=$socket;dbname=$dbname", $username, $password);
+        
+            //set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+           
+
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+        //WE FETCH RELEVANT DATA
+        try {
+            //REVIEWS
+            $reviews_sql="SELECT u.content, u.name, u.login, u.did, u.uid, u.isCritic
+            FROM user_reviews u
+            WHERE u.rid=:rid";
+            $reviewsQ = $conn->prepare($reviews_sql);
+            $reviewsQ->bindParam(':rid', $rid,PDO::PARAM_INT);
+            $reviewsQ->execute();
+            $review = $reviewsQ->fetch(PDO::FETCH_ASSOC);
+        }  catch (PDOException $e){
+            echo "Fetching data failed: " . $e->getMessage();
+        }
+    ?>
+    <body class="secondary text">
+        <!--We print the most omportant information as headers-->
+        <h1 class="item_main_info">Review of: <?php echo htmlspecialchars($review['name']); ?></h1>
+        <!--We print review content-->
+        <div class="item_main_info">
+            <h2>username: <?php echo htmlspecialchars($review['login']);?></h2>
+            <?php if($review['isCritic']):?>
+                <p>This review was left by a critic</p>
+            <?php endif;?>
+            <p><?php echo htmlspecialchars($review['content']);?></p>
+        </div>
+    </body>
+</html>

@@ -46,7 +46,7 @@ GROUP BY (R.did);
 
 --Gives back users, their reviews and the dishes they were made on 
 CREATE VIEW user_reviews AS
-SELECT u.login, r.content, d.name, u.uid, d.did
+SELECT u.login, u.isCritic, r.content, d.name, u.uid, d.did, r.rid
   FROM users u, reviews r, reviewed rv, has_review hr, dishes d
 WHERE u.uid = rv.uid 
   AND rv.rid = r.rid 
