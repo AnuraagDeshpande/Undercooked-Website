@@ -33,3 +33,32 @@
     font-size: 20px;
     font-family: futura-bold;
 }
+
+h1 a{
+    font-size:46px;
+	font-family: futura-bold;
+    color: inherit;
+    text-decoration: none;
+}
+
+h2 a{
+    font-family: futura-bold;
+    font-size: 40px;
+    font-variant-caps: all-small-caps;
+    padding: 5px;
+    color: inherit;
+    text-decoration: none;
+}
+
+
+h3 a{
+    font-family: futura-bold;
+    font-weight: bold;
+    color: inherit;
+    text-decoration: none;
+}
+
+p a{
+    color: inherit;
+    text-decoration: none;
+}

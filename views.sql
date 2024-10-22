@@ -55,6 +55,6 @@ WHERE u.uid = rv.uid
 
 --Gives back ratings of a user
 CREATE VIEW user_ratings AS
-SELECT u.login, r.rating, d.name, u.uid, d.did
+SELECT u.login, r.rating, d.name, u.uid, d.did, r.rid
 FROM users u, rated r, dishes d
 WHERE u.uid=r.uid AND r.did=d.did;

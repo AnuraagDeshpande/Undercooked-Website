@@ -14,6 +14,7 @@
         error_reporting(E_ALL);
 
         $did=29;
+        $did = $_GET['did'];
         /*
         First we need to connect to our server, which as we 
         know is hosted locally
@@ -79,7 +80,7 @@
              $rating = $ratingsQ->fetch(PDO::FETCH_ASSOC);
  
              //REVIEWS
-             $reviews_sql="SELECT u.login, u.content, u.name, u.uid, u.did
+             $reviews_sql="SELECT u.login, u.content, u.name, u.uid, u.did, u.rid
              FROM user_reviews u
              WHERE u.did=:did";
              $reviewsQ = $conn->prepare($reviews_sql);
@@ -170,9 +171,15 @@
             <?php foreach ($reviews as $row): ?>
                 <div class="review">
                     <h3 class="review_header">
-                        <?php echo htmlspecialchars($row['login']); ?>:
+                        <a href="../users_queries/user_result.php?uid=<?php echo urlencode($row['uid']); ?>">
+                            <?php echo htmlspecialchars($row['login']); ?>:
+                        </a>
                     </h3>
-                    <p><?php echo htmlspecialchars($row['content']); ?></p>
+                    <p>
+                        <a href="../review_queries/review_result.php?rid=<?php echo urlencode($row['rid']); ?>">
+                            <?php echo htmlspecialchars($row['content']); ?>
+                        </a>
+                    </p>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>

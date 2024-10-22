@@ -14,6 +14,7 @@
         error_reporting(E_ALL);
 
         $uid=16;
+        $uid = $_GET['uid'];
         /*
         First we need to connect to our server, which as we 
         know is hosted locally
@@ -45,7 +46,7 @@
             $user = $usersQ->fetch(PDO::FETCH_ASSOC);
 
             //RATINGS
-            $ratings_sql="SELECT R.name, R.rating
+            $ratings_sql="SELECT R.name, R.rating, R.did
             FROM user_ratings R
             WHERE R.uid=:uid";
             $ratingsQ = $conn->prepare($ratings_sql);
@@ -54,7 +55,7 @@
             $ratings = $ratingsQ->fetchAll(PDO::FETCH_ASSOC);
  
             //REVIEWS
-            $reviews_sql="SELECT u.content, u.name
+            $reviews_sql="SELECT u.content, u.name, u.did, u.rid
             FROM user_reviews u
             WHERE u.uid=:uid";
             $reviewsQ = $conn->prepare($reviews_sql);
@@ -82,7 +83,9 @@
             <?php foreach ($ratings as $row): ?>
                 <div class="review">
                     <h3 class="review_header">
-                        <?php echo htmlspecialchars($row['name']); ?>:
+                        <a href="../dishes_queries/dish_result.php?did=<?php echo urlencode($row['did']); ?>">
+                            <?php echo htmlspecialchars($row['name']); ?>:
+                        </a>
                     </h3>
                     <p><?php echo htmlspecialchars($row['rating']); ?></p>
                 </div>
@@ -99,9 +102,15 @@
             <?php foreach ($reviews as $row): ?>
                 <div class="review">
                     <h3 class="review_header">
-                        <?php echo htmlspecialchars($row['name']); ?>:
+                        <a href="../dishes_queries/dish_result.php?did=<?php echo urlencode($row['did']); ?>">
+                            <?php echo htmlspecialchars($row['name']); ?>:
+                        </a>
                     </h3>
-                    <p><?php echo htmlspecialchars($row['content']); ?></p>
+                    <p>
+                        <a href="../review_queries/review_result.php?rid=<?php echo urlencode($row['rid']); ?>">
+                            <?php echo htmlspecialchars($row['content']); ?>
+                        </a>
+                    </p>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
