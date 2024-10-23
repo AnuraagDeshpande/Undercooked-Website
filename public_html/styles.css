@@ -493,6 +493,11 @@ th {
     margin-bottom: 5px;
 }
 
+.dish-card > .card-body {
+    font-size: 20px;
+    color: #6664CA;
+}
+
 .hide {
     display: none; /*allows us to hide objects as we search for something*/
 }
