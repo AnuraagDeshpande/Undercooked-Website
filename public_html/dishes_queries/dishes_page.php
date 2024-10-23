@@ -45,6 +45,12 @@
     }  catch (PDOException $e){
         echo "Fetching data failed: " . $e->getMessage();
     }
+    // Output data in JSON format
+    header('Content-Type: application/json');
+    echo json_encode($dishes);
+
+    // Close connection
+    $conn->close();
 ?>
 <body>
     <nav class="navbar">
@@ -116,8 +122,65 @@
     <div class="dish-card">
         <div class="card-header">Dish_name</div>
         <div class="card-body">rating</div>
-        
+
     </div>
-    
+
+    <script>
+        // Function to fetch dishes from PHP
+        function fetchDishes() {
+            $.ajax({
+                url: 'dishes_page.php', // The PHP script to fetch the dishes
+                method: 'GET',
+                dataType: 'json',
+                success: function(dishes) {
+                    renderCards(dishes);
+                },
+                error: function() {
+                    console.error('Error fetching data from PHP');
+                }
+            });
+        }
+
+        // Function to render the dishes as cards
+        function renderCards(dishes) {
+            const container = $('.dishes_cards');
+            container.empty(); // Clear the existing content
+
+            dishes.forEach(dish => {
+                // Create a card for each dish
+                const card = `
+                    <div class="card">
+                        <h2>${dish.name}</h2>
+                        <p>Rating: ${dish.rating}</p>
+                    </div>
+                `;
+                container.append(card);
+            });
+        }
+
+        // Filter functionality
+        $('#search').on('keyup', function() {
+            const searchTerm = $(this).val().toLowerCase();
+
+            // Fetch the dishes again and filter them
+            $.ajax({
+                url: 'fetch_dishes.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function(dishes) {
+                    const filteredDishes = dishes.filter(dish => dish.name.toLowerCase().includes(searchTerm));
+                    renderCards(filteredDishes);
+                },
+                error: function() {
+                    console.error('Error fetching data');
+                }
+            });
+        });
+
+        // Initial fetch when the page loads
+        $(document).ready(function() {
+            fetchDishes();
+        });
+    </script>   
 </div>
 </body>
