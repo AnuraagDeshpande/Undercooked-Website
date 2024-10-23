@@ -11,7 +11,7 @@
                     <a href="index.html" class="navbar_links">Home</a>
                 </li>
                 <li class="navbar_item">
-                    <a href="/" class="navbar_links">Dishes</a>
+                    <a href="./dishes_queries/dishes_page.php" class="navbar_links">Dishes</a>
                 </li>
                 <li class="navbar_item">
                     <a href="/" class="navbar_links">Reviews</a>
