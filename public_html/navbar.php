@@ -26,5 +26,11 @@
                     <a href="/" class="button">Login/Sign up</a>
                 </li>
             </ul>
+            <div class="box">
+                <input type="text" placeholder="search">
+                <a href="#">
+                    <i class="fas fa-search"></i>
+                </a>
+            </div>
         </div>
     </nav>

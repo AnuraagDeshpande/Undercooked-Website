@@ -66,57 +66,60 @@
             echo "Fetching data failed: " . $e->getMessage();
         }
     ?>
-    <body class="secondary text">
-        <!--We print the most omportant information as headers-->
-        <h1 class="item_main_info"><?php echo htmlspecialchars($user['login']); ?></h1>
-        <?php if ($user['isCritic']):?>
-            <p>This user is a critic</p>
-        <?php endif; ?>
-        <div class="item_main_info">
-            <h2>Ratings left: <?php echo htmlspecialchars(count($ratings));?></h2>
-            <h2>Reviews left: <?php echo htmlspecialchars(count($reviews));?></h2>
+    <body>
+        <?php include '../navbar.php';?>
+        <div class="secondary text">
+            <!--We print the most omportant information as headers-->
+            <h1 class="item_main_info"><?php echo htmlspecialchars($user['login']); ?></h1>
+            <?php if ($user['isCritic']):?>
+                <p>This user is a critic</p>
+            <?php endif; ?>
+            <div class="item_main_info">
+                <h2>Ratings left: <?php echo htmlspecialchars(count($ratings));?></h2>
+                <h2>Reviews left: <?php echo htmlspecialchars(count($reviews));?></h2>
+            </div>
+            
+            <!--Ratings have a section below-->
+            <h2>Ratings:</h2>
+            <?php if (is_array($ratings)>0  && count($ratings) > 0):?>
+                <?php foreach ($ratings as $row): ?>
+                    <div class="review">
+                        <h3 class="review_header">
+                            <a href="../dishes_queries/dish_result.php?did=<?php echo urlencode($row['did']); ?>">
+                                <?php echo htmlspecialchars($row['name']); ?>:
+                            </a>
+                        </h3>
+                        <p><?php echo htmlspecialchars($row['rating']); ?></p>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="review">
+                    <p> This user has not left ratings yet</p>
+                </div>
+            <?php endif; ?>
+            
+            <!--Reviews have a section below-->
+            <h2>Reviews:</h2>
+            <?php if (is_array($reviews)>0  && count($reviews) > 0):?>
+                <?php foreach ($reviews as $row): ?>
+                    <div class="review">
+                        <h3 class="review_header">
+                            <a href="../dishes_queries/dish_result.php?did=<?php echo urlencode($row['did']); ?>">
+                                <?php echo htmlspecialchars($row['name']); ?>:
+                            </a>
+                        </h3>
+                        <p>
+                            <a href="../review_queries/review_result.php?rid=<?php echo urlencode($row['rid']); ?>">
+                                <?php echo htmlspecialchars($row['content']); ?>
+                            </a>
+                        </p>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="review">
+                    <p> This user has not left reviews yet</p>
+                </div>
+            <?php endif; ?>
         </div>
-        
-        <!--Ratings have a section below-->
-        <h2>Ratings:</h2>
-        <?php if (is_array($ratings)>0  && count($ratings) > 0):?>
-            <?php foreach ($ratings as $row): ?>
-                <div class="review">
-                    <h3 class="review_header">
-                        <a href="../dishes_queries/dish_result.php?did=<?php echo urlencode($row['did']); ?>">
-                            <?php echo htmlspecialchars($row['name']); ?>:
-                        </a>
-                    </h3>
-                    <p><?php echo htmlspecialchars($row['rating']); ?></p>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <div class="review">
-                <p> This user has not left ratings yet</p>
-            </div>
-        <?php endif; ?>
-        
-        <!--Reviews have a section below-->
-        <h2>Reviews:</h2>
-        <?php if (is_array($reviews)>0  && count($reviews) > 0):?>
-            <?php foreach ($reviews as $row): ?>
-                <div class="review">
-                    <h3 class="review_header">
-                        <a href="../dishes_queries/dish_result.php?did=<?php echo urlencode($row['did']); ?>">
-                            <?php echo htmlspecialchars($row['name']); ?>:
-                        </a>
-                    </h3>
-                    <p>
-                        <a href="../review_queries/review_result.php?rid=<?php echo urlencode($row['rid']); ?>">
-                            <?php echo htmlspecialchars($row['content']); ?>
-                        </a>
-                    </p>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <div class="review">
-                <p> This user has not left reviews yet</p>
-            </div>
-        <?php endif; ?>
     </body>
 </html>

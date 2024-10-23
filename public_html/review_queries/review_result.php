@@ -48,24 +48,27 @@
             echo "Fetching data failed: " . $e->getMessage();
         }
     ?>
-    <body class="secondary text">
-        <!--We print the most omportant information as headers-->
-        <h1 class="item_main_info">
-            <a href="../dishes_queries/dish_result.php?did=<?php echo urlencode($review['did']); ?>">
-                Review of: <?php echo htmlspecialchars($review['name']); ?>
-            </a>
-        </h1>
-        <!--We print review content-->
-        <div class="item_main_info">
-            <h2>
-                <a href="../users_queries/user_result.php?uid=<?php echo urlencode($review['uid']); ?>">
-                    username: <?php echo htmlspecialchars($review['login']);?>
+    <body>
+        <?php include '../navbar.php';?>
+        <div class="secondary text">
+            <!--We print the most omportant information as headers-->
+            <h1 class="item_main_info">
+                <a href="../dishes_queries/dish_result.php?did=<?php echo urlencode($review['did']); ?>">
+                    Review of: <?php echo htmlspecialchars($review['name']); ?>
                 </a>
-            </h2>
-            <?php if($review['isCritic']):?>
-                <p>This review was left by a critic</p>
-            <?php endif;?>
-            <p><?php echo htmlspecialchars($review['content']);?></p>
+            </h1>
+            <!--We print review content-->
+            <div class="item_main_info">
+                <h2>
+                    <a href="../users_queries/user_result.php?uid=<?php echo urlencode($review['uid']); ?>">
+                        username: <?php echo htmlspecialchars($review['login']);?>
+                    </a>
+                </h2>
+                <?php if($review['isCritic']):?>
+                    <p>This review was left by a critic</p>
+                <?php endif;?>
+                <p><?php echo htmlspecialchars($review['content']);?></p>
+            </div>
         </div>
     </body>
 </html>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
+    <!--<nav class="navbar">
         <div class="navbar_container">
             <img src="images/logo3.png" alt="logo" class="navbar_item">
             <a href="/" id="navbar_logo" class="logo"><h1>Undercooked</h1></a>
@@ -43,7 +43,8 @@
                 </a>
             </div>
         </div>
-    </nav>
+    </nav>-->
+    <?php include 'navbar.php';?>
 
             <div class="text secondary">
                 <h2>Featured</h2>
