@@ -475,3 +475,24 @@ th {
     color:#3A277C;
     font-size: 15px;
 }
+
+.dishes_cards {
+    display: grid;
+    grid-template-columns: repeat(autofill, minmax(150px, 1fr));
+    gap: 5px;
+    margin-top: 15px;
+}
+
+.dish-card {
+    border: 1px solid black;
+    background-color: white;
+    padding: 10px;
+}
+
+.dish-card > .card-header {
+    margin-bottom: 5px;
+}
+
+.hide {
+    display: none; /*allows us to hide objects as we search for something*/
+}
