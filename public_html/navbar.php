@@ -11,16 +11,16 @@
                     <a href="index.html" class="navbar_links">Home</a>
                 </li>
                 <li class="navbar_item">
-                    <a href="./dishes_queries/dishes_page.php" class="navbar_links">Dishes</a>
+                    <a href="/dishes_queries/dishes_page.php" class="navbar_links">Dishes</a>
                 </li>
                 <li class="navbar_item">
-                    <a href="/" class="navbar_links">Reviews</a>
+                    <a href="/review_queries/review_page.php" class="navbar_links">Reviews</a>
                 </li>
                 <li class="navbar_item">
                     <a href="/" class="navbar_links">This week</a>
                 </li>
                 <li class="navbar_item">
-                    <a href="./maintenance/maintenance.html" class="navbar_links">Maintenance</a>
+                    <a href="/maintenance/maintenance.html" class="navbar_links">Maintenance</a>
                   </li>
                 <li class="navbar_btn">
                     <a href="/" class="button">Login/Sign up</a>

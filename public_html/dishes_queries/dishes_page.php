@@ -46,11 +46,11 @@
         echo "Fetching data failed: " . $e->getMessage();
     }
     // Output data in JSON format
-    header('Content-Type: application/json');
-    echo json_encode($dishes);
+    //header('Content-Type: application/json');
+    //echo json_encode($dishes);
 
     // Close connection
-    $conn->close();
+    //$conn->close();
 ?>
 <body>
     <?php include '../navbar.php';?>
@@ -92,7 +92,7 @@
     <div id="card-container"></div>
     </div>
 
-    <script>
+    <!--<script>
         // Function to fetch dishes from PHP
         function fetchDishes() {
             $.ajax({
@@ -131,7 +131,7 @@
 
             // Fetch the dishes again and filter them
             $.ajax({
-                url: 'fetch_dishes.php',
+                url: 'dishes_page.php', // The PHP script to fetch the dishes
                 method: 'GET',
                 dataType: 'json',
                 success: function(dishes) {
@@ -148,6 +148,6 @@
         $(document).ready(function() {
             fetchDishes();
         });
-    </script>   
+    </script>   -->
 </div>
 </body>
