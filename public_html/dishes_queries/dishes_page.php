@@ -3,82 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undercooked Website</title>
+    <title>Undercooked Website - Search Dishes</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #D6D6F2;
+        }
+        table, th, td {
+            border: 1px solid #999;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #EEE;
+        }
+    </style>
     <link href="../styles.css" rel="stylesheet"/>
-    <link href="../dishes_queries/dishes_page.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-
 <body>
-    <?php include '../navbar.php';?>
+    <?php include './navbar_for_dishes_search.php';?>
 
-    <!-- Card Container (This is where the dish cards will be dynamically displayed) -->
-    <div id="card-container" class="dishes-cards"></div>
+    <h1>Search Dishes:</h1>
+    <?php
+        include '../maintenance/variables.php';
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
 
-    <script>
-        // Function to fetch dishes from PHP
-        function fetchDishes() {
-            $.ajax({
-                url: 'fetch_dishes.php', // The PHP script to fetch the dishes
-                method: 'GET',
-                dataType: 'json',
-                success: function(dishes) {
-                    renderCards(dishes);
-                },
-                error: function() {
-                    console.error('Error fetching data from PHP');
+        $types = array(
+            "Vegan" => "isVegan",
+            "Vegetarian" => "isVegetarian",
+            "Halal" => "isHalal",
+            "Cold" => "isCold",
+            "Hot" => "isHot"
+        );
+
+        // check if form is submitted
+        if (isset($_GET['search_query'])) {
+            $search_query = $_GET['search_query'];
+            $dishes = []; // Use $dishes instead of $drinks
+
+            try {
+                // database connection
+                $conn = new PDO("mysql:unix_socket=$socket;dbname=$dbname", $username, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                // Normalize the search query
+                $normalized_name = ucfirst(strtolower($search_query));
+
+                // Prepare the query based on user input
+                if (array_key_exists($normalized_name, $types)) {
+                    $column = $types[$normalized_name];
+                    $dishQ = $conn->prepare("
+                        SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian, DR.isCold, DR.isHot
+                        FROM dishes D
+                        INNER JOIN drinks DR ON D.did = DR.did
+                        WHERE DR.$column = 1
+                    ");
+                } else {
+                    $dishQ = $conn->prepare("
+                        SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian, DR.isCold, DR.isHot
+                        FROM dishes D
+                        INNER JOIN drinks DR ON D.did = DR.did
+                        WHERE LOWER(D.name) LIKE LOWER(:search_query)
+                    ");
+                    $search_name = '%' . $search_query . '%'; // For partial matches
+                    $dishQ->bindParam(':search_query', $search_name, PDO::PARAM_STR);
                 }
-            });
+
+                // Execute the query
+                $dishQ->execute();
+                $dishes = $dishQ->fetchAll(PDO::FETCH_ASSOC);
+
+            } catch (PDOException $e) {
+                echo "Connection failed: " . $e->getMessage();
+            }
+
+            // Display the dishes table if results are found
+            if (is_array($dishes) && count($dishes) > 0): ?>
+                <h2>Dishes found:</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Vegan</th>
+                        <th>Vegetarian</th>
+                        <th>Halal</th>
+                        <th>Cold</th>
+                        <th>Hot</th>
+                    </tr>
+                    <?php foreach ($dishes as $row): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row['name']); ?></td>
+                            <td><?php echo htmlspecialchars($row['price']); ?></td>
+                            <td><?php echo $row['isVegan'] ? 'Yes' : 'No'; ?></td>
+                            <td><?php echo $row['isVegetarian'] ? 'Yes' : 'No'; ?></td>
+                            <td><?php echo $row['isHalal'] ? 'Yes' : 'No'; ?></td>
+                            <td><?php echo $row['isCold'] ? 'Yes' : 'No'; ?></td>
+                            <td><?php echo $row['isHot'] ? 'Yes' : 'No'; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            <?php else: ?>
+                <p>No dishes found matching that name or type.</p>
+            <?php endif;
         }
-
-        function renderCards(dishes) {
-            const container = $('#card-container');
-            container.empty(); // Clear the existing content
-
-            dishes.forEach(dish => {
-                // Create a card for each dish with the appropriate structure and classes
-                const card = `
-                    <div class="dish-card review">
-                        <div class="text">
-                            <h3 class="review_header">
-                                <a href="../dishes_queries/dish_result.php?did=${encodeURIComponent(dish.did)}">
-                                    ${dish.name}
-                                </a>
-                            </h3>
-                            <div class="item_main_info">
-                                <h1>${dish.price} USD</h1>
-                                <p>Rating: ${dish.rating}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.append(card);
-            });
-        }
-
-        // Filter functionality
-        $('#search').on('keyup', function() {
-            const searchTerm = $(this).val().toLowerCase();
-
-            // Fetch the dishes again and filter them
-            $.ajax({
-                url: 'fetch_dishes.php', // Use fetch_dishes.php, not dishes_page.php
-                method: 'GET',
-                dataType: 'json',
-                success: function(dishes) {
-                    const filteredDishes = dishes.filter(dish => dish.name.toLowerCase().includes(searchTerm));
-                    renderCards(filteredDishes);
-                },
-                error: function() {
-                    console.error('Error fetching data');
-                }
-            });
-        });
-
-        // Initial fetch when the page loads
-        $(document).ready(function() {
-            fetchDishes();
-        });
-    </script>
+    ?>
 </body>
 </html>
