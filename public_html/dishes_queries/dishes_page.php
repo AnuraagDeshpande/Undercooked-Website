@@ -39,8 +39,6 @@
             "Vegan" => "isVegan",
             "Vegetarian" => "isVegetarian",
             "Halal" => "isHalal",
-            "Cold" => "isCold",
-            "Hot" => "isHot"
         );
 
         // check if form is submitted
@@ -60,16 +58,14 @@
                 if (array_key_exists($normalized_name, $types)) {
                     $column = $types[$normalized_name];
                     $dishQ = $conn->prepare("
-                        SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian, DR.isCold, DR.isHot
+                        SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian
                         FROM dishes D
-                        INNER JOIN drinks DR ON D.did = DR.did
-                        WHERE DR.$column = 1
+                        WHERE D.$column = 1
                     ");
                 } else {
                     $dishQ = $conn->prepare("
-                        SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian, DR.isCold, DR.isHot
+                        SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian
                         FROM dishes D
-                        INNER JOIN drinks DR ON D.did = DR.did
                         WHERE LOWER(D.name) LIKE LOWER(:search_query)
                     ");
                     $search_name = '%' . $search_query . '%'; // For partial matches
