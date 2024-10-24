@@ -31,7 +31,7 @@
             </ul>
         <div class="box">
             <form action="" method="GET" id="search-form"> <!-- Change the action as needed -->
-                <input type="text" placeholder="Search..." id="search" name="search_query" required>
+                <input type="text" placeholder="Search dishes" id="search" name="search_query" required>
                 <button type="submit" aria-label="Search">
                     <i class="fas fa-search"></i>
                 </button>
