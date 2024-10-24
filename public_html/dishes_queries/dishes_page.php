@@ -127,5 +127,7 @@
             <?php endif;
         }
     ?>
+
+<a href="../goesWithQueries/goesWith_page.php" class="link"><h1>Dish Pairings<h1></a>
 </body>
 </html>
