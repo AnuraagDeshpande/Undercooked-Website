@@ -32,7 +32,7 @@
                 </li>
             </ul>
         <div class="box">
-            <form action="" method="GET" id="search-form"> <!-- Change the action as needed -->
+            <form action="/dishes_queries/dishes_page.php" method="GET" id="search-form"> <!-- Change the action as needed -->
                 <input type="text" placeholder="Search..." id="search" name="search_query" required>
                 <button type="submit" aria-label="Search">
                     <i class="fas fa-search"></i>

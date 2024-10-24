@@ -76,9 +76,19 @@
                     $dishQ->bindParam(':search_query', $search_name, PDO::PARAM_STR);
                 }
 
+                
+
                 // Execute the query
                 $dishQ->execute();
                 $dishes = $dishQ->fetchAll(PDO::FETCH_ASSOC);
+
+                $ratings_sql="SELECT R.did, R.rating
+                FROM dish_ratings R
+                WHERE R.did=:did";
+                $ratingsQ = $conn->prepare($ratings_sql);
+                $ratingsQ->bindParam(':did', $did,PDO::PARAM_INT);
+                $ratingsQ->execute();
+                $rating = $ratingsQ->fetch(PDO::FETCH_ASSOC);
 
             } catch (PDOException $e) {
                 echo "Connection failed: " . $e->getMessage();
@@ -87,19 +97,31 @@
             // Display the dishes table if results are found
             if (is_array($dishes) && count($dishes) > 0): ?>
                 <h2>Dishes found:</h2>
-                    <?php foreach ($reviews as $row): ?>
-                        <div class="dish-card secondary review">
-                            <div class="card-header">
-                                <h3 class="review_header">
-                                    <a href="./dishes_queries/dish_result.php?did=<?php echo urlencode($row['did']); ?>">
-                                            <?php 
-                                                echo htmlspecialchars($row['dish_name']); 
-                                                echo ": ";
-                                                echo htmlspecialchars($row['dish_rating']); 
-                                            ?>
-                                    </a>
-                                </h3>
-                    <?php endforeach; ?> 
+                <?php foreach ($dishes as $row): ?>
+                    <div class="dish-card secondary review">
+                        <div class="card-header">
+                            <h3 class="review_header">
+                                <a href="./dish_result.php?did=<?php echo urlencode($row['did']); ?>">
+                                    <?php echo htmlspecialchars($row['name']); ?>
+                                </a>
+                                <?php
+                                // Fetch and display rating
+                                try {
+                                    $ratings_sql = "SELECT rating FROM dish_ratings WHERE did = :did";
+                                    $ratingsQ = $conn->prepare($ratings_sql);
+                                    $ratingsQ->bindParam(':did', $row['did'], PDO::PARAM_INT);
+                                    $ratingsQ->execute();
+                                    $rating = $ratingsQ->fetch(PDO::FETCH_ASSOC);
+                                    echo "rated";
+                                    echo isset($rating['rating']) ? ": " . htmlspecialchars($rating['rating']) : ": No rating";
+                                } catch (PDOException $e) {
+                                    echo ": Rating unavailable";
+                                }
+                                ?>
+                            </h3>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             <?php else: ?>
                 <p>No dishes found matching that name or type.</p>
             <?php endif;
