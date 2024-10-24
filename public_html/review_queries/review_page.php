@@ -8,26 +8,17 @@
     <link href="../dishes_queries/dishes_page.css" rel="stylesheet"/>
 
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #D6D6F2;
+        body h1 {
+            align-items: center;
         }
-        table, th, td {
-            border: 1px solid #999;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #EEE;
+        form {
+            align-items: left;
         }
     </style>
 </head>
-<body>
+<body class="secondary">
     <?php include '../navbar.php';?>
-    <h1>Search Drinks:</h1>
+    <h1>Search reviews:</h1>
     <form action="" method="POST">
         <input type="text" name="dish_name" placeholder="Enter the dish name" required>
         <button type="submit">Search</button>
@@ -39,13 +30,6 @@
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
 
-        $types = array(
-            "Vegan" => "isVegan",
-            "Vegetarian" => "isVegetarian",
-            "Halal" => "isHalal",
-            "Cold" => "isCold",
-            "Hot" => "isHot"
-        );
         try {        
             // Database connection settings
 
@@ -55,8 +39,6 @@
         
             //set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-           
 
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
@@ -70,12 +52,12 @@
             try {
                 // to make it so capitalization is ignored
                 $normalized_name = ucfirst(strtolower($dish_name));
-
+                //I search based on dish name
                 // Prepare the query based on user input
                 //checks if search is a type if not, checks if name matches drink
                 $reviews_sql="SELECT u.content, u.name, u.login, u.did, u.uid, u.isCritic, u.rid
                 FROM user_reviews u
-                WHERE LOWER(u.name) LIKE LOWER(:dish_name)";
+                WHERE LOWER(u.name) LIKE LOWER(:dish_name) OR LOWER(u.content) LIKE LOWER(:dish_name) OR LOWER(u.login) LIKE LOWER(:dish_name)";
                 $reviewsQ = $conn->prepare($reviews_sql);
                 $search_name = '%' . $dish_name . '%'; // For partial matches
                 $reviewsQ->bindParam(':dish_name', $search_name, PDO::PARAM_STR);
@@ -83,9 +65,8 @@
 
                 // Execute the query
                 $reviews = $reviewsQ->fetchAll(PDO::FETCH_ASSOC);
-
             } catch (PDOException $e) {
-                echo "Connection failed: " . $e->getMessage();
+                echo "Fetching data: " . $e->getMessage();
             }
 
             // Display the drinks table if results are found
@@ -95,10 +76,10 @@
                         <div class="dish-card secondary review">
                             <div class="card-header">
                                 <h3 class="review_header">
-                                    <a href="../dishes_queries/dish_result.php?rid=<?php echo urlencode($row['rid']); ?>">
+                                    <a href="../review_queries/review_result.php?rid=<?php echo urlencode($row['rid']); ?>">
                                             <?php 
                                                 echo htmlspecialchars($row['login']); 
-                                                echo " ";
+                                                echo ": ";
                                                 echo htmlspecialchars($row['name']); 
                                             ?>
                                     </a>
@@ -110,10 +91,9 @@
                                 </p>
                             </div>
                         </div>
-                    <?php endforeach; ?>
-
+                    <?php endforeach; ?>         
             <?php else: ?>
-                <p>No drinks found matching that name or type.</p>
+                <p>No reviews found</p>
             <?php endif;
         }
     ?>

@@ -67,5 +67,11 @@ This page has links to all the pages listed above and is linked back by them. Gl
 There were some other changes made in different files but the files listed above hold the most relevance to the assignment
 
 ### Assignment 6:
-There are several new folders that contain forms, queries and result pages.
+There are several new folders that contain forms, queries and result pages. There you can find 
+the result and page files contain the main page of the section as well as the result page that adapts to input. 
+Folders:
+1. dish_queries
+2. review_queried
+3. user_queries
 
+The search bar is local to page and finds the relevant data after the input is given and the button is pressed.
