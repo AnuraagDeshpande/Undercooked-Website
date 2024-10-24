@@ -22,6 +22,7 @@
         }
     </style>
     <link href="../styles.css" rel="stylesheet"/>
+    <link href="./dishes_page.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -86,28 +87,19 @@
             // Display the dishes table if results are found
             if (is_array($dishes) && count($dishes) > 0): ?>
                 <h2>Dishes found:</h2>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Vegan</th>
-                        <th>Vegetarian</th>
-                        <th>Halal</th>
-                        <th>Cold</th>
-                        <th>Hot</th>
-                    </tr>
-                    <?php foreach ($dishes as $row): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($row['name']); ?></td>
-                            <td><?php echo htmlspecialchars($row['price']); ?></td>
-                            <td><?php echo $row['isVegan'] ? 'Yes' : 'No'; ?></td>
-                            <td><?php echo $row['isVegetarian'] ? 'Yes' : 'No'; ?></td>
-                            <td><?php echo $row['isHalal'] ? 'Yes' : 'No'; ?></td>
-                            <td><?php echo $row['isCold'] ? 'Yes' : 'No'; ?></td>
-                            <td><?php echo $row['isHot'] ? 'Yes' : 'No'; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </table>
+                    <?php foreach ($reviews as $row): ?>
+                        <div class="dish-card secondary review">
+                            <div class="card-header">
+                                <h3 class="review_header">
+                                    <a href="./dishes_queries/dish_result.php?did=<?php echo urlencode($row['did']); ?>">
+                                            <?php 
+                                                echo htmlspecialchars($row['dish_name']); 
+                                                echo ": ";
+                                                echo htmlspecialchars($row['dish_rating']); 
+                                            ?>
+                                    </a>
+                                </h3>
+                    <?php endforeach; ?> 
             <?php else: ?>
                 <p>No dishes found matching that name or type.</p>
             <?php endif;

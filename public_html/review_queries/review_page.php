@@ -69,7 +69,7 @@
                 echo "Fetching data: " . $e->getMessage();
             }
 
-            // Display the drinks table if results are found
+            // Display the reviews table if results are found
             if (is_array($reviews) && count($reviews) > 0): ?>
                 <h2>Reviews found:</h2>
                     <?php foreach ($reviews as $row): ?>
