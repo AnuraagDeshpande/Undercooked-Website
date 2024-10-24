@@ -11,28 +11,8 @@
 
 <body>
     <?php include '../navbar.php';?>
-
-    <!-- <div class="dishes-cards">
-    <div class="dish-card">
-        <div class="card-header">Dish_name</div>
-        <div class="card-body">rating</div>
-    </div>
-    <div class="dish-card">
-        <div class="card-header">Dish_name</div>
-        <div class="card-body">rating</div>
-    </div>
-    <div class="dish-card">
-        <div class="card-header">Dish_name</div>
-        <div class="card-body">rating</div>
-    </div>
-    <div class="dish-card">
-        <div class="card-header">Dish_name</div>
-        <div class="card-body">rating</div>
-        </div> -->
-
-    <!-- Card Container (This is where the dish cards will be dynamically displayed) -->
+    
     <div id="card-container"></div>
-    </div>
 
     <script>
         // Function to fetch dishes from PHP
@@ -82,7 +62,7 @@
 
             // Fetch the dishes again and filter them
             $.ajax({
-                url: 'dishes_page.php', // The PHP script to fetch the dishes
+                url: 'fetch_dishes.php', // The PHP script to fetch the dishes
                 method: 'GET',
                 dataType: 'json',
                 success: function(dishes) {
@@ -99,6 +79,6 @@
         $(document).ready(function() {
             fetchDishes();
         });
-    </script>   -->
+    </script>
 </div>
 </body>
