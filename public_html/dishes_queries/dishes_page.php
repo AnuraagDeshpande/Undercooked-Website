@@ -88,6 +88,8 @@
         <div class="card-header">Dish_name</div>
         <div class="card-body">rating</div>
 
+    <!-- Card Container (This is where the dish cards will be dynamically displayed) -->
+    <div id="card-container"></div>
     </div>
 
     <script>
@@ -108,7 +110,7 @@
 
         // Function to render the dishes as cards
         function renderCards(dishes) {
-            const container = $('.dishes_cards');
+            const container = $('#card_container');
             container.empty(); // Clear the existing content
 
             dishes.forEach(dish => {

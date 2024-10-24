@@ -32,5 +32,7 @@
                     <i class="fas fa-search"></i>
                 </a>
             </div>
+            <!-- Card Container (This is where the dish cards will be dynamically displayed) -->
+            <div id="card-container"></div>
         </div>
     </nav>
