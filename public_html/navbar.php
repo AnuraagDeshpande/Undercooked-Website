@@ -26,13 +26,12 @@
                     <a href="/" class="button">Login/Sign up</a>
                 </li>
             </ul>
-            <div class="box">
-                <input type="text" placeholder="search" id="search">
-                <a href="#">
+        <div class="box">
+            <form action="search.php" method="GET" id="search-form"> <!-- Change the action as needed -->
+                <input type="text" placeholder="Search..." id="search" name="search_query" required>
+                <button type="submit" aria-label="Search">
                     <i class="fas fa-search"></i>
-                </a>
-            </div>
-            <!-- Card Container (This is where the dish cards will be dynamically displayed) -->
-            <div id="card-container"></div>
-        </div>
+                </button>
+            </form>
+        </div>  
     </nav>
