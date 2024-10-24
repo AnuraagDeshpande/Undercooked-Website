@@ -24,12 +24,14 @@
 </head>
 <body>
     <?php include '../navbar.php';?>
-    
+
     <h1>Search Dishes:</h1>
     <form action="dishes_search.php" method="GET">
         <input type="text" name="search_query" placeholder="Search Dishes..." required>
         <input type="hidden" name="search_type" value="dish"> <!-- This tells the form it's searching for dishes -->
-        <button type="submit">Search</button>
+        <button type="submit" aria-label="Search">
+                    <i class="fas fa-search"></i>
+        </button>
     </form>
 
     <?php
