@@ -27,7 +27,7 @@
                 </li>
             </ul>
             <div class="box">
-                <input type="text" placeholder="search" id="data-search">
+                <input type="text" placeholder="search" id="search">
                 <a href="#">
                     <i class="fas fa-search"></i>
                 </a>
