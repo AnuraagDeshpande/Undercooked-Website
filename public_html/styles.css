@@ -311,8 +311,6 @@ form {
 
 .text{
     padding: 0 auto;
-    background-color: #ffeb99;
-    color:#3A277C;
     margin: 10px 100px;
     padding: 20px;
     -align: justify;
@@ -346,7 +344,6 @@ form {
 }
 
 .item {
-    background-color: #ffb23b;
     padding: 5px;
     display: inline-block;
     margin: 10px 10px;
@@ -500,4 +497,10 @@ th {
 
 .hide {
     display: none; /*allows us to hide objects as we search for something*/
+}
+
+.text_box {
+    margin: 20px;
+    padding: 20px;
+    border: 5px solid #36365C;
 }
