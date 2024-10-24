@@ -79,31 +79,16 @@
                 $stmt_insert->bindParam(':dish1_id', $dish1_id);
                 $stmt_insert->bindParam(':dish2_id', $dish2_id);
                 $stmt_insert->execute();
+
+                $stmt_insert = $conn->prepare("INSERT INTO goes_with (did1, did2) VALUES (:dish1_id, :dish2_id)");
+                $stmt_insert->bindParam(':dish1_id', $dish2_id);
+                $stmt_insert->bindParam(':dish2_id', $dish1_id);
+                $stmt_insert->execute();
                 header("Location: goesWith.html");
                 exit(); 
             } else {
                 echo "<p>You cannot link a dish to itself. Please choose two different dishes.</p>";
             }
-                /*$stmt_stats = $conn->prepare($query);
-                $stmt_stats->execute();
-                $dish_stats = $stmt_stats->fetchAll(PDO::FETCH_ASSOC);
-
-                // Display the stats of dishes
-                echo "<h2>Dish Pairing Stats:</h2>";
-                echo "<table border='1'>
-                        <tr>
-                            <th>Dish Name</th>
-                            <th>Times Paired</th>
-                            <th>Average Rating</th>
-                        </tr>";
-                foreach ($dish_stats as $row) {
-                    echo "<tr>
-                            <td>{$row['name']}</td>
-                            <td>{$row['times_paired']}</td>
-                            <td>" . (isset($row['avg_rating']) ? round($row['avg_rating'], 2) : 'No Rating') . "</td>
-                          </tr>";
-                }
-                echo "</table>";*/
         }
     } 
     catch (PDOException $e){
