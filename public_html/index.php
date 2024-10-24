@@ -76,7 +76,7 @@
         <a href="#" id="footer_elem_2">Contact</a>
         <a href="#" id="footer_elem_3">Leave a Website Review/Suggestion!</a>
     </footer>  
-     <script src="app.js"></script>  
+    <script src="app.js"></script>
      
      
 </body>

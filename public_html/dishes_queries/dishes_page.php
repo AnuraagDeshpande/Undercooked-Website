@@ -31,16 +31,10 @@
         </div> -->
 
     <!-- Card Container (This is where the dish cards will be dynamically displayed) -->
-    <div id="card-container" class="dishes-cards"></div>
+    <div id="card-container"></div>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script>
-        // JavaScript to fetch and display the dishes
-        $(document).ready(function() {
-            fetchDishes();
-        });
     <script>
-
         // Function to fetch dishes from PHP
         function fetchDishes() {
             $.ajax({
@@ -88,7 +82,7 @@
 
             // Fetch the dishes again and filter them
             $.ajax({
-                url: 'fetch_dishes.php',
+                url: 'dishes_page.php', // The PHP script to fetch the dishes
                 method: 'GET',
                 dataType: 'json',
                 success: function(dishes) {
@@ -105,6 +99,6 @@
         $(document).ready(function() {
             fetchDishes();
         });
-    </script>   
+    </script>   -->
 </div>
 </body>
