@@ -26,6 +26,7 @@
     </style>
 </head>
 <body>
+    <?php include '../navbar.php';?>
     <h1>Search Drinks:</h1>
     <form action="" method="POST">
         <input type="text" name="dish_name" placeholder="Enter the dish name" required>
@@ -72,7 +73,7 @@
 
                 // Prepare the query based on user input
                 //checks if search is a type if not, checks if name matches drink
-                $reviews_sql="SELECT u.content, u.name, u.login, u.did, u.uid, u.isCritic
+                $reviews_sql="SELECT u.content, u.name, u.login, u.did, u.uid, u.isCritic, u.rid
                 FROM user_reviews u
                 WHERE LOWER(u.name) LIKE LOWER(:dish_name)";
                 $reviewsQ = $conn->prepare($reviews_sql);
@@ -89,17 +90,28 @@
 
             // Display the drinks table if results are found
             if (is_array($reviews) && count($reviews) > 0): ?>
-                <h2>Drinks found:</h2>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
+                <h2>Reviews found:</h2>
                     <?php foreach ($reviews as $row): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($row['name']); ?></td>
-                        </tr>
+                        <div class="dish-card secondary review">
+                            <div class="card-header">
+                                <h3 class="review_header">
+                                    <a href="../dishes_queries/dish_result.php?rid=<?php echo urlencode($row['rid']); ?>">
+                                            <?php 
+                                                echo htmlspecialchars($row['login']); 
+                                                echo " ";
+                                                echo htmlspecialchars($row['name']); 
+                                            ?>
+                                    </a>
+                                </h3>
+                                <p>
+                                    <?php 
+                                        echo htmlspecialchars($row['content']); 
+                                    ?>
+                                </p>
+                            </div>
+                        </div>
                     <?php endforeach; ?>
-                </table>
+
             <?php else: ?>
                 <p>No drinks found matching that name or type.</p>
             <?php endif;
