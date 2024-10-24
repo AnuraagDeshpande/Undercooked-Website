@@ -1,6 +1,6 @@
 <nav class="navbar">
         <div class="navbar_container">
-            <img src="images/logo3.png" alt="logo" class="navbar_item">
+            <img src="/images/logo3.png" alt="logo" class="navbar_item">
             <a href="/" id="navbar_logo" class="logo"><h1>Undercooked</h1></a>
             <div class="navbar_toggle" id="mobile_menu">
                 <span class="bar"></span><span class="bar"></span>
