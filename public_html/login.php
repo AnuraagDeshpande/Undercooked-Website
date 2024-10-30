@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Dish Pairings</title>
-    <link href="../styles.css" rel="stylesheet"/>
-    <link href="../dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link href="./styles.css" rel="stylesheet"/>
+    <link href="./dishes_queries/dishes_page.css" rel="stylesheet"/>
     <style>
         input {
             margin: 5px;
@@ -28,6 +28,8 @@
     </style>
 </head>
 <?php
+    //We start a session so we can collect and keep user data
+    session_start();
     include './maintenance/variables.php';
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -49,8 +51,9 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $login = $_POST['login'];
         try {
-            $sql = "SELECT U.login, U.password
-            FROM users U
+            //SELECT Login, Password and Admin status
+            $sql = "SELECT U.login, U.password, U.isAdmin 
+            FROM users U 
             WHERE U.login=:login";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':login', $login);
@@ -63,7 +66,12 @@
             $pass = $_POST['pass'];
             if ($data!=NULL && $data['password']==$pass){
                 //the user should be logged in
-                $errorCode=-1;
+                //Storing admin and login data in session
+                $_SESSION['user_id'] = $data['login'];
+                $_SESSION['isAdmin'] = $data['isAdmin'];
+                $errorCode = -1;
+                header("Location: index.php");
+            exit();
             } elseif ($data!=NULL && $data['password']!=$pass){
                 $errorCode=1;
             } else {

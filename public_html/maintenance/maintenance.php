@@ -1,3 +1,11 @@
+<!--Redirects non admin users to ouch.php-->
+<?php
+session_start();
+if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != 1) {
+    header("Location: ouch.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

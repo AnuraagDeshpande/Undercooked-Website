@@ -20,7 +20,7 @@
                     <a href="/" class="navbar_links">This week</a>
                 </li>
                 <li class="navbar_item">
-                    <a href="/maintenance/maintenance.html" class="navbar_links">Maintenance</a>
+                    <a href="/maintenance/maintenance.php" class="navbar_links">Maintenance</a>
                 </li>
                 <li class="navbar_item">
                     <a href="/users_queries/user_page.php" class="navbar_links">Users</a>
