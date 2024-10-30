@@ -6,6 +6,14 @@
     <title>Find Dish Pairings</title>
     <link href="../styles.css" rel="stylesheet"/>
 </head>
+<style>
+        div.text h1 {
+            margin: 10px;
+            font-size: 70px;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
 <body class="secondary">
     <?php include '../navbar.php'; ?>
     <div class="text">

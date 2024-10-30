@@ -69,6 +69,15 @@ isCritic BOOL,
 login CHAR(20),
 password CHAR(20)
 );
+--new version below
+CREATE TABLE users (
+    uid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    isCritic BOOL,
+    login CHAR(20) UNIQUE,
+    password CHAR(20),
+    isAdmin BOOL DEFAULT FALSE
+);
+
 
 -- Table for reviews
 CREATE TABLE reviews(
