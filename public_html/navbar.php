@@ -26,7 +26,7 @@
                     <a href="/users_queries/user_page.php" class="navbar_links">Users</a>
                 </li>
                 <li class="navbar_btn">
-                    <a href="/" class="button">Login/Sign up</a>
+                    <a href="/login.php" class="button">Login/Sign up</a>
                 </li>
             </ul>
         <div class="box">
