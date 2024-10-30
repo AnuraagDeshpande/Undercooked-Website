@@ -20,7 +20,8 @@
         }
         p.error {
             margin: 10px;
-            font-size: 40px;
+            font-size: 20px;
+            color: #3A277C;
             align-items: center;
             text-align: center;
         }
@@ -74,7 +75,6 @@
             } else {
                 try{
                     //we get data an analyze it
-                    
                     $pass1 = $_POST['pass1'];
                     $pass2 = $_POST['pass2'];
                     $critic = 0;
@@ -89,12 +89,9 @@
                         $stmt->bindParam(':password', $pass1);
                         //execute
                         $stmt->execute();
-        
-                        header("Location: signupSuc.html");
-                        exit();
+                        $errorCode=-2;
                     } else {
                         $errorCode=4;
-                        $error_message = "Passwords do not match.";
                     }         
                 } catch(PDOException $e){
                     $errorCode=5;
@@ -107,23 +104,6 @@
 <body class="secondary">
     <?php include './navbar.php'; ?>
     <!--Here a registered user can login-->
-    <?php if($errorCode==-1):?>
-        <p class="error">
-            User successfully loged in
-        </p>
-    <?php elseif($errorCode==1):?>
-        <p class="error">
-            Wrog password entered
-        </p>
-    <?php elseif($errorCode==2):?>
-        <p class="error">
-            No such user found
-        </p>
-    <?php elseif($errorCode==3):?>
-        <p class="error">
-            Such user already exists
-        </p>
-    <?php endif;?>
     <form  method="POST" class="secondary">
         <div class="review">
             <h1>Enter your credentials:</h1>
@@ -140,9 +120,15 @@
             <!--The user can submit the form contents by pressing a button-->
             <h2></h2>
             <input type="submit" value="Login" class="background">
-            <?php if (isset($error_message)): ?>
-                <p style="color: red;"><?php echo $error_message; ?></p>
-            <?php endif; ?>
+            <p class="error">
+                <?php if($errorCode==-1):?>
+                    User successfully loged in
+                <?php elseif($errorCode==1):?>
+                    Wrog password entered
+                <?php elseif($errorCode==2):?>
+                    No such user found
+                <?php endif;?>
+            </p>
         </div>
     </form>
 
@@ -167,10 +153,17 @@
             <!--The user can submit the form contents by pressing a button-->
             <h2></h2>
             <input type="submit" value="register" class="background">
-
-            <?php if (isset($error_message)): ?>
-                <p style="color: red;"><?php echo $error_message; ?></p>
-            <?php endif; ?>
+            <p class="error">
+                <?php if($errorCode==-2):?>
+                    User successfully signed up. Now log in with your new account.
+                <?php elseif($errorCode==3):?>
+                    Such user already exists
+                <?php elseif($errorCode==4):?>
+                    Passwords do not match. Try again.
+                <?php elseif($errorCode==5):?>
+                    Adding user failed try again.
+                <?php endif;?>
+            </p>
         </div>
     </form>
 </body>
