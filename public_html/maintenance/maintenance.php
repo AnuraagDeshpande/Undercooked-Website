@@ -1,8 +1,4 @@
 <!--Redirects non admin users to ouch.php-->
-<?php
-    include '../navbar.php';
-    include 'security.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,6 +7,10 @@
         <title>Undercooked Website</title>
         <link href="../styles.css" rel="stylesheet"/>
     </head>
+    <?php
+        include '../navbar.php';
+        include 'security.php';
+    ?>
     <body class = "secondary text">
         
         <h1>Maintence page:</h1>
@@ -22,7 +22,7 @@
         </p>
         <h3>Input pages for admin:</h3>
             <ul>
-                <li><a href="./try.php">Add a dish</a></li>
+                <li><a href="./add_dish.php">Add a dish</a></li>
                 <li><a href="./signup.php">Sign up</a></li>
                 <li><a href="./rate.php">Rate dish</a></li>
                 <li><a href="./goesWith.php">Add two dishes that go well with each other</a></li>
@@ -39,5 +39,4 @@
             <li><a href="../dishes_queries/dishes_page.php">Dishes search using the topbar</a></li>
         </ul>
     </body>
-    
 </html>

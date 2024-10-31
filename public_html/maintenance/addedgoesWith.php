@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+    include '../navbar.php';
+    include 'security.php';
+?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -7,7 +11,7 @@
         <link href="../styles.css" rel="stylesheet"/>
     </head>
     <body class = "secondary text">
-        <h1>A dish was rated!</h1>
+        <h1>Your recommendation was submitted!</h1>
         <ul>
             <a href="./maintenance.php">back to maintenance</a>
         </ul>

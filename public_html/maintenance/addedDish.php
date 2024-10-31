@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+    include '../navbar.php';
+    include 'security.php';
+    
+?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
