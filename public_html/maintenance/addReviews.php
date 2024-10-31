@@ -77,7 +77,7 @@
                 $stmt->bindParam(':rid', $rid);
                 $stmt->execute();
 
-                header("Location: addReviews.html");
+                header("Location: addedReviews.php");
                 exit();
                        
             } catch(PDOException $e){

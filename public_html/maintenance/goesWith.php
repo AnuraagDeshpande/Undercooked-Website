@@ -88,7 +88,7 @@
                 $stmt_insert->bindParam(':dish1_id', $dish2_id);
                 $stmt_insert->bindParam(':dish2_id', $dish1_id);
                 $stmt_insert->execute();
-                header("Location: goesWith.html");
+                header("Location: addedgoesWith.php");
                 exit(); 
             } else {
                 echo "<p>You cannot link a dish to itself. Please choose two different dishes.</p>";

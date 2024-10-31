@@ -51,7 +51,7 @@
                     //execute
                     $stmt->execute();
 
-                    header("Location: signupSuc.html");
+                    header("Location: signupSuc.php");
                     exit();
                 } else {
                     $error_message = "Passwords do not match.";

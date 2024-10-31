@@ -117,7 +117,7 @@
                     $stmt->execute();
                 }
             }
-            header("Location: addedDish.html");
+            header("Location: addedDish.php");
             }
         } catch(PDOException $e){
             echo "Insertion failed: " . $e->getMessage();

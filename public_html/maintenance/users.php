@@ -30,7 +30,7 @@
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             //USERS
-            $usersQ = $conn->prepare("SELECT U.uid, U.isCritic, U.login, U.password
+            $usersQ = $conn->prepare("SELECT U.uid, U.isCritic, U.login, U.password, U.isAdmin
             FROM users U
             ");
             $usersQ->execute();
@@ -48,6 +48,7 @@
                 <th>isCritic</th>
                 <th>login</th>
                 <th>password</th>
+                <th>isAdmin</th>
             </tr>
             <!--We take data in a loop-->
             <?php if (is_array($users)>0  && count($users) > 0):?>
@@ -56,7 +57,8 @@
                         <td><?php echo htmlspecialchars($row['uid']); ?></td>
                         <td><?php echo $row['isCritic'] ? 'Yes' : 'No'; ?></td>
                         <td><?php echo htmlspecialchars($row['login']); ?></td>
-                        <td><?php echo htmlspecialchars($row['password']); ?></td>     
+                        <td><?php echo htmlspecialchars($row['password']); ?></td>
+                        <td><?php echo htmlspecialchars($row['isAdmin']); ?></td>     
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>

@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<?php
-    include '../navbar.php';
-    include 'security.php';
-    
-?>
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -11,6 +7,10 @@
         <title>Undercooked Website</title>
         <link href="../styles.css" rel="stylesheet"/>
     </head>
+    <?php
+        include '../navbar.php';
+        include 'security.php';
+    ?>
     <body class = "secondary text">
         <h1>A dish was successfully added</h1>
         <ul>

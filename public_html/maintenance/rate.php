@@ -64,7 +64,7 @@
                 //execute
                 $stmt->execute();
 
-                header("Location: rated.html");
+                header("Location: rated.php");
                 exit();
                        
             } catch(PDOException $e){
