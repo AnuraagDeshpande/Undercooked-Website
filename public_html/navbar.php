@@ -1,3 +1,7 @@
+<?php
+    
+    session_start();
+?>
 <nav class="navbar">
         <div class="navbar_container">
             <img src="/images/logo3.png" alt="logo" class="navbar_item">
@@ -26,7 +30,13 @@
                     <a href="/users_queries/user_page.php" class="navbar_links">Users</a>
                 </li>
                 <li class="navbar_btn">
-                    <a href="/login.php" class="button">Login/Sign up</a>
+                    <a href="/login.php" class="button">
+                        <?php if (isset($_SESSION['user_id'])):?>
+                            <?php echo htmlspecialchars($_SESSION['user_id']);?>
+                        <?php else:?>
+                            Login/Sign up
+                        <?php endif;?>
+                    </a>
                 </li>
             </ul>
         <div class="box">

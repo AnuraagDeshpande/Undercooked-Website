@@ -27,9 +27,10 @@
         }
     </style>
 </head>
+<?php include './navbar.php'; ?>
 <?php
     //We start a session so we can collect and keep user data
-    session_start();
+    //session_start();
     include './maintenance/variables.php';
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -110,7 +111,6 @@
     }    
 ?>
 <body class="secondary">
-    <?php include './navbar.php'; ?>
     <!--Here a registered user can login-->
     <form  method="POST" class="secondary">
         <div class="review">
