@@ -22,7 +22,7 @@
         }
     </style>
     <link href="/styles.css" rel="stylesheet"/>
-    <link href="./dishes_page.css" rel="stylesheet"/>
+    <link href="/dishes_queries/dishes_page.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -30,7 +30,7 @@
 
     <h1>Search Dishes:</h1>
     <?php
-        include '../maintenance/variables.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);

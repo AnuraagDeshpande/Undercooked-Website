@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Reviews</title>
     <link href="/styles.css" rel="stylesheet"/>
-    <link href="../dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link href="/dishes_queries/dishes_page.css" rel="stylesheet"/>
 
     <style>
         body h1 {
@@ -27,7 +27,7 @@
     </form>
 
     <?php
-        include '../maintenance/variables.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
