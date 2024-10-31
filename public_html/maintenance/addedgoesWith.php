@@ -10,10 +10,12 @@
         <title>Undercooked Website</title>
         <link href="/styles.css" rel="stylesheet"/>
     </head>
-    <body class = "secondary text">
+    <body>
+        <div class = "secondary text">
         <h1>Your recommendation was submitted!</h1>
         <ul>
             <a href="/maintenance/maintenance.php">back to maintenance</a>
         </ul>
+        </div>
     </body>
 </html>

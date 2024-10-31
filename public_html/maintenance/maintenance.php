@@ -11,8 +11,8 @@
         include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
         include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/security.php';
     ?>
-    <body class = "secondary text">
-        
+    <body>
+        <div class = "secondary text">
         <h1>Maintence page:</h1>
         <a href="./..">to main</a>
         <p>
@@ -38,5 +38,6 @@
             <li><a href="/maintenance/search.php">Drink Search</a></li>
             <li><a href="../dishes_queries/dishes_page.php">Dishes search using the topbar</a></li>
         </ul>
+        </div>
     </body>
 </html>

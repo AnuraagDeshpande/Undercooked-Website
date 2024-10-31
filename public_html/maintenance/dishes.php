@@ -62,7 +62,8 @@
             echo "Connection failed: " . $e->getMessage();
         }        
     ?>
-    <body class="secondary text">
+    <body>
+        <div class="secondary text">
         <!--We fetch all the main dishes-->
         <h1>Main dishes:</h1>
         <table class="background">
@@ -202,5 +203,6 @@
             <?php endif; ?>
         </table>
         <a href="/maintenance/maintenance.php">back to maintenance</a>
+        </div>
     </body>
 </html>

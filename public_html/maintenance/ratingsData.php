@@ -40,7 +40,8 @@
             echo "Connection failed or query: " . $e->getMessage();
         }        
     ?>
-    <body class="secondary text">
+    <body>
+        <div  class="secondary text">
         <!--We fetch all the ratings data-->
         <h1>Ratings:</h1>
         <table class="background">
@@ -69,5 +70,6 @@
             <?php endif; ?>
         </table>        
         <a href="/maintenance/maintenance.php">back to maintenance</a>
+        </div>
     </body>
 </html>

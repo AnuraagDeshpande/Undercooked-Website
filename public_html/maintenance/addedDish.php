@@ -11,10 +11,12 @@
         include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
         include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/security.php';
     ?>
-    <body class = "secondary text">
+    <body>
+        <div  class = "secondary text">
         <h1>A dish was successfully added</h1>
         <ul>
             <a href="/maintenance/maintenance.php">back to maintenance</a>
         </ul>
+        </div>
     </body>
 </html>
