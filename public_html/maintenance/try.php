@@ -7,6 +7,10 @@
         <link href="../styles.css" rel="stylesheet"/>
     </head>
     <?php
+        include '../navbar.php';
+        include 'security.php';
+    ?>
+    <?php
         include 'variables.php';
 
         //ini_set('display_errors', 1);
@@ -187,6 +191,6 @@
             <h2></h2>
             <input type="submit" value="add" class="accent">
         </form>
-        <a href="./maintenance.html">back to maintenance</a>
+        <a href="./maintenance.php">back to maintenance</a>
     </body>
 </html>

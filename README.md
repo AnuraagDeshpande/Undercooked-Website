@@ -60,7 +60,7 @@ They show tables, often in joined form in order to make it easier to check for m
 
 #### Maintenance and variables
 This page has links to all the pages listed above and is linked back by them. Global vriables such as the address of the host are in a separate file.
-1. maintenance.html
+1. maintenance.php
 2. variables.php
 
 #### OTHER:
