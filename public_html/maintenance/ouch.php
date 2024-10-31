@@ -15,7 +15,9 @@
         }
     </style>
 <body class="secondary">
-    <?php include '/navbar.php'; ?>
+    <?php
+        include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+    ?>
     <div class="text">
     <h1>Ouch!</h1>
     <h2>This page is not meant for you! Return back to safety.</h2>

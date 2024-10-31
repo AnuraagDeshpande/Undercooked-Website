@@ -8,10 +8,8 @@
         <link href="/styles.css" rel="stylesheet"/>
     </head>
     <?php
-        include 'security.php';
-    ?>
-    <?php
         include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/security.php';
     ?>
     <body class = "secondary text">
         

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <?php
-    include 'security.php';
-?>
-<?php
     include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/security.php';
 ?>
 <html lang="en">
     <head>
@@ -15,7 +13,7 @@
     <body class = "secondary text">
         <h1>A dish was rated!</h1>
         <ul>
-            <a href="./maintenance.php">back to maintenance</a>
+            <a href="/maintenance/maintenance.php">back to maintenance</a>
         </ul>
     </body>
 </html>

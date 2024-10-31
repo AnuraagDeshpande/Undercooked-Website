@@ -8,15 +8,13 @@
         <link href="/styles.css" rel="stylesheet"/>
     </head>
     <?php
-        include 'security.php';
-    ?>
-    <?php
         include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/security.php';
     ?>
     <body class = "secondary text">
         <h1>A dish was successfully added</h1>
         <ul>
-            <a href="./maintenance.php">back to maintenance</a>
+            <a href="/maintenance/maintenance.php">back to maintenance</a>
         </ul>
     </body>
 </html>

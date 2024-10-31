@@ -7,13 +7,11 @@
         <link href="/styles.css" rel="stylesheet"/>
     </head>
     <?php
-        include 'security.php';
-    ?>
-    <?php
         include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/security.php';
     ?>
     <?php
-        include 'variables.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
@@ -109,6 +107,6 @@
                 <p style="color: red;"><?php echo $error_message; ?></p>
             <?php endif; ?>
         </form>
-        <a href="./maintenance.php">back to maintenance</a>
+        <a href="/maintenance/maintenance.php">back to maintenance</a>
     </body>
 </html>
