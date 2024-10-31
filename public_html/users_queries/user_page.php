@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../styles.css" rel="stylesheet"/>
+    <link href="/styles.css" rel="stylesheet"/>
     <link href="../dishes_queries/dishes_page.css" rel="stylesheet"/>
     <title>Undercooked Website - Search Users</title>
     <style>
@@ -25,7 +25,9 @@
     </style>
 </head>
 <body>
-    <?php include '../navbar.php'; ?>
+    <?php
+        include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+    ?>
     <h1>Search Users:</h1>
     <form action="" method="POST">
         <input type="text" name="user_login" placeholder="Enter user login or type" required>

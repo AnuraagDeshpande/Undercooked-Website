@@ -5,11 +5,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Undercooked Website</title>
-        <link href="../styles.css" rel="stylesheet"/>
+        <link href="/styles.css" rel="stylesheet"/>
     </head>
     <?php
-        include '../navbar.php';
         include 'security.php';
+    ?>
+    <?php
+        include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
     ?>
     <body class = "secondary text">
         <h1>A dish was successfully added</h1>

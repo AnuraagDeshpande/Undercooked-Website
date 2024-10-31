@@ -9,7 +9,9 @@
 </head>
 <body class="secondary">
     <?php include 'navbar.php';?>
-
+    <?php
+echo $_SERVER['DOCUMENT_ROOT'];
+?>
             <div class="text secondary">
                 <div class="text_box">
                     <h2>About us:</h2>

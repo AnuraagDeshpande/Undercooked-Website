@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Reviews</title>
-    <link href="../styles.css" rel="stylesheet"/>
+    <link href="/styles.css" rel="stylesheet"/>
     <link href="../dishes_queries/dishes_page.css" rel="stylesheet"/>
 
     <style>
@@ -16,8 +16,10 @@
         }
     </style>
 </head>
+<?php
+    include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+?>
 <body class="secondary">
-    <?php include '../navbar.php';?>
     <h1>Search reviews:</h1>
     <form action="" method="POST">
         <input type="text" name="dish_name" placeholder="Enter the dish name" required>

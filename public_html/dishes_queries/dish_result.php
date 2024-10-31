@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Undercooked Website</title>
-        <link href="../styles.css" rel="stylesheet"/>
+        <link href="/styles.css" rel="stylesheet"/>
         <link href="./dishes_page.css" rel="stylesheet"/>
     </head>
     
@@ -109,7 +109,9 @@
 
     ?>
     <body>
-        <?php include '../navbar.php';?>
+        <?php
+            include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+        ?>
         <div class="secondary text">
             <!--We print the most omportant information as headers-->
             <h1 class="item_main_info"><?php echo htmlspecialchars($dish['name']); ?></h1>

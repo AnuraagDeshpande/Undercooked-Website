@@ -1,4 +1,4 @@
-<link href="../styles.css" rel="stylesheet"/>
+<link href="/styles.css" rel="stylesheet"/>
 <link href="./dishes_page.css" rel="stylesheet"/>
 <nav class="navbar">
         <div class="navbar_container">
