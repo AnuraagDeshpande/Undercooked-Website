@@ -75,3 +75,10 @@ Folders:
 3. user_queries
 
 The search bar is local to page and finds the relevant data after the input is given and the button is pressed.
+
+### Assignment 7:
+We made the login page accesible. There one can register on the webiste or log in with the existing account. 
+
+If an admin user logs in they can access the maintenance pages. Should a new non admin user log in after the admin opened a page, the php
+will redirect the user to a ouch page after reloading the page. That page says that the contents of the page the user tried to access are
+not for them.
