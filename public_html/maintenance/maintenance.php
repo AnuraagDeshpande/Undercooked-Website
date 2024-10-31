@@ -1,10 +1,7 @@
 <!--Redirects non admin users to ouch.php-->
 <?php
-session_start();
-if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != 1) {
-    header("Location: ouch.php");
-    exit();
-}
+    include '../navbar.php';
+    include 'security.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
