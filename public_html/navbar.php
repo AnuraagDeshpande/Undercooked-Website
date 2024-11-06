@@ -1,11 +1,13 @@
 <?php
     
     session_start();
+    $our_root = getenv('OUR_ROOT');
 ?>
+
 <nav class="navbar">
         <div class="navbar_container">
-            <img src="/images/logo3.png" alt="logo" class="navbar_item">
-            <a href="/" id="navbar_logo" class="logo"><h1>Undercooked</h1></a>
+            <img src="<?php echo $our_root?>/images/logo3.png" alt="logo" class="navbar_item">
+            <a href="<?php echo $our_root?>/" id="navbar_logo" class="logo"><h1>Undercooked</h1></a>
             <div class="navbar_toggle" id="mobile_menu">
                 <span class="bar"></span><span class="bar"></span>
                 <span class="bar"></span>
@@ -15,22 +17,22 @@
                     <a href="/" class="navbar_links">Home</a>
                 </li>
                 <li class="navbar_item">
-                    <a href="/dishes_queries/dishes_page.php" class="navbar_links">Dishes</a>
+                    <a href="<?php echo $our_root?>/dishes_queries/dishes_page.php" class="navbar_links">Dishes</a>
                 </li>
                 <li class="navbar_item">
-                    <a href="/review_queries/review_page.php" class="navbar_links">Reviews</a>
+                    <a href="<?php echo $our_root?>/review_queries/review_page.php" class="navbar_links">Reviews</a>
                 </li>
                 <li class="navbar_item">
-                    <a href="/" class="navbar_links">This week</a>
+                    <a href="<?php echo $our_root?>/" class="navbar_links">This week</a>
                 </li>
                 <li class="navbar_item">
-                    <a href="/maintenance/maintenance.php" class="navbar_links">Maintenance</a>
+                    <a href="<?php echo $our_root?>/maintenance/maintenance.php" class="navbar_links">Maintenance</a>
                 </li>
                 <li class="navbar_item">
-                    <a href="/users_queries/user_page.php" class="navbar_links">Users</a>
+                    <a href="<?php echo $our_root?>/users_queries/user_page.php" class="navbar_links">Users</a>
                 </li>
                 <li class="navbar_btn">
-                    <a href="/login.php" class="button">
+                    <a href="<?php echo $our_root?>/login.php" class="button">
                         <?php if (isset($_SESSION['user_id'])):?>
                             <?php echo htmlspecialchars($_SESSION['user_id']);?>
                         <?php else:?>
