@@ -1,7 +1,8 @@
 <?php
-    
     session_start();
-    $our_root = getenv('OUR_ROOT');
+    global $our_root;
+    $our_root ='';
+    $php_root='/home/tim/repo/public_html';    
 ?>
 
 <nav class="navbar">

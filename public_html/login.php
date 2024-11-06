@@ -1,11 +1,15 @@
+<?php 
+    include './navbar.php';
+    global $our_root;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="./styles.css" rel="stylesheet"/>
-    <link href="./dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
     <style>
         input {
             margin: 5px;
@@ -27,11 +31,11 @@
         }
     </style>
 </head>
-<?php include './navbar.php'; ?>
+
 <?php
     //We start a session so we can collect and keep user data
     //session_start();
-    include './maintenance/variables.php';
+    include $php_root.'/maintenance/variables.php';
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
