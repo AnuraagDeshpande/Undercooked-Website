@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Undercooked Website</title>
-        <link href="<?php echo $html_root?>styles.css" rel="stylesheet"/>
-        <link href="<?php echo $html_root?>dishes_queries/dishes_page.css" rel="stylesheet"/>
+        <link href="<?php echo $html_root?>/styles.css" rel="stylesheet"/>
+        <link href="<?php echo $html_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
     </head>
     <?php
         include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
