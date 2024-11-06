@@ -100,7 +100,7 @@
                     <div class="dish-card secondary review">
                         <div class="card-header">
                             <h3 class="review_header">
-                                <a href="<?php echo $html_root?>/dish_result.php?did=<?php echo urlencode($row['did']); ?>">
+                                <a href="<?php echo $html_root?>/dishes_queries/dish_result.php?did=<?php echo urlencode($row['did']); ?>">
                                     <?php echo htmlspecialchars($row['name']); ?>
                                 </a>
                                 <?php

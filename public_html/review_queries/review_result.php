@@ -55,14 +55,14 @@
         <div class="secondary text">
             <!--We print the most omportant information as headers-->
             <h1 class="item_main_info">
-                <a href="../dishes_queries/dish_result.php?did=<?php echo urlencode($review['did']); ?>">
+                <a href="<?php echo $html_root?>/dishes_queries/dish_result.php?did=<?php echo urlencode($review['did']); ?>">
                     Review of: <?php echo htmlspecialchars($review['name']); ?>
                 </a>
             </h1>
             <!--We print review content-->
             <div class="item_main_info">
                 <h2>
-                    <a href="../users_queries/user_result.php?uid=<?php echo urlencode($review['uid']); ?>">
+                    <a href="<?php echo $html_root?>/users_queries/user_result.php?uid=<?php echo urlencode($review['uid']); ?>">
                         username: <?php echo htmlspecialchars($review['login']);?>
                     </a>
                 </h2>
