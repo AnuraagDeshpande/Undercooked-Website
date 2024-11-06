@@ -1,11 +1,14 @@
+<?php
+    include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Dish Pairings</title>
-    <link href="<?php echo $html_root?>styles.css" rel="stylesheet"/>
-    <link href="<?php echo $html_root?>dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link href="<?php echo $html_root?>/styles.css" rel="stylesheet"/>
+    <link href="<?php echo $html_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
 
     <style>
         body h1 {
@@ -17,9 +20,6 @@
     </style>
 </head>
 <body class="secondary">
-    <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
-    ?>
     <h1>Search for dish pairings:</h1>
     <form action="" method="POST">
         <input type="text" name="dish_name" placeholder="Enter the dish name" required>
