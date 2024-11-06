@@ -1,6 +1,6 @@
 <?php 
     include './navbar.php';
-    global $our_root;
+    global $html_root;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
-    <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link href="<?php echo $html_root?>/styles.css" rel="stylesheet"/>
+    <link href="<?php echo $html_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
     <style>
         input {
             margin: 5px;
