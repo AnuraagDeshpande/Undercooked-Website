@@ -103,3 +103,5 @@
 {"ip":"::1","user":"notLoggedIn","time":"2024-11-07 14:26:14","browser":"Mozilla\/5.0 (X11; Linux x86_64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/130.0.0.0 Safari\/537.36"}
 {"ip":"::1","user":"notLoggedIn","time":"2024-11-07 14:26:15","browser":"Mozilla\/5.0 (X11; Linux x86_64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/130.0.0.0 Safari\/537.36"}
 {"ip":"::1","user":"notLoggedIn","time":"2024-11-07 14:26:16","browser":"Mozilla\/5.0 (X11; Linux x86_64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/130.0.0.0 Safari\/537.36"}
+{"ip":"::1","user":"user1","time":"2024-11-07 15:41:57","browser":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/130.0.0.0 Safari\/537.36"}
+{"ip":"::1","user":"user1","time":"2024-11-07 15:43:01","browser":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/130.0.0.0 Safari\/537.36","page":"C:\\Users\\kosto\\Desktop\\repo\\public_html\\logger.php"}

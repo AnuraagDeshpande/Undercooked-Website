@@ -23,8 +23,8 @@ ini_set('log_errors', 1); // Ensure PHP logs errors internally
       'ip' => $_SERVER ['REMOTE_ADDR'] ?? 'N/A',
       'user' => $_SESSION ['user_id'] ?? 'notLoggedIn',
       'time' => date('Y-m-d H:i:s'),
-      'browser' => $_SERVER ['HTTP_USER_AGENT'] ?? 'N/A'
-      'page' => __FILE__;
+      'browser' => $_SERVER ['HTTP_USER_AGENT'] ?? 'N/A',
+      'page' => __FILE__
     ];
     logData ('request', $data);
   }
@@ -35,8 +35,8 @@ ini_set('log_errors', 1); // Ensure PHP logs errors internally
       'user' => $_SESSION ['name'] ?? 'notLoggedIn',
       'time' => date('Y-m-d H:i:s'),
       'browser' => $_SERVER ['HTTP_USER_AGENT'] ?? 'N/A',
-      'error' => $errorMessage
-      'page' => __FILE__;
+      'error' => $errorMessage,
+      'page' => __FILE__
     ];
     logData('error', $data);
   }
