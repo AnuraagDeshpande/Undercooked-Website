@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/styles.css" rel="stylesheet"/>
-    <link href="/dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
     <title>Undercooked Website - Search Users</title>
     <style>
         table {
@@ -78,7 +78,7 @@
                     <div class="dish-card secondary review">
                         <div class="card-header">
                             <h3 class="review_header">
-                                <a href="./user_result.php?uid=<?php echo urlencode($row['uid']); ?>">
+                                <a href="<?php echo $our_root?>/user_queries/user_result.php?uid=<?php echo urlencode($row['uid']); ?>">
                                     <?php echo htmlspecialchars($row['login']); ?>: 
                                     <?php echo htmlspecialchars($row['isCritic'] ? 'Is a Critic' : 'Is not a Critic'); ?>
                                 </a>

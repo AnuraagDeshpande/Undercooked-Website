@@ -18,14 +18,14 @@ for line in data:#here we extract the actual data
     browser = browser[:browser.rfind("\"")]
     print(user)
     
-    #x=np.linspace(1,len(row)+1, len(row))#create an arguement
-    #plt.plot(x,np.array(row), label=labels[i], color=colors[i])
+#x=np.linspace(1,len(row)+1, len(row))#create an arguement
+plt.plot(np.array(x),np.array(y), label=labels[0], color=colors[0])
 #we add some detials to the graph
-'''plt.xlabel("something")
+plt.xlabel("something")
 plt.ylabel("something")
 plt.grid()
 plt.legend()
 plt.savefig("graph.png")#save the file
-file.close()#close the file'''
+file.close()#close the file
 
 

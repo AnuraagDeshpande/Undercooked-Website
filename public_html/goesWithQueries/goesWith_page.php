@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Dish Pairings</title>
-    <link href="/styles.css" rel="stylesheet"/>
-    <link href="/dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
 
     <style>
         body h1 {

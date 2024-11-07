@@ -35,12 +35,9 @@
 <?php
     //We start a session so we can collect and keep user data
     //session_start();
-<<<<<<< Updated upstream
     include $php_root.'/maintenance/variables.php';
-=======
     include 'logger.php';
     include './maintenance/variables.php';
->>>>>>> Stashed changes
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);

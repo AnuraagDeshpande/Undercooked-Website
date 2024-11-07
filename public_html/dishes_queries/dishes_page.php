@@ -21,8 +21,8 @@
             background-color: #EEE;
         }
     </style>
-    <link href="/styles.css" rel="stylesheet"/>
-    <link href="/dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -98,7 +98,7 @@
                     <div class="dish-card secondary review">
                         <div class="card-header">
                             <h3 class="review_header">
-                                <a href="./dish_result.php?did=<?php echo urlencode($row['did']); ?>">
+                                <a href="<?php echo $our_root?>/dishes_queries/dish_result.php?did=<?php echo urlencode($row['did']); ?>">
                                     <?php echo htmlspecialchars($row['name']); ?>
                                 </a>
                                 <?php
@@ -125,6 +125,6 @@
         }
     ?>
 
-<a href="../goesWithQueries/goesWith_page.php" class="link"><h1>Dish Pairings<h1></a>
+<a href="<?php echo $our_root?>/goesWithQueries/goesWith_page.php" class="link"><h1>Dish Pairings<h1></a>
 </body>
 </html>

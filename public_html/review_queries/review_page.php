@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Reviews</title>
-    <link href="/styles.css" rel="stylesheet"/>
-    <link href="/dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
 
     <style>
         body h1 {
@@ -79,7 +79,7 @@
                         <div class="dish-card secondary review">
                             <div class="card-header">
                                 <h3 class="review_header">
-                                    <a href="../review_queries/review_result.php?rid=<?php echo urlencode($row['rid']); ?>">
+                                    <a href="<?php echo $our_root?>/review_queries/review_result.php?rid=<?php echo urlencode($row['rid']); ?>">
                                             <?php 
                                                 echo htmlspecialchars($row['login']); 
                                                 echo ": ";

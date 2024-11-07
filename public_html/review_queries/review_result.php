@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Undercooked Website</title>
-        <link href="/styles.css" rel="stylesheet"/>
-        <link href="/dishes_queries/dishes_page.css" rel="stylesheet"/>
+        <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
+        <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
     </head>
     <?php
         include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
@@ -56,14 +56,14 @@
         <div class="secondary text">
             <!--We print the most omportant information as headers-->
             <h1 class="item_main_info">
-                <a href="../dishes_queries/dish_result.php?did=<?php echo urlencode($review['did']); ?>">
+                <a href="<?php echo $our_root?>/dishes_queries/dish_result.php?did=<?php echo urlencode($review['did']); ?>">
                     Review of: <?php echo htmlspecialchars($review['name']); ?>
                 </a>
             </h1>
             <!--We print review content-->
             <div class="item_main_info">
                 <h2>
-                    <a href="../users_queries/user_result.php?uid=<?php echo urlencode($review['uid']); ?>">
+                    <a href="<?php echo $our_root?>/users_queries/user_result.php?uid=<?php echo urlencode($review['uid']); ?>">
                         username: <?php echo htmlspecialchars($review['login']);?>
                     </a>
                 </h2>
