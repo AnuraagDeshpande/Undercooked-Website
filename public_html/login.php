@@ -36,8 +36,8 @@
     //We start a session so we can collect and keep user data
     //session_start();
     include $php_root.'/maintenance/variables.php';
-    include 'logger.php';
-    include './maintenance/variables.php';
+    include $php_root.'/logger.php';
+    include $php_root.'/maintenance/variables.php';
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);

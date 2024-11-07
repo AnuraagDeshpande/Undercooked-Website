@@ -1,31 +1,40 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import numpy as np
 
-file=open("log.txt")
+file=open("./public_html/request.txt")
 data=file.readlines()#opening the file
 title = "Title"
-plt.title(title)
-labels=["line 1", "line 2"]#labels for graphs and table
-colors=["purple", "pink"]
+#plt.title(title)
+title = "Browser Usage Distribution"
+labels = ["Mozilla", "Apple", "Chrome", "Edge", "Else"]
+colors = ["purple", "pink", "skyblue", "lightgreen", "orange"]
+
+# Initialize browser count dictionary
+browsers = dict.fromkeys(labels, 0)
 i=0
-x=[]
-y=[]
 for line in data:#here we extract the actual data
-    user=line[line.find("user")+len("user")+3:]
+    for el in browsers:
+        browsers[el]+=line.__contains__(el)
+    '''user=line[line.find("user")+len("user")+3:]
     user = user[:user.rfind("\"")]
-    x.append(user)
+    y.append(user)
     browser=line[line.find("browser")+len("browser")+3:]
     browser = browser[:browser.rfind("\"")]
-    print(user)
+    x.append(browser)
+    print(user)'''
     
 #x=np.linspace(1,len(row)+1, len(row))#create an arguement
-plt.plot(np.array(x),np.array(y), label=labels[0], color=colors[0])
+#plt.scatter(np.array(x),np.array(y), label=labels[0], color=colors[0])
 #we add some detials to the graph
-plt.xlabel("something")
-plt.ylabel("something")
-plt.grid()
-plt.legend()
-plt.savefig("graph.png")#save the file
-file.close()#close the file
+x = list(browsers.values())
+
+# Plot pie chart
+plt.figure(figsize=(8, 8))  # Set figure size
+plt.pie(x, labels=labels, colors=colors, autopct='%1.1f%%', startangle=140)
+plt.title(title)
+
+# Display and save the plot
+plt.savefig("graph.png")  # save the file
+plt.show()
 
 
