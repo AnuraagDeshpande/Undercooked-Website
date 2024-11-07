@@ -31,6 +31,7 @@
 
     <?php
         include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/logger.php';
         include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/security.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);

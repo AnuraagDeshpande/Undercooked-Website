@@ -1,18 +1,16 @@
-<?php
-    include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Undercooked Website</title>
-        <link href="<?php echo $html_root?>/styles.css" rel="stylesheet"/>
-        <link href="<?php echo $html_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
+        <link href="/styles.css" rel="stylesheet"/>
+        <link href="/dishes_queries/dishes_page.css" rel="stylesheet"/>
     </head>
     
     <?php
         include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/logger.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
@@ -112,6 +110,9 @@
 
     ?>
     <body>
+        <?php
+            include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+        ?>
         <div class="secondary text">
             <!--We print the most omportant information as headers-->
             <h1 class="item_main_info"><?php echo htmlspecialchars($dish['name']); ?></h1>
@@ -183,12 +184,12 @@
                 <?php foreach ($reviews as $row): ?>
                     <div class="review">
                         <h3 class="review_header">
-                            <a href="<?php echo $html_root?>/users_queries/user_result.php?uid=<?php echo urlencode($row['uid']); ?>">
+                            <a href="../users_queries/user_result.php?uid=<?php echo urlencode($row['uid']); ?>">
                                 <?php echo htmlspecialchars($row['login']); ?>:
                             </a>
                         </h3>
                         <p>
-                            <a href="<?php echo $html_root?>/review_queries/review_result.php?rid=<?php echo urlencode($row['rid']); ?>">
+                            <a href="../review_queries/review_result.php?rid=<?php echo urlencode($row['rid']); ?>">
                                 <?php echo htmlspecialchars($row['content']); ?>
                             </a>
                         </p>

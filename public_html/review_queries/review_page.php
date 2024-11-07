@@ -1,14 +1,11 @@
-<?php
-    include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Reviews</title>
-    <link href="<?php echo $html_root?>/styles.css" rel="stylesheet"/>
-    <link href="<?php echo $html_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link href="/styles.css" rel="stylesheet"/>
+    <link href="/dishes_queries/dishes_page.css" rel="stylesheet"/>
 
     <style>
         body h1 {
@@ -19,6 +16,10 @@
         }
     </style>
 </head>
+<?php
+    include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/logger.php';
+?>
 <body class="secondary">
     <h1>Search reviews:</h1>
     <form action="" method="POST">
@@ -78,7 +79,7 @@
                         <div class="dish-card secondary review">
                             <div class="card-header">
                                 <h3 class="review_header">
-                                    <a href="<?php echo $html_root?>/review_queries/review_result.php?rid=<?php echo urlencode($row['rid']); ?>">
+                                    <a href="../review_queries/review_result.php?rid=<?php echo urlencode($row['rid']); ?>">
                                             <?php 
                                                 echo htmlspecialchars($row['login']); 
                                                 echo ": ";

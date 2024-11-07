@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undercooked Website</title>
-    <link href="<?php echo $html_root?>styles.css" rel="stylesheet"/>
+    <link href="/styles.css" rel="stylesheet"/>
 </head>
 <?php
     include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/security.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/logger.php';
 ?>
 <?php
     ini_set('display_errors', 1);
@@ -57,7 +58,7 @@
         </select>
         <h2></h2>
         <input type="submit" value="add" class="accent">
-        <a href="<?php echo $html_root?>maintenance/maintenance.php">back to maintenance</a>
+        <a href="/maintenance/maintenance.php">back to maintenance</a>
     </form>
     <?php
     /*

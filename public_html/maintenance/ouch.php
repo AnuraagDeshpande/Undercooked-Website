@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Dish Pairings</title>
-    <link href="<?php echo $html_root?>/styles.css" rel="stylesheet"/>
+    <link href="/styles.css" rel="stylesheet"/>
 </head>
 <style>
         div.text h1 {
@@ -17,6 +17,7 @@
 <body class="secondary">
     <?php
         include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/logger.php';
     ?>
     <div class="text">
     <h1>Ouch!</h1>

@@ -1,6 +1,6 @@
 <?php 
     include './navbar.php';
-    global $html_root;
+    global $our_root;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="<?php echo $html_root?>/styles.css" rel="stylesheet"/>
-    <link href="<?php echo $html_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
+    <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
     <style>
         input {
             margin: 5px;
@@ -35,7 +35,12 @@
 <?php
     //We start a session so we can collect and keep user data
     //session_start();
+<<<<<<< Updated upstream
     include $php_root.'/maintenance/variables.php';
+=======
+    include 'logger.php';
+    include './maintenance/variables.php';
+>>>>>>> Stashed changes
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -43,6 +48,9 @@
     First we need to connect to our server, which as we 
     know is hosted locally
     */
+    //this is just here to test error catching
+    echo $undefined_variable;
+    
     $errorCode=0;
     try {
         $conn = new PDO("mysql:unix_socket=$socket;dbname=$dbname", $username, $password);
