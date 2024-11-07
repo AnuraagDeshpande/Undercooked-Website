@@ -29,13 +29,6 @@ def graphOverTimeUsage(name,data):
             time_seconds = parseTimeToSeconds(time_str)
             x.append(time_seconds)
             y.append(page)
-    '''plt.scatter(np.array(x),np.array(y), color="purple")
-    plt.xlabel("time")
-    plt.ylabel(name)
-    plt.title(name +" access over time")
-    plt.gca().xaxis.set_major_locator(MaxNLocator(nbins=5))
-    #plt.show()
-    plt.savefig(name+"_access.png")#we save the data'''
     norm = mcolors.Normalize(vmin=min(x), vmax=max(x))
     cmap = cm.viridis  # Choose a color map
 
