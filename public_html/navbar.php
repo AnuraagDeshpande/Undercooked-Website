@@ -1,8 +1,8 @@
 <?php
     session_start();
     global $our_root;
-    $our_root ='';
-    $php_root='/home/tim/repo/public_html';    
+    $our_root ='~/pyuri';
+    $php_root='/home/pyuri/repo/public_html';   
 ?>
 
 <nav class="navbar">

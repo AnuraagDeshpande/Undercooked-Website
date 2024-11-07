@@ -4,7 +4,8 @@ from matplotlib.ticker import MaxNLocator
 import matplotlib.colors as mcolors
 import matplotlib.cm as cm
 from datetime import datetime
-
+import matplotlib
+matplotlib.use('Agg')
 #we need to format time
 def parseTimeToSeconds(time_str):
     dt = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")

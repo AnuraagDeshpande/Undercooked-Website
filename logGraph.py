@@ -4,8 +4,8 @@ from datetime import datetime
 import pandas as pd
 
 # File paths for request.json and error.json
-request_file_path = 'request.json'
-error_file_path = 'error.json'
+request_file_path = './public_html/request.json'
+error_file_path = './public_html/error.json'
 
 def parse_log_file(file_path):
     data = []
