@@ -3,14 +3,14 @@ SELECT d.name, r.rid, r.content
   FROM dishes d, reviews r, has_review hr
 WHERE d.did = hr.did
   AND r.rid = hr.rid
-  AND d.did = 2;
+  AND d.did = 2;
 
 --Gives back ratings for selected dish (filtered by name)
 SELECT d.name, r.rid, r.content
   FROM dishes d, reviews r, has_review hr
 WHERE d.did = hr.did
   AND r.rid = hr.rid
-  AND d.did = 'BEEF BIFTEKI WITH TZAZIKI';
+  AND d.did = 'BEEF BIFTEKI WITH TZAZIKI';
 
 --Gives back users, their reviews and the dishes they were made on 
 SELECT u.login, r.content, d.name
@@ -18,7 +18,7 @@ SELECT u.login, r.content, d.name
 WHERE u.uid = rv.uid 
   AND rv.rid = r.rid 
   AND r.rid = hr.rid 
-  AND hr.did = d.did;
+  AND hr.did = d.did;
 
 --Gives Reviews of a user (filtered by uid)
 SELECT d.name, r.content
@@ -27,7 +27,7 @@ WHERE u.uid = rv.uid
   AND rv.rid = r.rid
   AND r.rid = hr.rid
   AND hr.did = d.did
-  AND u.uid = 3;
+  AND u.uid = 3;
 
   --Gives Reviews of a user (filtered by login)
 SELECT d.name, r.content
@@ -36,7 +36,7 @@ WHERE u.uid = rv.uid
   AND rv.rid = r.rid
   AND r.rid = hr.rid
   AND hr.did = d.did
-  AND u.uid = 'Critic1';
+  AND u.uid = 'Critic1';
 
 --How many reviews did a person give? (filtered by uid)
 
@@ -46,7 +46,7 @@ WHERE u.uid = rv.uid
   AND rv.rid = r.rid
   AND r.rid = hr.rid
   AND hr.did = d.did
-  AND u.uid = 4;
+  AND u.uid = 4;
 
   --How many reviews did a person give? (filtered by login)
 
@@ -56,7 +56,7 @@ WHERE u.uid = rv.uid
   AND rv.rid = r.rid
   AND r.rid = hr.rid
   AND hr.did = d.did
-  AND u.uid = 'user4';
+  AND u.uid = 'user4';
 
 --Gives back reviews for selected dish (filtered by did and name)
 SELECT d.did, d.name, r.rid, r.content
@@ -64,7 +64,7 @@ SELECT d.did, d.name, r.rid, r.content
 WHERE d.did = hr.did
   AND r.rid = hr.rid
   AND d.did = 2
-  AND d.name = 'BEEF BIFTEKI WITH TZAZIKI';
+  AND d.name = 'BEEF BIFTEKI WITH TZAZIKI';
 
 --Gives back users, their reviews and the dishes they were made on 
 SELECT u.login, r.content, d.name
@@ -72,7 +72,7 @@ SELECT u.login, r.content, d.name
 WHERE u.uid = rv.uid 
   AND rv.rid = r.rid 
   AND r.rid = hr.rid 
-  AND hr.did = d.did;
+  AND hr.did = d.did;
 
 --Gives Reviews of a user (filtered by uid and login)
 SELECT d.name, r.content
@@ -82,7 +82,7 @@ WHERE u.uid = rv.uid
   AND r.rid = hr.rid
   AND hr.did = d.did
   AND u.uid = 3
-  AND u.login = 'Critic1';
+  AND u.login = 'Critic1';
 
 
 --How many reviews did a person give? (filtered by uid and login)
@@ -94,7 +94,7 @@ WHERE u.uid = rv.uid
   AND r.rid = hr.rid
   AND hr.did = d.did
   AND u.uid = 4
-  AND u.login = 'Critic2';
+  AND u.login = 'Critic2';
 
 --Finds all halal, vegan or vegetarian dishes that have been rated higher than 4
 SELECT d.name
@@ -104,7 +104,7 @@ WHERE d.did = r.did
   AND d.did = m.did
   AND r.rating > 4
   AND u.isCritic = TRUE
-  AND (d.isHalal = TRUE OR d.isVegan = TRUE OR d.isVegetarian = TRUE);
+  AND (d.isHalal = TRUE OR d.isVegan = TRUE OR d.isVegetarian = TRUE);
 
 
 --Gives the top 3 highest rated non-vegan main dishes with chicken
@@ -115,7 +115,7 @@ WHERE d.did = md.did
   AND (md.hasChicken = TRUE)
   AND d.did = r.did
 ORDER BY (SELECT AVG(r2.rating) FROM rated r2 WHERE r2.did = d.did) DESC
-LIMIT 3;
+LIMIT 3;
 
 
 --List dishes that go well together, along with their avg rating and
@@ -153,7 +153,7 @@ GROUP BY
     u.uid
 HAVING 
     halal_dishes_rated > 0
-    AND non_halal_dishes_rated > 0;
+    AND non_halal_dishes_rated > 0;
 
 --HIERARCHY VIEWS
 /*
@@ -162,35 +162,35 @@ Get the data of all the main dishes in one table
 SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian, ND.inBowl, ND.onPlate, M.hasMeat, M.hasFish, M.hasChicken
 FROM dishes D, non_drinks ND, main_dishes M
 WHERE D.did = ND.did AND ND.did = M.did
-;
+;
 /*
 Get the data of all the side dishes in one table
 */
 SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian, ND.inBowl, ND.onPlate, S.hasVegetables
 FROM dishes D, non_drinks ND, side_dishes S
 WHERE D.did = ND.did AND ND.did = S.did
-;
+;
 /*
 Get the data of all deserts in one table
 */
 SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian, ND.inBowl, ND.onPlate, DS.isCold, DS.hasFruit
 FROM dishes D, non_drinks ND, desert_dishes DS
 WHERE D.did = ND.did AND ND.did = DS.did
-;
+;
 /*
 Get the data of all drinks in one table
 */
 SELECT D.did, D.name, D.price, D.isHalal, D.isVegan, D.isVegetarian, DR.isCold, DR.isHot
 FROM dishes D, drinks DR
 WHERE D.did = DR.did
-;
+;
 /*
 What are the avergae ratings of dishes?
 */
 SELECT D.did, D.name, AVG( R.rating ) AS rating
 FROM dishes D, rated R
 WHERE D.did=R.did
-GROUP BY (R.did);
+GROUP BY (R.did);
 /*
 GET dishes whose rating is above average
 */
@@ -210,7 +210,7 @@ FROM(
     ) AS S
     ) T
 )
-WHERE R.rating > T.avg_rating;
+WHERE R.rating > T.avg_rating;
 
 /*
 GET CRITICS
@@ -218,4 +218,4 @@ we want to find all the users who are critics
 */
 SELECT U.uid, U.login
 FROM users U
-WHERE U.isCritic = TRUE;
+WHERE U.isCritic = TRUE;

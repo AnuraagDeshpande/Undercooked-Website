@@ -15,7 +15,7 @@ isHalal BOOL,
 isVegan BOOL, 
 isVegetarian BOOL, 
 price FLOAT
-);
+);
 
 --all dishes are either drinks or non drinks
 CREATE TABLE drinks (
@@ -23,14 +23,14 @@ did INT PRIMARY KEY,
 isCold BOOL,
 isHot BOOL,
 FOREIGN KEY(did) REFERENCES dishes(did)
-);
+);
 
 CREATE TABLE non_drinks(
 did INT PRIMARY KEY,
 inBowl BOOL,
 onPlate BOOL,
 FOREIGN KEY(did) REFERENCES dishes(did)
-);
+);
 
 --all drinks fall into one of the 3 categories: main, sides and deserts
 
@@ -41,20 +41,20 @@ hasMeat BOOL,
 hasFish BOOL,
 hasChicken BOOL,
 FOREIGN KEY(did) REFERENCES non_drinks(did)
-);
+);
 --side dishes
 CREATE TABLE side_dishes (
 did INT PRIMARY KEY,
 hasVegetables BOOL,
 FOREIGN KEY(did) REFERENCES non_drinks(did)
-);
+);
 --deserts
 CREATE TABLE desert_dishes (
 did INT PRIMARY KEY,
 isCold BOOL,
 hasFruit BOOL,
 FOREIGN KEY(did) REFERENCES non_drinks(did)
-);
+);
 
 /*
 REVIEWS AND USERS
@@ -68,7 +68,7 @@ uid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 isCritic BOOL,
 login CHAR(20),
 password CHAR(20)
-);
+);
 --new version below
 CREATE TABLE users (
     uid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -76,7 +76,7 @@ CREATE TABLE users (
     login CHAR(20) UNIQUE,
     password CHAR(20),
     isAdmin BOOL DEFAULT FALSE
-);
+);
 
 
 -- Table for reviews
@@ -84,7 +84,7 @@ CREATE TABLE reviews(
 rid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 content VARCHAR(500),
 CHECK (LENGTH(content) >= 1 AND LENGTH(content) <= 500)
-);
+);
 
 --relationships----------------------------------------------------------------
 
@@ -100,7 +100,7 @@ CHECK (
 rating >= 1 
 AND rating <= 5
 )
-);
+);
 --has review dish->review
 CREATE TABLE has_review(
 did INT,
@@ -108,7 +108,7 @@ rid INT,
 PRIMARY KEY (did, rid),
 FOREIGN KEY (did) REFERENCES dishes(did),
 FOREIGN KEY (rid) REFERENCES reviews(rid)	
-);
+);
 --reviewed user->review
 CREATE TABLE reviewed (
 uid INT,
@@ -116,7 +116,7 @@ rid INT,
 PRIMARY KEY (uid, rid),
 FOREIGN KEY (uid) REFERENCES users(uid),
 FOREIGN KEY (rid) REFERENCES reviews(rid)
-);
+);
 
 /*
 GOES WITH RELATION
@@ -129,4 +129,4 @@ PRIMARY KEY (did1,did2),
 FOREIGN KEY(did1) REFERENCES dishes(did),
 FOREIGN KEY(did2) REFERENCES dishes(did),
 CHECK (did1 != did2)
-);
+);
