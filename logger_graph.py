@@ -72,7 +72,7 @@ def browserPie(data):
     plt.legend()
 
     #we save the plot
-    plt.savefig("graph.png")  # save the file
+    plt.savefig("browser_pie.png")  # save the file
     return 0
 
 
@@ -81,5 +81,5 @@ file=open("./public_html/request.json")
 data=file.readlines()#opening the file
 graphOverTimeUsage("page",data)
 graphOverTimeUsage("user",data)
-
+browserPie(data)
 
