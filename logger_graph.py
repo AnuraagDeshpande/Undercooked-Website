@@ -1,6 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+def getProperty(property, data):
+    result=data[data.find(property)+len(property)+3:]
+    result=result[:result.find("\"")]
+    return result
+
 file=open("./public_html/request.txt")
 data=file.readlines()#opening the file
 title = "Title"
