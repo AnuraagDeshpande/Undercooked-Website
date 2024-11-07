@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
-    include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/security.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/logger.php';
+    include '../navbar.php';
+    include $php_root . '/maintenance/security.php';
+    include $php_root . '/logger.php';
 ?>
 <html lang="en">
     <head>

@@ -8,8 +8,8 @@
         <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
     </head>
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
-        include $_SERVER['DOCUMENT_ROOT'] . '/logger.php';
+        include $php_root . '/maintenance/variables.php';
+        include $php_root . '/logger.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
@@ -69,7 +69,7 @@
     ?>
     <body>
         <?php
-            include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
+            include '../navbar.php';
         ?>
         <div class="secondary text">
             <!--We print the most omportant information as headers-->

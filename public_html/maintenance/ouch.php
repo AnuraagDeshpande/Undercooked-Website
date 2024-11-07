@@ -16,8 +16,8 @@
     </style>
 <body class="secondary">
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
-        include $_SERVER['DOCUMENT_ROOT'] . '/logger.php';
+        include '../navbar.php';
+        include $php_root . '/logger.php';
     ?>
     <div class="text">
     <h1>Ouch!</h1>

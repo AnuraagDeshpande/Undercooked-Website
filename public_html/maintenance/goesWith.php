@@ -7,10 +7,10 @@
     <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
 </head>
 <?php
-    include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/security.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/logger.php';
+    include '../navbar.php';
+    include $php_root . '/maintenance/variables.php';
+    include $php_root . '/maintenance/security.php';
+    include $php_root . '/logger.php';
 ?>
 <?php
     ini_set('display_errors', 1);

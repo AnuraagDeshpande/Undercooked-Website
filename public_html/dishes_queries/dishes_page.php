@@ -30,8 +30,8 @@
 
     <h1>Search Dishes:</h1>
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
-        include $_SERVER['DOCUMENT_ROOT'] . '/logger.php';
+        include $php_root . '/maintenance/variables.php';
+        include $php_root . '/logger.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);

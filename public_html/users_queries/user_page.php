@@ -26,8 +26,8 @@
 </head>
 <body>
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/navbar.php';
-        include $_SERVER['DOCUMENT_ROOT'] . '/logger.php';
+        include  '../navbar.php';
+        include $php_root . '/logger.php';
     ?>
     <h1>Search Users:</h1>
     <form action="" method="POST">
@@ -36,7 +36,7 @@
     </form>
 
     <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/maintenance/variables.php';
+        include $php_root . '/maintenance/variables.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
