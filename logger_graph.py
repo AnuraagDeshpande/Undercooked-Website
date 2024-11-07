@@ -11,7 +11,11 @@ i=0
 x=[]
 y=[]
 for line in data:#here we extract the actual data
-    user=line[line.find("user")+5:]
+    user=line[line.find("user")+len("user")+3:]
+    user = user[:user.rfind("\"")]
+    x.append(user)
+    browser=line[line.find("browser")+len("browser")+3:]
+    browser = browser[:browser.rfind("\"")]
     print(user)
     
     #x=np.linspace(1,len(row)+1, len(row))#create an arguement
