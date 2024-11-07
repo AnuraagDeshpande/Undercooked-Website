@@ -77,7 +77,7 @@ def browserPie(data):
 
 
 
-file=open("./public_html/request.txt")
+file=open("./public_html/request.json")
 data=file.readlines()#opening the file
 graphOverTimeUsage("page",data)
 graphOverTimeUsage("user",data)
