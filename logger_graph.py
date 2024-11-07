@@ -5,11 +5,12 @@ import matplotlib.colors as mcolors
 import matplotlib.cm as cm
 from datetime import datetime
 
-
+#we need to format time
 def parseTimeToSeconds(time_str):
     dt = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
     return int(dt.timestamp()) 
 
+#we want to get a json property
 def getProperty(property, data):
     if (data.find("page")!=-1):
         result=data[data.find(property)+len(property)+3:]
@@ -30,9 +31,9 @@ def graphOverTimeUsage(name,data):
             x.append(time_seconds)
             y.append(page)
     norm = mcolors.Normalize(vmin=min(x), vmax=max(x))
-    cmap = cm.viridis  # Choose a color map
+    cmap = cm.viridis  #choose a color map
 
-    # Create the scatter plot with color gradient
+    #Create the scatter plot with color gradient
     plt.figure(figsize=(10, 6))
     scatter = plt.scatter(x, y, c=x, cmap=cmap, norm=norm)
     plt.colorbar(scatter, label="Time")  # Add color bar
@@ -40,10 +41,10 @@ def graphOverTimeUsage(name,data):
     plt.ylabel(name.capitalize())
     plt.title(f"{name.capitalize()} access over time")
     
-    # Control x-axis tick density
+    #we want to control x-axis tick density
     plt.gca().xaxis.set_major_locator(MaxNLocator(nbins=5))
     
-    # Save the figure
+    #save the figure on the server
     plt.savefig(f"{name}_access.png")
     return 0
 
