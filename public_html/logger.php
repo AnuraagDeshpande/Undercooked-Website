@@ -4,7 +4,7 @@ ini_set('display_errors', 1); // For debugging only; set to 0 in production
 ini_set('log_errors', 1); // Ensure PHP logs errors internally
   //
   function logData($type, $data) {
-    $file = $type === 'error' ? 'error.txt' : 'request.txt';
+    $file = $type === 'error' ? 'error.json' : 'request.json';
     //__DIR__ locks the filepath to the current file
     $filePath = __DIR__ . '/' . $file;
 
@@ -24,7 +24,7 @@ ini_set('log_errors', 1); // Ensure PHP logs errors internally
       'user' => $_SESSION ['user_id'] ?? 'notLoggedIn',
       'time' => date('Y-m-d H:i:s'),
       'browser' => $_SERVER ['HTTP_USER_AGENT'] ?? 'N/A',
-      'page' => __FILE__
+      'page' => $_SERVER['REQUEST_URI'] ?? 'N/A'
     ];
     logData ('request', $data);
   }
@@ -36,7 +36,7 @@ ini_set('log_errors', 1); // Ensure PHP logs errors internally
       'time' => date('Y-m-d H:i:s'),
       'browser' => $_SERVER ['HTTP_USER_AGENT'] ?? 'N/A',
       'error' => $errorMessage,
-      'page' => __FILE__
+      'page' => $_SERVER['REQUEST_URI'] ?? 'N/A'
     ];
     logData('error', $data);
   }
