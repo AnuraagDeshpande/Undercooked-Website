@@ -1,6 +1,9 @@
 <?php
-    include '../navbar.php';
-?>
+        include '../navbar.php';
+        global $our_root;
+        include $php_root . '/maintenance/security.php';
+        include $php_root . '/logger.php';
+    ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,8 +14,6 @@
         <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
     </head>
     <?php
-        include $php_root . '/maintenance/variables.php';
-        include $php_root . '/logger.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);

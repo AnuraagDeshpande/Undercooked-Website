@@ -1,9 +1,10 @@
-<!DOCTYPE html>
 <?php
-    include '../navbar.php';
-    include $php_root . '/maintenance/security.php';
-    include $php_root . '/logger.php';
-?>
+        include '../navbar.php';
+        global $our_root;
+        include $php_root . '/maintenance/security.php';
+        include $php_root . '/logger.php';
+    ?>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">

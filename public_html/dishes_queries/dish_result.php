@@ -1,5 +1,6 @@
 <?php
-    include '../navbar.php';
+    include './navbar_for_dishes_search.php';
+    global $our_root;
 ?>
 <!DOCTYPE html>
 <html lang="en">

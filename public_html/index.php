@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+
+<?php 
+    include './navbar.php';
+    global $our_root;
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class="secondary">
-    <?php include 'navbar.php';?>
     <?php include 'logger.php';?>
             <div class="text secondary">
                 <div class="text_box">

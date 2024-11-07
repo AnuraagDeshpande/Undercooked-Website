@@ -1,4 +1,10 @@
 <!--Redirects non admin users to ouch.php-->
+<?php
+        include '../navbar.php';
+        global $our_root;
+        include $php_root . '/maintenance/security.php';
+        include $php_root . '/logger.php';
+    ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,11 +13,6 @@
         <title>Undercooked Website</title>
         <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
     </head>
-    <?php
-        include '../navbar.php';
-        include $php_root . '/maintenance/security.php';
-        include $php_root . '/logger.php';
-    ?>
     <body>
         <div class = "secondary text">
         <h1>Maintence page:</h1>

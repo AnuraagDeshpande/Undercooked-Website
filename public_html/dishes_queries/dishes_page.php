@@ -1,3 +1,7 @@
+<?php
+    include './navbar_for_dishes_search.php';
+    global $our_root;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +30,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <?php include './navbar_for_dishes_search.php';?>
-
     <h1>Search Dishes:</h1>
     <?php
         include $php_root . '/maintenance/variables.php';

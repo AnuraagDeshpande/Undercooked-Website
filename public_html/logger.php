@@ -21,7 +21,7 @@ ini_set('log_errors', 1); // Ensure PHP logs errors internally
   function logRequest (){
     $data = [
       'ip' => $_SERVER ['REMOTE_ADDR'] ?? 'N/A',
-      'user' => $_SESSION ['name'] ?? 'notLoggedIn',
+      'user' => $_SESSION ['user_id'] ?? 'notLoggedIn',
       'time' => date('Y-m-d H:i:s'),
       'browser' => $_SERVER ['HTTP_USER_AGENT'] ?? 'N/A'
     ];

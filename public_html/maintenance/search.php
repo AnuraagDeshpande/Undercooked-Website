@@ -1,3 +1,7 @@
+<?php 
+    include '../navbar.php';
+    global $our_root;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

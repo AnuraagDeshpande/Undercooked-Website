@@ -1,3 +1,9 @@
+<?php
+        include '../navbar.php';
+        global $our_root;
+        include $php_root . '/maintenance/security.php';
+        include $php_root . '/logger.php';
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +22,6 @@
         }
     </style>
 </head>
-<?php
-    include '../navbar.php';
-    include $php_root . '/logger.php';
-?>
 <body class="secondary">
     <h1>Search reviews:</h1>
     <form action="" method="POST">
@@ -28,7 +30,6 @@
     </form>
 
     <?php
-        include $php_root . '/maintenance/variables.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
