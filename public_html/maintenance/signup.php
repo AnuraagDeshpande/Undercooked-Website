@@ -2,6 +2,7 @@
         include '../navbar.php';
         global $our_root;
         include $php_root . '/maintenance/security.php';
+        include $php_root . '/maintenance/variables.php';
         include $php_root . '/logger.php';
     ?>
 <!DOCTYPE html>

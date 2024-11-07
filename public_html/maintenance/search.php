@@ -1,5 +1,6 @@
 <?php 
     include '../navbar.php';
+    include $php_root . '/maintenance/variables.php';
     global $our_root;
 ?>
 <!DOCTYPE html>
