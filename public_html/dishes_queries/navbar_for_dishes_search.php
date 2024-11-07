@@ -1,3 +1,7 @@
+<?php
+    $our_root ='';
+    $php_root='/home/tim/repo/public_html'; 
+?>
 <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
 <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
 <nav class="navbar">

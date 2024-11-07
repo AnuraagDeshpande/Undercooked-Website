@@ -1,3 +1,6 @@
+<?php
+    include '../navbar.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -50,9 +53,6 @@
         }
     ?>
     <body>
-        <?php
-            include '../navbar.php';
-        ?>
         <div class="secondary text">
             <!--We print the most omportant information as headers-->
             <h1 class="item_main_info">
