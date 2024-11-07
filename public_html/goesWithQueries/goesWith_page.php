@@ -1,3 +1,7 @@
+<?php
+    include '../navbar.php';
+    global $our_root;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,9 +21,7 @@
     </style>
 </head>
 <body class="secondary">
-    <?php
-        include '../navbar.php';
-    ?>
+    
     <h1>Search for dish pairings:</h1>
     <form action="" method="POST">
         <input type="text" name="dish_name" placeholder="Enter the dish name" required>
