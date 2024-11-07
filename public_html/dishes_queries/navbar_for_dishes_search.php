@@ -1,5 +1,5 @@
 <?php
-    $our_root ='~/pyuri';
+    $our_root ='~/pyuri/public_html';
     $php_root='/home/pyuri/repo/public_html'; 
 ?>
 <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>

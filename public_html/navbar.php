@@ -1,7 +1,7 @@
 <?php
     session_start();
     global $our_root;
-    $our_root ='~/pyuri';
+    $our_root ='~/pyuri/public_html';
     $php_root='/home/pyuri/repo/public_html';   
 ?>
 
