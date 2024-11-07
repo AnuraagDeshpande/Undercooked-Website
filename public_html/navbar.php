@@ -15,7 +15,7 @@
             </div>
             <ul class="navbar_menu">
                 <li class="navbar_item">
-                    <a href="/" class="navbar_links">Home</a>
+                    <a href="<?php echo $our_root?>/" class="navbar_links">Home</a>
                 </li>
                 <li class="navbar_item">
                     <a href="<?php echo $our_root?>/dishes_queries/dishes_page.php" class="navbar_links">Dishes</a>
