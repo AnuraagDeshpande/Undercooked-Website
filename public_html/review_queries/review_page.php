@@ -12,6 +12,9 @@
     <title>Search Reviews</title>
     <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
     <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
 
     <style>
         body h1 {
@@ -22,31 +25,67 @@
         }
     </style>
 </head>
+<?php
+    //INITIAL CONNECTION
+    try {        
+        // Database connection settings
+
+        //We create a pdo instance to connect to the database
+        //$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:unix_socket=$socket;dbname=$dbname", $username, $password);
+    
+        //set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    } catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+    if (isset($_REQUEST["term"])){
+        //HERE WE TAKE THE 
+        $dish_name=$_REQUEST["term"];
+        $json = [];
+        try {
+            // to make it so capitalization is ignored
+            $normalized_name = ucfirst(strtolower($dish_name));
+            //I search based on dish name
+            // Prepare the query based on user input
+            //checks if search is a type if not, checks if name matches drink
+            $reviews_sql="SELECT u.content, u.name, u.login, u.did, u.uid, u.isCritic, u.rid
+            FROM user_reviews u";
+            $reviewsQ = $conn->prepare($reviews_sql);
+            $search_name = '%' . $dish_name . '%'; // For partial matches
+            $reviewsQ->bindParam(':dish_name', $search_name, PDO::PARAM_STR);
+            $reviewsQ->execute();                
+            
+            // Execute the query
+            while ($row = $reviewsQ->fetch(PDO::FETCH_ASSOC)) {
+                $json[] = ["name"=>$row['name'],"content"=>$row[ 'content'] ,'login'=>$row['login']];
+            }
+        } catch (PDOException $e) {
+            echo json_encode(["error"=>"Fetching data: " . $e->getMessage()]);
+        }
+        echo json_encode($json);
+    }
+?>
 <body class="secondary">
     <h1>Search reviews:</h1>
     <form action="" method="POST">
-        <input type="text" name="dish_name" placeholder="Enter the dish name" required>
+        <input type="text" name="dish_name" placeholder="Enter the dish name" id="review_search" required>
         <button type="submit">Search</button>
     </form>
+    <script>
+        $( "#review_search" ).autocomplete({
+            source:  <?php echo json_encode($json);?>
+        });
+    </script>
+
 
     <?php
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
 
-        try {        
-            // Database connection settings
-
-            //We create a pdo instance to connect to the database
-            //$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-            $conn = new PDO("mysql:unix_socket=$socket;dbname=$dbname", $username, $password);
         
-            //set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        } catch (PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
-        }
 
         // check if form is submitted
         if (isset($_POST['dish_name'])) {

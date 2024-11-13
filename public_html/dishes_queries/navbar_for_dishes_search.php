@@ -1,6 +1,8 @@
 <?php
-    $our_root ='/~pyuri';
-    $php_root='/home/pyuri/repo/public_html'; 
+    //$our_root ='/~pyuri';
+    //$php_root='/home/pyuri/repo/public_html'; 
+    $our_root ='';
+    $php_root='/home/tim/repo/public_html';
 ?>
 <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
 <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
