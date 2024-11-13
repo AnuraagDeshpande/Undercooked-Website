@@ -12,9 +12,9 @@
     <title>Search Reviews</title>
     <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
     <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     <style>
         body h1 {
@@ -40,32 +40,17 @@
     } catch (PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
-    if (isset($_REQUEST["term"])){
-        //HERE WE TAKE THE 
-        $dish_name=$_REQUEST["term"];
-        $json = [];
-        try {
-            // to make it so capitalization is ignored
-            $normalized_name = ucfirst(strtolower($dish_name));
-            //I search based on dish name
-            // Prepare the query based on user input
-            //checks if search is a type if not, checks if name matches drink
-            $reviews_sql="SELECT u.content, u.name, u.login, u.did, u.uid, u.isCritic, u.rid
-            FROM user_reviews u";
-            $reviewsQ = $conn->prepare($reviews_sql);
-            $search_name = '%' . $dish_name . '%'; // For partial matches
-            $reviewsQ->bindParam(':dish_name', $search_name, PDO::PARAM_STR);
-            $reviewsQ->execute();                
-            
-            // Execute the query
-            while ($row = $reviewsQ->fetch(PDO::FETCH_ASSOC)) {
-                $json[] = ["name"=>$row['name'],"content"=>$row[ 'content'] ,'login'=>$row['login']];
-            }
-        } catch (PDOException $e) {
-            echo json_encode(["error"=>"Fetching data: " . $e->getMessage()]);
-        }
-        echo json_encode($json);
+    $json = [];
+    try {
+        $reviews_sql="SELECT name
+        FROM user_reviews u";
+        $reviewsQ = $conn->prepare($reviews_sql);
+        $reviewsQ->execute();                
+        $json = $reviewsQ->fetchAll(PDO::FETCH_COLUMN);
+    } catch (PDOException $e) {
+        echo "Fetching data: " . $e->getMessage();
     }
+    echo json_encode($json);
 ?>
 <body class="secondary">
     <h1>Search reviews:</h1>
@@ -74,9 +59,15 @@
         <button type="submit">Search</button>
     </form>
     <script>
-        $( "#review_search" ).autocomplete({
-            source:  <?php echo json_encode($json);?>
+        const reviews = <?php echo json_encode($json); ?>;
+        const reviewsSet = new Set(reviews)
+        $(document).ready(function() {
+            $("#review_search").autocomplete({
+                source: Array.from(reviewsSet),
+                minLength: 2
+            });
         });
+
     </script>
 
 
