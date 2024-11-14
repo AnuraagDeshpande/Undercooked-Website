@@ -1,6 +1,8 @@
 <?php
     //$our_root ='/~pyuri';
     //$php_root='/home/pyuri/repo/public_html'; 
+    //$php_root='C:\Users\kosto\Desktop\repo\public_html'; 
+    //$our_root ='/public_html'; 
     $our_root ='';
     $php_root='/home/tim/repo/public_html';
     include $php_root . '/maintenance/variables.php';
