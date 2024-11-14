@@ -3,9 +3,54 @@
     //$php_root='/home/pyuri/repo/public_html'; 
     $our_root ='';
     $php_root='/home/tim/repo/public_html';
+    include $php_root . '/maintenance/variables.php';
 ?>
 <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
 <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<?php
+//HERE WE FETCH DATA FOR AUTOCOMPLETE:
+
+//INITIAL CONNECTION
+try {        
+    // Database connection settings
+
+    //We create a pdo instance to connect to the database
+    //$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn_nav = new PDO("mysql:unix_socket=$socket;dbname=$dbname", $username, $password);
+
+    //set the PDO error mode to exception
+    $conn_nav->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+//FETCHING THE DATA
+$json = [];
+try {
+    $dishesN_sql="SELECT name
+    FROM dishes";
+    $dishNQ = $conn_nav->prepare($dishesN_sql);
+    $dishNQ->execute();                
+    $json = $dishNQ->fetchAll(PDO::FETCH_COLUMN);
+} catch (PDOException $e) {
+    echo "Fetching data: " . $e->getMessage();
+}
+?>
+
+<style>
+    .ui-autocomplete {
+        z-index: 1000; /* Ensure this is higher than other elements like the navbar */
+        background-color: #ffffff; /* Background color for readability */
+        border: 1px solid #ddd;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
 <nav class="navbar">
         <div class="navbar_container">
             <img src="<?php echo $our_root?>/images/logo3.png" alt="logo" class="navbar_item">
@@ -43,6 +88,16 @@
                 <button type="submit" aria-label="Search">
                     <i class="fas fa-search"></i>
                 </button>
+                <script>
+                    const dishes = <?php echo json_encode($json); ?>;
+                    $(document).ready(function() {
+                        $("#search").autocomplete({
+                            source: dishes,
+                            minLength: 2
+                        });
+                    });
+
+                </script>
             </form>
         </div>  
     </nav>
