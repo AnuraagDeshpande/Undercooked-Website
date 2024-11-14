@@ -10,6 +10,9 @@
     <title>Find Dish Pairings</title>
     <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
     <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     <style>
         body h1 {
@@ -21,12 +24,6 @@
     </style>
 </head>
 <body class="secondary">
-    
-    <h1>Search for dish pairings:</h1>
-    <form action="" method="POST">
-        <input type="text" name="dish_name" placeholder="Enter the dish name" required>
-        <button type="submit">Search</button>
-    </form>
 
     <?php
         include $php_root . '/maintenance/variables.php';
@@ -44,6 +41,46 @@
             echo "Connection failed: " . $e->getMessage();
         }
 
+        //WE FETCH THE DATA FOR AUTOCOMPLETE
+        $json = [];
+        try {
+            $goesWith_sql= "
+            SELECT D1.name AS dish_name
+            FROM goes_with G
+            JOIN dishes D1 ON G.did1 = D1.did
+            UNION
+            SELECT D2.name AS dish_name
+            FROM goes_with G
+            JOIN dishes D2 ON G.did2 = D2.did
+            ";
+            $gWQ = $conn->prepare($goesWith_sql);
+            $gWQ->execute();                
+            $json = $gWQ->fetchAll(PDO::FETCH_COLUMN);
+        } catch (PDOException $e) {
+            echo "Fetching data: " . $e->getMessage();
+        }
+
+        ?>
+
+        <h1>Search for dish pairings:</h1>
+    <form action="" method="POST">
+        <input type="text" name="dish_name" placeholder="Enter the dish name" id = "goesWithSearch" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <script>
+        const goesWithRelations = <?php echo json_encode($json); ?>;
+        const goesWithSet = new Set(goesWithRelations)
+        $(document).ready(function() {
+            $("#goesWithSearch").autocomplete({
+                source: Array.from(goesWithSet),
+                minLength: 2
+            });
+        });
+
+    </script>
+
+    <?php
         // Check if the form is submitted
         if (isset($_POST['dish_name'])) {
             $dish_name = $_POST['dish_name'];
