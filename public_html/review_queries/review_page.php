@@ -40,6 +40,7 @@
     } catch (PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
+    //WE FETCH THE DATA FOR AUTOCOMPLETE
     $json = [];
     try {
         $reviews_sql="SELECT name
@@ -50,7 +51,6 @@
     } catch (PDOException $e) {
         echo "Fetching data: " . $e->getMessage();
     }
-    echo json_encode($json);
 ?>
 <body class="secondary">
     <h1>Search reviews:</h1>
