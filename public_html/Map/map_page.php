@@ -1,3 +1,7 @@
+<?php
+    include '../navbar.php';
+    global $our_root;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +18,6 @@
 </head>
 <body class = "secondary">
     <?php
-            include $php_root . '/maintenance/variables.php';
             include $php_root . '/logger.php';
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
