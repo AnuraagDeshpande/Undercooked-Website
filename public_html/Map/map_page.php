@@ -22,15 +22,7 @@
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
             error_reporting(E_ALL);
-
-            try {        
-                // Database connection settings
-                $conn = new PDO("mysql:unix_socket=$socket;dbname=$dbname", $username, $password);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            } catch (PDOException $e) {
-                echo "Connection failed: " . $e->getMessage();
-            } ?>
+            ?>
 
     <div class="text secondary">
             <p>

@@ -76,6 +76,7 @@
                 foreach($ips as $ip){
                     $locs[]=getLoc($ip);
                 }
+                return $locs;
             }
         ?>
     </body>
