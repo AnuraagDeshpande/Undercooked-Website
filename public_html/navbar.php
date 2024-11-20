@@ -37,6 +37,9 @@
                 <li class="navbar_item">
                     <a href="<?php echo $our_root?>/users_queries/user_page.php" class="navbar_links">Users</a>
                 </li>
+                <li class="navbar_item">
+                    <a href="<?php echo $our_root?>/map/map_page.php" class="navbar_links">Map</a>
+                </li>
                 <li class="navbar_btn">
                     <a href="<?php echo $our_root?>/login.php" class="button">
                         <?php if (isset($_SESSION['user_id'])):?>

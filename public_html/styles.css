@@ -504,3 +504,7 @@ th {
     padding: 20px;
     border: 5px solid #36365C;
 }
+
+.map {
+    height: 220px;
+}
