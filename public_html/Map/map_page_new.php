@@ -39,28 +39,10 @@
                 <h2><a href="./..">Back to homepage!</a></h2>
             </p>
 </body>
-<?php
-    $current_loc=getUserLoc();
-    $loc = json_encode($current_loc);
-?>
 <script>
-    //NEW:
-    //fetch the relevant data about the user's location
-    const phpLoc = "<?php echo $current_loc; ?>";
-    const defaultLoc = [53.0758, 8.8072];//deafult location
-
-    // Parse the location from PHP
-    let userLoc;
-    try {
-        const coords = phpLoc.split(',');
-        userLoc = [parseFloat(coords[0]), parseFloat(coords[1])];//turn to array
-    } catch (error) {
-        console.error('Error parsing user location from PHP:', error);
-        userLoc = defaultLoc; // Fallback to default location
-    }
 
     // Initialize the map with a default view
-    const map = L.map('map').setView(userLoc, 13);
+    const map = L.map('map').setView([53.0758, 8.8072], 13);
 
     const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -87,23 +69,21 @@ fetch('./proxy.php')
         return response.json();
     })
     .then(data => {
-
+        console.log('Geolocation data received:', data); // Add this line to debug
         const loc = data.loc.split(',');
         const lat = parseFloat(loc[0]);
         const lng = parseFloat(loc[1]);
-        const ip = data.ip;
+        console.log(`Parsed Latitude: ${lat}, Longitude: ${lng}`); // Debug parsed values
 
-        // Updates map view to your location
         map.setView([lat, lng], 13);
 
-        //  Marker and popup
         const marker = L.marker([lat, lng]).addTo(map);
-        marker.bindPopup(`IP Address: ${ip}`).openPopup();
+        marker.bindPopup(`IP Address: ${data.ip}`).openPopup();
     })
     .catch(error => {
         console.error('Error fetching location data or updating the map:', error);
-        alert("Unable to fetch location. Default location is shown.");
     });
+
 
 
 </script>
