@@ -64,7 +64,7 @@
 
         }
 
-        marker = L.marker([lat, lng]).addTo(map); //create a marker
+        marker = L.marker([position]).addTo(map); //create a marker
     }
 
     /* function error(err) { //error function in case the user does not allow us to access their location
