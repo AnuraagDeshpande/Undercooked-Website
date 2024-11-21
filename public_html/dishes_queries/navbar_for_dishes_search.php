@@ -83,6 +83,9 @@ try {
                 <li class="navbar_btn">
                     <a href="<?php echo $our_root?>/" class="button">Login/Sign up</a>
                 </li>
+                <li class="navbar_item">
+                    <a href="<?php echo $our_root?>/Map/map_page_new.php" class="navbar_links">Map</a>
+                </li>
             </ul>
         <div class="box">
             <form action="<?php echo $our_root?>/dishes_queries/dishes_page.php" method="GET" id="search-form"> <!-- Change the action as needed -->
