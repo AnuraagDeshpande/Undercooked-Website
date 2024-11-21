@@ -41,6 +41,7 @@
                 }
                 
             }
+            //get Ips of all user from logs
             function getIps(){
                 $ips=[];//array with ips
 
@@ -69,12 +70,12 @@
                 }
                 return $ips;
             }
-
+            //get location of current user
             function getUserLoc(){
                 $ip = $_SERVER ['REMOTE_ADDR'];
                 return getLoc($ip);
             }
-
+            //get the locations of all users from logs
             function getLocs(){
                 $ips=getIps();
                 $locs=[];
@@ -83,6 +84,7 @@
                 }
                 return $locs;
             }
+            //delete:
             $ips = getLocs();
             var_dump($ips);
             foreach ($ips as $line) {
