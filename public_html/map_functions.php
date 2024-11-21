@@ -1,17 +1,4 @@
-<?php
-    include './navbar.php';
-    global $our_root;
-?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Map of our users</title>
-        <link href="<?php echo $our_root?>/styles.css" rel="stylesheet"/>
-        <link href="<?php echo $our_root?>/dishes_queries/dishes_page.css" rel="stylesheet"/>
-    </head>
-    <body>
+
         <?php
             /*Here we fetch the data using an API call inside the exec command*/
 
@@ -92,5 +79,3 @@
             }
             echo getUserLoc();
         ?>
-    </body>
-</html>

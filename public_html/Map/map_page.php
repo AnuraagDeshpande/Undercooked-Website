@@ -18,6 +18,7 @@
 </head>
 <body class = "secondary">
     <?php
+            include $php_root . '/map_functions.php';
             include $php_root . '/logger.php';
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
@@ -37,6 +38,10 @@
                 <h2><a href="./..">Back to homepage!</a></h2>
             </p>
 </body>
+<?php
+    $current_loc=getUserLoc();
+    $loc = json_encode($current_loc);
+?>
 <script>
     var map = L.map('map').setView([51.505, -0.09], 13); //call and set the view of map (coordinates and zoom level)
 
