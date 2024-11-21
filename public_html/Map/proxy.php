@@ -12,5 +12,7 @@ curl_close($ch);
 
 // Sends response back to the server
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *'); // Allows all domains to access the response
+header('Content-Type: application/json'); // Tells the client it's JSON data
 echo $response;
 ?>
