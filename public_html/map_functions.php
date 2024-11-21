@@ -71,11 +71,4 @@
                 }
                 return $locs;
             }
-            //delete:
-            $ips = getLocs();
-            var_dump($ips);
-            foreach ($ips as $line) {
-                echo "<p>$line</p>";
-            }
-            echo getUserLoc();
         ?>
