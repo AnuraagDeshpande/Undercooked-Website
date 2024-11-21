@@ -60,17 +60,17 @@
     const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+    }).addTo(map);
 
-tileLayer.on('tileload', (event) => {
-    console.log(`Tile loaded:`, event.tile.src);
-});
+    tileLayer.on('tileload', (event) => {
+        console.log(`Tile loaded:`, event.tile.src);
+    });
 
-map.whenReady(() => {
-    console.log('Map is ready!');
-});
+    map.whenReady(() => {
+        console.log('Map is ready!');
+    });
 
-map.invalidateSize(); // Force the map to redraw
+    map.invalidateSize(); // Force the map to redraw
 
 
 // geolocation data from PHP proxy
