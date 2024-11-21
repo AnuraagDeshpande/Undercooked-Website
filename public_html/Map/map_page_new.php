@@ -42,6 +42,7 @@
 <?php
     $current_loc = getUserLoc();
     $ip=$_SERVER ['REMOTE_ADDR'];
+    echo $current_loc;
 ?>
 <script>
     //NEW:
