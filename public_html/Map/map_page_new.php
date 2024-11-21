@@ -19,6 +19,7 @@
 <body class = "secondary">
     <?php
             include $php_root . '/logger.php';
+            include $php_root . '/map_functions.php';
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
             error_reporting(E_ALL);
@@ -38,7 +39,16 @@
                 <h2><a href="./..">Back to homepage!</a></h2>
             </p>
 </body>
+<?php
+    $current_loc=getUserLoc();
+    $loc = json_encode($current_loc);
+?>
 <script>
+    //NEW:
+    //fetch the relevant data about the user's location
+    var position = <?php echo $current_loc?>;
+    position = text.split(",");
+
     // Initialize the map with a default view
     const map = L.map('map').setView([53.0758, 8.8072], 13);
 
