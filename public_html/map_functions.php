@@ -70,6 +70,11 @@
                 return $ips;
             }
 
+            function getUserLoc(){
+                $ip = $_SERVER ['REMOTE_ADDR'];
+                return getLoc($ip);
+            }
+
             function getLocs(){
                 $ips=getIps();
                 $locs=[];
@@ -78,11 +83,12 @@
                 }
                 return $locs;
             }
-            $ips = getIps();
+            $ips = getLocs();
             var_dump($ips);
             foreach ($ips as $line) {
                 echo "<p>$line</p>";
             }
+            echo getUserLoc();
         ?>
     </body>
 </html>
