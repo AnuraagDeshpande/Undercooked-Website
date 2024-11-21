@@ -45,15 +45,15 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map); //loads the data of the map, to be set to the coordinates and zoom level defined earlier
 
-    navigator.geolocation.getCurrentPosition(success, error);
+    navigator.geolocation.getCurrentPosition(success);
 
     let marker, circle; //declare them in the global scope
 
     function success(pos) { //function in case the live location of the user is sucessfully accessed
         //fetch the relevant data about the user's location
-        const lat = pos.coords.latitude;
+        /* const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
-        const accuracy = pos.coords.accuracy;
+        const accuracy = pos.coords.accuracy; */
 
         if (marker) { //removes the previous marker and circle when user location is updated
             map.removeLayer(marker);
@@ -66,7 +66,7 @@
         map.fitBounds(circle.getBounds()); //essentially updates the location to center the user
     }
 
-    function error(err) { //error function in case the user does not allow us to access their location
+    /* function error(err) { //error function in case the user does not allow us to access their location
 
     if (err.code === 1) {
         alert("Please allow geolocation access");
@@ -74,7 +74,7 @@
     } else {
         alert("Cannot get current location");
         // Runs if there was a technical problem.
-    }
+    } */
 
     }
 </script>
