@@ -3,14 +3,14 @@
             /*Here we fetch the data using an API call inside the exec command*/
 
             //This function gets the command with the ip address
-            function getCommand($ip){
-                $command ="curl \"ipinfo.io/$ip?token=c5ce36c2e7b896\"";
+            function getCommand(){
+                $command ="curl \"ipinfo.io/json?token=c5ce36c2e7b896\"";
                 return $command;
             }
             //this function returns the coordinates of a given IP address
-            function getLoc($ip){
+            function getLoc(){
                 $output="";
-                $command = getCommand($ip);
+                $command = getCommand();
                 $result_code;
                 $cord;
                 //we execute the command:
@@ -59,8 +59,7 @@
             }
             //get location of current user
             function getUserLoc(){
-                $ip = $_SERVER ['REMOTE_ADDR'];
-                return getLoc($ip);
+                return getLoc();
             }
             //get the locations of all users from logs
             function getLocs(){
