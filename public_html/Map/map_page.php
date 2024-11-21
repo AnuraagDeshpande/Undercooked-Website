@@ -27,9 +27,9 @@
 
     <div class="text secondary">
             <p>
-                This is a map displaying the live location of users, made using the OpenStreetMap functionality 
+                <h3>This is a map displaying the location of users, made using the OpenStreetMap functionality 
                 inside the leaflet.js JavaScript library. We extract the geolocation of users from their ip address using
-                ipinfo.
+                ipinfo.</h3>
             </p>
         </div>
     <div class="map" id="map"></div>
