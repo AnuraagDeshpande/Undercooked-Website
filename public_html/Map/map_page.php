@@ -31,7 +31,7 @@
                 ipinfo.
             </p>
         </div>
-    <div class="map"></div>
+    <div class="map" id="map"></div>
     <div class="text secondary">
             <p>
                 <h2><a href="./..">Back to homepage!</a></h2>
@@ -45,7 +45,7 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map); //loads the data of the map, to be set to the coordinates and zoom level defined earlier
 
-    navigator.geolocation.watchPosition(success, error);
+    navigator.geolocation.getCurrentPosition(success, error);
 
     let marker, circle; //declare them in the global scope
 
