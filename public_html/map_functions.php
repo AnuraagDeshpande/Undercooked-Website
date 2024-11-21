@@ -78,6 +78,11 @@
                 }
                 return $locs;
             }
+            $ips = getIps();
+            var_dump($ips);
+            foreach ($ips as $line) {
+                echo "<p>$line</p>";
+            }
         ?>
     </body>
 </html>
