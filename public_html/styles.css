@@ -12,7 +12,6 @@
     box-sizing: border-box; /* Changes from content-box to border-box for more consistent sizing */
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     font-family: futura-cond;
 }
 
@@ -510,4 +509,9 @@ th {
     width: 100%;
     margin: 40px;
     overflow: hidden;
+}
+
+#map {
+    height: 500px; /* Ensure the map has height */
+    width: 100%;   /* Full width of the container */
 }
