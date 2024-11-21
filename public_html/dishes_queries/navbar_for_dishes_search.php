@@ -80,11 +80,11 @@ try {
                 <li class="navbar_item">
                     <a href="<?php echo $our_root?>/users_queries/user_page.php" class="navbar_links">Users</a>
                 </li>
-                <li class="navbar_btn">
-                    <a href="<?php echo $our_root?>/" class="button">Login/Sign up</a>
-                </li>
                 <li class="navbar_item">
                     <a href="<?php echo $our_root?>/Map/map_page_new.php" class="navbar_links">Map</a>
+                </li>
+                <li class="navbar_btn">
+                    <a href="<?php echo $our_root?>/" class="button">Login/Sign up</a>
                 </li>
             </ul>
         <div class="box">
