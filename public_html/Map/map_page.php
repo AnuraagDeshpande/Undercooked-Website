@@ -56,19 +56,15 @@
 
     function success(pos) { //function in case the live location of the user is sucessfully accessed
         //fetch the relevant data about the user's location
-        /* const lat = pos.coords.latitude;
-        const lng = pos.coords.longitude;
-        const accuracy = pos.coords.accuracy; */
+        var position = <?php echo $current_loc?>;
+        position = text.split(",");
 
         if (marker) { //removes the previous marker and circle when user location is updated
             map.removeLayer(marker);
-            map.removeLayer(circle);
+
         }
 
         marker = L.marker([lat, lng]).addTo(map); //create a marker
-        circle = L.circle([lat, lng], {radius : accuracy }).addTo(map); //create a circle around the marker, with the radius as the accuracy
-
-        map.fitBounds(circle.getBounds()); //essentially updates the location to center the user
     }
 
     /* function error(err) { //error function in case the user does not allow us to access their location
@@ -81,6 +77,5 @@
         // Runs if there was a technical problem.
     } */
 
-    }
 </script>
 </html>
