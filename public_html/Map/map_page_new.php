@@ -19,6 +19,7 @@
 <body class = "secondary">
     <?php
             include $php_root . '/logger.php';
+            include $php_root . '/map_functions.php';
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
             error_reporting(E_ALL);
@@ -38,10 +39,15 @@
                 <h2><a href="./..">Back to homepage!</a></h2>
             </p>
 </body>
+<?php
+    $current_loc = getUserLoc();
+    $ip=$_SERVER ['REMOTE_ADDR'];
+?>
 <script>
     //NEW:
     //fetch the relevant data about the user's location
     const phpLoc = "<?php echo $current_loc; ?>";
+    const ip = "<?php echo $ip; ?>"
     const defaultLoc = [53.0758, 8.8072];//deafult location
 
     // Parse the location from PHP
@@ -55,7 +61,9 @@
     }
 
     // Initialize the map with a default view
-    const map = L.map('map').setView([53.0758, 8.8072], 13);
+    const map = L.map('map').setView(userLoc, 13);
+    const marker = L.marker(userLoc).addTo(map);
+    marker.bindPopup(`IP Address: ${ip}`).openPopup();
 
     const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -73,8 +81,8 @@
     map.invalidateSize(); // Force the map to redraw
 
 
-// geolocation data from PHP proxy
-fetch('./proxy.php')
+    // geolocation data from PHP proxy
+    /*fetch('./proxy.php')
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error, status: ${response.status}`);
@@ -88,14 +96,14 @@ fetch('./proxy.php')
         const lng = parseFloat(loc[1]);
         console.log(`Parsed Latitude: ${lat}, Longitude: ${lng}`); // Debug parsed values
 
-        map.setView([lat, lng], 13);
+        //map.setView([lat, lng], 13);
 
-        const marker = L.marker([lat, lng]).addTo(map);
-        marker.bindPopup(`IP Address: ${data.ip}`).openPopup();
+        //const marker = L.marker([lat, lng]).addTo(map);
+        //marker.bindPopup(`IP Address: ${data.ip}`).openPopup();
     })
     .catch(error => {
         console.error('Error fetching location data or updating the map:', error);
-    });
+    });*/
 
 
 
